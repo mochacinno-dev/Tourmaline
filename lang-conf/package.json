@@ -1,12 +1,13 @@
 {
   "name": "tourmaline-language",
   "displayName": "Tourmaline Language Support",
-  "description": "Syntax highlighting and basic language support for the Tourmaline programming language (.toma)",
-  "version": "0.0.1",
+  "description": "Syntax highlighting, snippets, and language support for Tourmaline (.toma)",
+  "version": "0.3.0",
+  "publisher": "Mochacinno",
   "engines": {
     "vscode": "^1.50.0"
   },
-  "categories": ["Programming Languages"],
+  "categories": ["Programming Languages", "Snippets"],
   "contributes": {
     "languages": [
       {
@@ -21,6 +22,12 @@
         "language": "tourmaline",
         "scopeName": "source.tourmaline",
         "path": "./syntaxes/tourmaline.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "tourmaline",
+        "path": "./snippets/tourmaline.json"
       }
     ]
   }

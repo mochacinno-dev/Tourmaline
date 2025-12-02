@@ -55,7 +55,7 @@ class Var(Node):
 class Call(Node):
     def __init__(self, name, args): self.name = name; self.args = args
 
-class List(Node):
+class ListNode(Node):
     def __init__(self, elements): self.elements = elements
 
 class Module(Node):
@@ -126,6 +126,12 @@ def parse_expr(token: str):
     if token.startswith('"') and token.endswith('"'):
         return String(token[1:-1])
     
+    # Handle boolean literals
+    if token == 'true':
+        return Bool(True)
+    if token == 'false':
+        return Bool(False)
+    
     m = re.match(r'^([A-Za-z_][A-Za-z0-9_]*)\[(.*)\]$', token)
     if m:
         name = m.group(1)
@@ -135,10 +141,10 @@ def parse_expr(token: str):
     if token.startswith('[') and token.endswith(']'):
         inner = token[1:-1].strip()
         if not inner:
-            return List([])
+            return ListNode([])
         parts = split_outside(inner, ',')
         elements = [parse_expr(p) for p in parts]
-        return List(elements)
+        return ListNode(elements)
 
     if '..' in token:
         left, right = token.split('..', 1)
@@ -187,6 +193,7 @@ def parse_lines(lines: List[str], i=0) -> Tuple[List[Node], int]:
             elifs = []
             else_body = []
 
+            # Keep looking for elif/else/end
             while i < len(lines):
                 nxt = lines[i].strip()
                 if nxt.startswith('elif '):
@@ -242,6 +249,14 @@ def parse_lines(lines: List[str], i=0) -> Tuple[List[Node], int]:
 
         elif line == 'end':
             return stmts, i
+        
+        elif line.startswith('elif '):
+            # Return when we hit elif - parent will handle it
+            return stmts, i - 1  # Back up so parent can see the elif
+        
+        elif line == 'else':
+            # Return when we hit else - parent will handle it
+            return stmts, i - 1  # Back up so parent can see the else
 
         elif line.startswith('return '):
             expr = parse_expr(line[len('return '):].strip())
@@ -302,40 +317,51 @@ class Compiler:
             self.emit('STORE', s.name)
 
         elif isinstance(s, If):
-            # Compile condition
+            jumps_to_end = []  # Track all jumps that need to go to the end
+            
+            # Compile main if condition
             self.compile_expr(s.cond)
-            jfalse_pos = len(self.code); self.emit('JUMP_IF_FALSE', None)
-
-            # compile then body
-            for stmt in s.then_body: self.compile_stmt(stmt)
-
-            # after then, jump to end
-            jend_positions = []
-            jend_positions.append(len(self.code)); self.emit('JUMP', None)
-
-            # fix the initial jump to after then
-            self.code[jfalse_pos] = ('JUMP_IF_FALSE', len(self.code))
-
-            # compile elifs
-            for (ec, ebody) in s.elifs:
-                self.compile_expr(ec)
-                ef_jfalse = len(self.code); self.emit('JUMP_IF_FALSE', None)
-                for stmt in ebody: self.compile_stmt(stmt)
-                jend_positions.append(len(self.code)); self.emit('JUMP', None)
-                # set this elif's false jump to after its body (i.e., next code position)
-                self.code[ef_jfalse] = ('JUMP_IF_FALSE', len(self.code))
-
-            # compile else body (if any)
+            if_false_jump = len(self.code)
+            self.emit('JUMP_IF_FALSE', -1)  # placeholder
+            
+            # Compile then body
+            for stmt in s.then_body:
+                self.compile_stmt(stmt)
+            
+            # After then body, jump to end
+            jumps_to_end.append(len(self.code))
+            self.emit('JUMP', -1)  # placeholder
+            
+            # Patch the if's false jump to point here
+            self.code[if_false_jump] = ('JUMP_IF_FALSE', len(self.code))
+            
+            # Compile elifs
+            for (elif_cond, elif_body) in s.elifs:
+                # Evaluate elif condition
+                self.compile_expr(elif_cond)
+                elif_false_jump = len(self.code)
+                self.emit('JUMP_IF_FALSE', -1)  # placeholder
+                
+                # Compile elif body
+                for stmt in elif_body:
+                    self.compile_stmt(stmt)
+                
+                # After elif body, jump to end
+                jumps_to_end.append(len(self.code))
+                self.emit('JUMP', -1)  # placeholder
+                
+                # Patch elif's false jump to point here (next elif or else)
+                self.code[elif_false_jump] = ('JUMP_IF_FALSE', len(self.code))
+            
+            # Compile else body
             if s.else_body:
-                for stmt in s.else_body: self.compile_stmt(stmt)
-
-            # now patch all JUMP placeholders that belong to this if/elif block to jump to end
+                for stmt in s.else_body:
+                    self.compile_stmt(stmt)
+            
+            # Patch all "jump to end" instructions
             end_pos = len(self.code)
-            for idx in jend_positions:
-                # ensure that we only patch JUMP instructions that still have None (placeholders)
-                instr, arg = self.code[idx]
-                if instr == 'JUMP' and arg is None:
-                    self.code[idx] = ('JUMP', end_pos)
+            for jump_idx in jumps_to_end:
+                self.code[jump_idx] = ('JUMP', end_pos)
 
         elif isinstance(s, Module):
             subcompiler = Compiler()
@@ -425,7 +451,7 @@ class Compiler:
             for arg in e.args: self.compile_expr(arg)
             self.emit('CALL', (e.name, len(e.args)))
             
-        elif isinstance(e, List):
+        elif isinstance(e, ListNode):
             for element in e.elements:
                 self.compile_expr(element)
             self.emit('PUSHLIST', len(e.elements))  # push list of N elements
@@ -480,8 +506,12 @@ class VM:
         return module_funcs
 
     def run(self):
+        debug = False  # Set to True to see execution trace
         while self.ip < len(self.code) and self.running:
-            instr, arg = self.code[self.ip]; self.ip += 1
+            instr, arg = self.code[self.ip]
+            if debug:
+                print(f"IP={self.ip} {instr} {arg} | stack={self.stack}")
+            self.ip += 1
 
             if instr == 'PUSH_CONST':
                 self.stack.append(self.consts[arg])
@@ -495,8 +525,7 @@ class VM:
 
             elif instr == 'PRINT':
                 v = self.stack.pop()
-                print("PRINT output:", v)
-                if isinstance(v, List):
+                if isinstance(v, list):
                     s = "[" + ", ".join(str(x) for x in v) + "]"
                     print(s)
                 else:
@@ -551,6 +580,7 @@ class VM:
 
             elif instr == 'JUMP_IF_FALSE':
                 cond = self.stack.pop()
+                # Jump if condition is False, 0, None, or empty
                 if not cond:
                     self.ip = arg
 
@@ -598,7 +628,11 @@ class VM:
 
                         elif instr2 == 'PRINT':
                             v = self.stack.pop()
-                            print(v)
+                            if isinstance(v, list):
+                                s = "[" + ", ".join(str(x) for x in v) + "]"
+                                print(s)
+                            else:
+                                print(v)
 
                         elif instr2 == 'POP':
                             if not self.stack:
@@ -689,10 +723,8 @@ class VM:
                 collection = self.stack.pop()
                 if isinstance(collection, list) and isinstance(idx, int):
                     elem = collection[idx]
-                    print("INDEX operation:", elem)
                     self.stack.append(elem)
                 else:
-                    print("INDEX operation failed")
                     self.stack.append(None)
             else:
                 raise RuntimeError(f"Unknown instruction: {instr}")
@@ -711,16 +743,7 @@ def run_tourmaline(source: str):
     vm.run()
 
 # =====================================================================
-# =====================================================================
-#                     ***   CLI WRAPPER ADDED   ***
-# =====================================================================
-# Allows invoking:
-#
-#     python tourmaline_fixed.py myscript.toma
-#         or
-#     toma myscript.toma
-#
-# Does NOT modify or remove anything above.
+# CLI WRAPPER
 # =====================================================================
 
 def main():
@@ -739,6 +762,5 @@ def main():
 
     run_tourmaline(source)
 
-# If run directly, use CLI instead of example demo.
 if __name__ == '__main__':
     main()

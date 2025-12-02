@@ -15,7 +15,8 @@ greet("Mocha")
 
 # conditionals
 let s = x + y
-if s > 25
+print s
+if s > 35
     print "big"
 elif s == 30
     print "exactly 30"

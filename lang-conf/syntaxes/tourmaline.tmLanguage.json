@@ -1,11 +1,16 @@
 {
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "scopeName": "source.tourmaline",
   "patterns": [
     { "include": "#comments" },
     { "include": "#strings" },
     { "include": "#keywords" },
+    { "include": "#constants" },
     { "include": "#numbers" },
-    { "include": "#functions" }
+    { "include": "#operators" },
+    { "include": "#functions" },
+    { "include": "#types" },
+    { "include": "#variables" }
   ],
   "repository": {
     "comments": {
@@ -21,7 +26,14 @@
       "patterns": [
         {
           "name": "string.quoted.double.tourmaline",
-          "match": "\"([^\\\"]|\\.)*\""
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.tourmaline",
+              "match": "\\\\."
+            }
+          ]
         }
       ]
     },
@@ -30,7 +42,28 @@
       "patterns": [
         {
           "name": "keyword.control.tourmaline",
-          "match": "\\b(print|let|func|end|return|if|else|elif|while|for|in)\\b"
+          "match": "\\b(if|elif|else|while|for|in|end)\\b"
+        },
+        {
+          "name": "keyword.other.tourmaline",
+          "match": "\\b(let|func|return|import|module)\\b"
+        },
+        {
+          "name": "keyword.other.print.tourmaline",
+          "match": "\\b(print)\\b"
+        }
+      ]
+    },
+
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.tourmaline",
+          "match": "\\b(true|false)\\b"
+        },
+        {
+          "name": "constant.language.null.tourmaline",
+          "match": "\\b(None|null)\\b"
         }
       ]
     },
@@ -38,8 +71,42 @@
     "numbers": {
       "patterns": [
         {
-          "name": "constant.numeric.tourmaline",
+          "name": "constant.numeric.integer.tourmaline",
           "match": "\\b[0-9]+\\b"
+        },
+        {
+          "name": "constant.numeric.float.tourmaline",
+          "match": "\\b[0-9]+\\.[0-9]+\\b"
+        }
+      ]
+    },
+
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.comparison.tourmaline",
+          "match": "(==|!=|<=|>=|<|>)"
+        },
+        {
+          "name": "keyword.operator.arithmetic.tourmaline",
+          "match": "(\\+|-|\\*|/)"
+        },
+        {
+          "name": "keyword.operator.assignment.tourmaline",
+          "match": "="
+        },
+        {
+          "name": "keyword.operator.range.tourmaline",
+          "match": "\\.\\."
+        }
+      ]
+    },
+
+    "types": {
+      "patterns": [
+        {
+          "name": "storage.type.tourmaline",
+          "match": "\\b(int|str|bool|list)\\b"
         }
       ]
     },
@@ -48,7 +115,16 @@
       "patterns": [
         {
           "name": "entity.name.function.tourmaline",
-          "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\s*(?=\\()"
+          "match": "\\b([A-Za-z_][A-Za-z0-9_]*)\\s*(?=\\()"
+        }
+      ]
+    },
+
+    "variables": {
+      "patterns": [
+        {
+          "name": "variable.other.tourmaline",
+          "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\b"
         }
       ]
     }
