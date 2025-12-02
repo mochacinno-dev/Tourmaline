@@ -1,0 +1,27 @@
+{
+  "name": "tourmaline-language",
+  "displayName": "Tourmaline Language Support",
+  "description": "Syntax highlighting and basic language support for the Tourmaline programming language (.toma)",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.50.0"
+  },
+  "categories": ["Programming Languages"],
+  "contributes": {
+    "languages": [
+      {
+        "id": "tourmaline",
+        "aliases": ["Tourmaline", "toma"],
+        "extensions": [".toma"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "tourmaline",
+        "scopeName": "source.tourmaline",
+        "path": "./syntaxes/tourmaline.tmLanguage.json"
+      }
+    ]
+  }
+}

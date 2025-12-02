@@ -1,0 +1,43 @@
+# Demo Tourmaline program with lists and modules
+
+let x = 10
+let y = 20
+print x
+print y
+print "sum = " + (x + y)
+
+func greet(name)
+    print "Hello, " + name
+    return 0
+end
+
+greet("Mocha")
+
+# conditionals
+let s = x + y
+if s > 25
+    print "big"
+elif s == 30
+    print "exactly 30"
+else
+    print "small"
+end
+
+# while
+let i = 0
+while i < 3
+    print "loop: " + i
+    i = i + 1
+end
+
+# for range
+for j in 1..4
+    print "j=" + j
+end
+
+# Lists usage
+let mylist = [1, 2, 3, 4]
+print "List contents:"
+for index in 0..3
+    print mylist[index]
+end
