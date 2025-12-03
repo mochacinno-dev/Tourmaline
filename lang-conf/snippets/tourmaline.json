@@ -1,20 +1,20 @@
 {
   "Print Statement": {
     "prefix": "print",
-    "body": "print ${1:value}",
-    "description": "Print a value"
+    "body": "print(${1:value})",
+    "description": "Print a value to console"
+  },
+
+  "Input Statement": {
+    "prefix": "input",
+    "body": "let ${1:variable} = input(${2:\"prompt\"})",
+    "description": "Get user input"
   },
 
   "Let Declaration": {
     "prefix": "let",
     "body": "let ${1:name} = ${2:value}",
     "description": "Declare a variable"
-  },
-
-  "Let with Type": {
-    "prefix": "lett",
-    "body": "let ${1:name}: ${2:type} = ${3:value}",
-    "description": "Declare a typed variable"
   },
 
   "If Statement": {
@@ -63,42 +63,44 @@
     "description": "While loop"
   },
 
-  "For Range Loop": {
+  "For Loop": {
     "prefix": "for",
     "body": [
-      "for ${1:i} in ${2:start}..${3:end}",
-      "\t${4:# body}",
+      "for ${1:item} in ${2:collection}",
+      "\t${3:# body}",
       "end"
     ],
-    "description": "For loop with range"
+    "description": "For-in loop"
   },
 
   "Function Declaration": {
-    "prefix": "func",
+    "prefix": "function",
     "body": [
-      "func ${1:name}(${2:params})",
+      "function ${1:name}(${2:params})",
       "\t${3:# body}",
-      "\treturn ${4:value}",
       "end"
     ],
     "description": "Function declaration"
   },
 
-  "Function with Typed Parameters": {
-    "prefix": "funct",
+  "Function with Single Parameter": {
+    "prefix": "func",
     "body": [
-      "func ${1:name}(${2:param}: ${3:type})",
-      "\t${4:# body}",
-      "\treturn ${5:value}",
+      "function ${1:name}(${2:param})",
+      "\t${3:# body}",
       "end"
     ],
-    "description": "Function with typed parameters"
+    "description": "Function with one parameter"
   },
 
-  "Return Statement": {
-    "prefix": "ret",
-    "body": "return ${1:value}",
-    "description": "Return statement"
+  "Struct Declaration": {
+    "prefix": "struct",
+    "body": [
+      "struct ${1:name}",
+      "\t${2:field}",
+      "end"
+    ],
+    "description": "Struct declaration"
   },
 
   "List Literal": {
@@ -107,47 +109,28 @@
     "description": "Create a list"
   },
 
+  "Dictionary Literal": {
+    "prefix": "dict",
+    "body": "{${1:\"key\"}: ${2:value}}",
+    "description": "Create a dictionary"
+  },
+
   "List Access": {
     "prefix": "idx",
     "body": "${1:list}[${2:index}]",
     "description": "Access list element by index"
   },
 
-  "Range Expression": {
-    "prefix": "range",
-    "body": "${1:start}..${2:end}",
-    "description": "Range expression"
-  },
-
-  "Import Statement": {
-    "prefix": "import",
-    "body": "import ${1:module_name}",
-    "description": "Import a module"
-  },
-
-  "Module Declaration": {
-    "prefix": "module",
-    "body": [
-      "module ${1:name}",
-      "\t${2:# module body}",
-      "end"
-    ],
-    "description": "Module declaration"
+  "Dictionary Access": {
+    "prefix": "dictget",
+    "body": "${1:dict}[${2:\"key\"}]",
+    "description": "Access dictionary value by key"
   },
 
   "Comment": {
     "prefix": "#",
     "body": "# ${1:comment}",
     "description": "Line comment"
-  },
-
-  "Main Block": {
-    "prefix": "main",
-    "body": [
-      "# Main program",
-      "${1:# code here}"
-    ],
-    "description": "Main program block"
   },
 
   "Comparison Equal": {
@@ -168,10 +151,22 @@
     "description": "Greater than comparison"
   },
 
+  "Greater Than or Equal": {
+    "prefix": "gte",
+    "body": "${1:a} >= ${2:b}",
+    "description": "Greater than or equal comparison"
+  },
+
   "Less Than": {
     "prefix": "lt",
     "body": "${1:a} < ${2:b}",
     "description": "Less than comparison"
+  },
+
+  "Less Than or Equal": {
+    "prefix": "lte",
+    "body": "${1:a} <= ${2:b}",
+    "description": "Less than or equal comparison"
   },
 
   "Boolean True": {
@@ -184,5 +179,140 @@
     "prefix": "false",
     "body": "false",
     "description": "Boolean false literal"
+  },
+
+  "Nil": {
+    "prefix": "nil",
+    "body": "nil",
+    "description": "Nil/null value"
+  },
+
+  "Compound Assignment Add": {
+    "prefix": "+=",
+    "body": "${1:variable} += ${2:value}",
+    "description": "Add and assign"
+  },
+
+  "Compound Assignment Subtract": {
+    "prefix": "-=",
+    "body": "${1:variable} -= ${2:value}",
+    "description": "Subtract and assign"
+  },
+
+  "Compound Assignment Multiply": {
+    "prefix": "*=",
+    "body": "${1:variable} *= ${2:value}",
+    "description": "Multiply and assign"
+  },
+
+  "Compound Assignment Divide": {
+    "prefix": "/=",
+    "body": "${1:variable} /= ${2:value}",
+    "description": "Divide and assign"
+  },
+
+  "String Conversion": {
+    "prefix": "str",
+    "body": "str(${1:value})",
+    "description": "Convert to string"
+  },
+
+  "Integer Conversion": {
+    "prefix": "int",
+    "body": "int(${1:value})",
+    "description": "Convert to integer"
+  },
+
+  "Float Conversion": {
+    "prefix": "float",
+    "body": "float(${1:value})",
+    "description": "Convert to float"
+  },
+
+  "Length Function": {
+    "prefix": "len",
+    "body": "len(${1:collection})",
+    "description": "Get length of collection"
+  },
+
+  "Square Root": {
+    "prefix": "sqrt",
+    "body": "sqrt(${1:number})",
+    "description": "Square root"
+  },
+
+  "Power": {
+    "prefix": "pow",
+    "body": "pow(${1:base}, ${2:exponent})",
+    "description": "Raise to power"
+  },
+
+  "Absolute Value": {
+    "prefix": "abs",
+    "body": "abs(${1:number})",
+    "description": "Absolute value"
+  },
+
+  "Minimum": {
+    "prefix": "min",
+    "body": "min(${1:values})",
+    "description": "Find minimum value"
+  },
+
+  "Maximum": {
+    "prefix": "max",
+    "body": "max(${1:values})",
+    "description": "Find maximum value"
+  },
+
+  "Floor": {
+    "prefix": "floor",
+    "body": "floor(${1:number})",
+    "description": "Round down"
+  },
+
+  "Ceiling": {
+    "prefix": "ceil",
+    "body": "ceil(${1:number})",
+    "description": "Round up"
+  },
+
+  "Round": {
+    "prefix": "round",
+    "body": "round(${1:number})",
+    "description": "Round to nearest integer"
+  },
+
+  "Logical AND": {
+    "prefix": "and",
+    "body": "${1:condition1} and ${2:condition2}",
+    "description": "Logical AND"
+  },
+
+  "Logical OR": {
+    "prefix": "or",
+    "body": "${1:condition1} or ${2:condition2}",
+    "description": "Logical OR"
+  },
+
+  "Hello World": {
+    "prefix": "hello",
+    "body": [
+      "# Hello World in Tourmaline",
+      "let name = \"${1:World}\"",
+      "print(\"Hello, \" + name + \"!\")"
+    ],
+    "description": "Hello World template"
+  },
+
+  "Main Template": {
+    "prefix": "main",
+    "body": [
+      "# ${1:Program Name}",
+      "# Tourmaline v0.4.0",
+      "",
+      "${2:# Your code here}"
+    ],
+    "description": "Main program template"
   }
 }

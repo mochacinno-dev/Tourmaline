@@ -8,8 +8,8 @@
     { "include": "#constants" },
     { "include": "#numbers" },
     { "include": "#operators" },
+    { "include": "#builtins" },
     { "include": "#functions" },
-    { "include": "#types" },
     { "include": "#variables" }
   ],
   "repository": {
@@ -31,7 +31,18 @@
           "patterns": [
             {
               "name": "constant.character.escape.tourmaline",
-              "match": "\\\\."
+              "match": "\\\\(n|t|\\\\|\"|')"
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.tourmaline",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "name": "constant.character.escape.tourmaline",
+              "match": "\\\\(n|t|\\\\|\"|')"
             }
           ]
         }
@@ -41,16 +52,24 @@
     "keywords": {
       "patterns": [
         {
+          "name": "keyword.control.conditional.tourmaline",
+          "match": "\\b(if|elif|else)\\b"
+        },
+        {
+          "name": "keyword.control.loop.tourmaline",
+          "match": "\\b(while|for|in)\\b"
+        },
+        {
           "name": "keyword.control.tourmaline",
-          "match": "\\b(if|elif|else|while|for|in|end)\\b"
+          "match": "\\b(end)\\b"
         },
         {
-          "name": "keyword.other.tourmaline",
-          "match": "\\b(let|function|return|import|module)\\b"
+          "name": "keyword.other.declaration.tourmaline",
+          "match": "\\b(let|function|struct)\\b"
         },
         {
-          "name": "keyword.other.print.tourmaline",
-          "match": "\\b(print)\\b"
+          "name": "keyword.operator.logical.tourmaline",
+          "match": "\\b(and|or|not)\\b"
         }
       ]
     },
@@ -63,7 +82,7 @@
         },
         {
           "name": "constant.language.null.tourmaline",
-          "match": "\\b(None|null)\\b"
+          "match": "\\b(nil)\\b"
         }
       ]
     },
@@ -71,12 +90,12 @@
     "numbers": {
       "patterns": [
         {
-          "name": "constant.numeric.integer.tourmaline",
-          "match": "\\b[0-9]+\\b"
-        },
-        {
           "name": "constant.numeric.float.tourmaline",
           "match": "\\b[0-9]+\\.[0-9]+\\b"
+        },
+        {
+          "name": "constant.numeric.integer.tourmaline",
+          "match": "\\b[0-9]+\\b"
         }
       ]
     },
@@ -89,24 +108,36 @@
         },
         {
           "name": "keyword.operator.arithmetic.tourmaline",
-          "match": "(\\+|-|\\*|/)"
+          "match": "(\\+|-|\\*|/|%)"
+        },
+        {
+          "name": "keyword.operator.assignment.compound.tourmaline",
+          "match": "(\\+=|-=|\\*=|/=)"
         },
         {
           "name": "keyword.operator.assignment.tourmaline",
           "match": "="
-        },
-        {
-          "name": "keyword.operator.range.tourmaline",
-          "match": "\\.\\."
         }
       ]
     },
 
-    "types": {
+    "builtins": {
       "patterns": [
         {
-          "name": "storage.type.tourmaline",
-          "match": "\\b(int|str|bool|list)\\b"
+          "name": "support.function.builtin.io.tourmaline",
+          "match": "\\b(print|input)\\b"
+        },
+        {
+          "name": "support.function.builtin.conversion.tourmaline",
+          "match": "\\b(str|int|float|type)\\b"
+        },
+        {
+          "name": "support.function.builtin.collection.tourmaline",
+          "match": "\\b(len)\\b"
+        },
+        {
+          "name": "support.function.builtin.math.tourmaline",
+          "match": "\\b(abs|sqrt|pow|sin|cos|tan|floor|ceil|round|min|max)\\b"
         }
       ]
     },
