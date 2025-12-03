@@ -46,7 +46,7 @@
         },
         {
           "name": "keyword.other.tourmaline",
-          "match": "\\b(let|func|return|import|module)\\b"
+          "match": "\\b(let|function|return|import|module)\\b"
         },
         {
           "name": "keyword.other.print.tourmaline",
@@ -129,6 +129,6 @@
       ]
     }
   },
-  "fileTypes": ["toma"],
+  "fileTypes": ["trm"],
   "name": "Tourmaline"
 }

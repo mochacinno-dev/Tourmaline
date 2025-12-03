@@ -1,8 +1,8 @@
 {
   "name": "tourmaline-language",
   "displayName": "Tourmaline Language Support",
-  "description": "Syntax highlighting, snippets, and language support for Tourmaline (.toma)",
-  "version": "0.3.0",
+  "description": "Syntax highlighting, snippets, and language support for Tourmaline (.trm)",
+  "version": "0.4.0",
   "publisher": "Mochacinno",
   "engines": {
     "vscode": "^1.50.0"
@@ -12,8 +12,8 @@
     "languages": [
       {
         "id": "tourmaline",
-        "aliases": ["Tourmaline", "toma"],
-        "extensions": [".toma"],
+        "aliases": ["Tourmaline", "trm"],
+        "extensions": [".trm"],
         "configuration": "./language-configuration.json"
       }
     ],

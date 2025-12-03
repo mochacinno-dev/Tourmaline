@@ -1,766 +1,757 @@
-import re # Regular expressions for parsing
-from typing import List, Tuple, Any # Type hints for clarity
-import sys # For CLI argument handling
-import os # For filesystem checks
+import re
+import math
+from typing import Any, Dict, List, Callable
 
-# -------------------------
-# Simple AST Node Classes
-# -------------------------
-class Node: pass
+class TourmalineError(Exception):
+    pass
 
-class Program(Node):
-    def __init__(self, stmts): self.stmts = stmts
-
-class Print(Node):
-    def __init__(self, expr): self.expr = expr
-
-class Let(Node):
-    def __init__(self, name, typ, expr): self.name = name; self.typ = typ; self.expr = expr
-
-class If(Node):
-    def __init__(self, cond, then_body, elifs, else_body):
-        self.cond = cond; self.then_body = then_body; self.elifs = elifs; self.else_body = else_body
-
-class While(Node):
-    def __init__(self, cond, body): self.cond = cond; self.body = body
-
-class ForRange(Node):
-    def __init__(self, var, start, end, body): self.var = var; self.start = start; self.end = end; self.body = body
-
-class Func(Node):
-    def __init__(self, name, params, body): self.name = name; self.params = params; self.body = body
-
-class Return(Node):
-    def __init__(self, expr): self.expr = expr
-
-class ExprStmt(Node):
-    def __init__(self, expr): self.expr = expr
-
-# Expressions
-class BinOp(Node):
-    def __init__(self, left, op, right): self.left = left; self.op = op; self.right = right
-
-class Number(Node):
-    def __init__(self, value): self.value = int(value)
-
-class String(Node):
-    def __init__(self, value): self.value = value
-
-class Bool(Node):
-    def __init__(self, value: bool): self.value = value
-
-class Var(Node):
-    def __init__(self, name): self.name = name
-
-class Call(Node):
-    def __init__(self, name, args): self.name = name; self.args = args
-
-class ListNode(Node):
-    def __init__(self, elements): self.elements = elements
-
-class Module(Node):
-    def __init__(self, name, body): self.name = name; self.body = body
-
-class Import(Node):
-    def __init__(self, module_name): self.module_name = module_name
-
-class Index(Node):
-    def __init__(self, collection, index): self.collection = collection; self.index = index
-# -------------------------
-# Tiny parser (line-based)
-# -------------------------
-
-def is_int(s: str) -> bool: # Check if string is integer
-    try:
-        int(s) # Try conversion
-        return True
-    except:
-        return False
-
-def split_outside(s: str, sep: str) -> List[str]:
-    """
-    Split the string 's' by separator 'sep', but only when the
-    separator appears at the top level - that is, not inside parentheses
-    and not inside string literals.
-    
-    This is useful for parsing argument lists like:
-        a, b, (c,d), "x,y", e
-    which should split into:
-        ["a", "b", "(c,d)", "\"x,y\"", "e"]
-    """
-    parts = []                              # Final list of split segments
-    cur = ''                                # Current segment being constructed
-    depth = 0                               # Parenthesis nesting depth - 0 means top-level
-    in_str = False                          # Whether we're currently inside a quoted string
-    i = 0                                   # Manual index for processing characters
-    while i < len(s):
-        c = s[i]                            # Current character
-        if c == '"':                        # Toggle string mode when encountering an unescaped quote
-            in_str = not in_str     
-            cur += c
-        elif not in_str:                    # Only treat parentheses or separators if NOT inside a string
-            if c == '(':                    # Increase depth when entering parentheses
-                depth += 1; cur += c
-            elif c == ')':                  # Decrease depth when exiting parentheses
-                depth -= 1; cur += c
-            elif c == sep and depth == 0:   # Separator at top level -> Perform the split
-                parts.append(cur)
-                cur = ''                    # Start new segment
-            else:                           # Normal character (outside string, not a split point)
-                cur += c
-        else:                               # Inside a string: everything counts literally
-            cur += c
-        i += 1                              # Move to next character
-    parts.append(cur)                       # Add the final segment
-                                            # Strip whitespace and remove empty segments
-    return [p.strip() for p in parts if p.strip() != '']
-
-def parse_expr(token: str):
-    token = token.strip()
-    if token == '':
-        raise RuntimeError("Empty expression")
-
-    if token.startswith('(') and token.endswith(')'):
-        return parse_expr(token[1:-1])
-
-    if token.startswith('"') and token.endswith('"'):
-        return String(token[1:-1])
-    
-    # Handle boolean literals
-    if token == 'true':
-        return Bool(True)
-    if token == 'false':
-        return Bool(False)
-    
-    m = re.match(r'^([A-Za-z_][A-Za-z0-9_]*)\[(.*)\]$', token)
-    if m:
-        name = m.group(1)
-        idx_expr = parse_expr(m.group(2))
-        return Index(Var(name), idx_expr)
-
-    if token.startswith('[') and token.endswith(']'):
-        inner = token[1:-1].strip()
-        if not inner:
-            return ListNode([])
-        parts = split_outside(inner, ',')
-        elements = [parse_expr(p) for p in parts]
-        return ListNode(elements)
-
-    if '..' in token:
-        left, right = token.split('..', 1)
-        return BinOp(parse_expr(left), '..', parse_expr(right))
-
-    for op in ['==', '!=', '>=', '<=', '+', '-', '*', '/', '>', '<']:
-        if op in token:
-            left, right = token.split(op, 1)
-            return BinOp(parse_expr(left), op, parse_expr(right))
-
-    if is_int(token):
-        return Number(token)
-
-    return Var(token)
-
-def parse_lines(lines: List[str], i=0) -> Tuple[List[Node], int]:
-    stmts: List[Node] = []
-    while i < len(lines):
-        raw = lines[i]; i += 1
-        line = raw.strip()
-
-        if line == '' or line.startswith('#'):
-            continue
-
-        if line.startswith('print '):
-            expr = line[len('print '):].strip()
-            stmts.append(Print(parse_expr(expr)))
-
-        elif line.startswith('let '):
-            body = line[len('let '):].strip()
-            if '=' not in body:
-                raise RuntimeError("let must have '='")
-            left, right = body.split('=', 1)
-            left = left.strip(); right = right.strip()
-
-            if ':' in left:
-                name, typ = [p.strip() for p in left.split(':',1)]
-            else:
-                name, typ = left, None
-
-            stmts.append(Let(name, typ, parse_expr(right)))
-
-        elif line.startswith('if '):
-            cond = parse_expr(line[len('if '):].strip())
-            then_body, i = parse_lines(lines, i)
-            elifs = []
-            else_body = []
-
-            # Keep looking for elif/else/end
-            while i < len(lines):
-                nxt = lines[i].strip()
-                if nxt.startswith('elif '):
-                    i += 1
-                    econd = parse_expr(nxt[len('elif '):].strip())
-                    ebody, i = parse_lines(lines, i)
-                    elifs.append((econd, ebody))
-                elif nxt == 'else':
-                    i += 1
-                    else_body, i = parse_lines(lines, i)
-                elif nxt == 'end':
-                    i += 1
-                    break
-                else:
-                    break
-
-            stmts.append(If(cond, then_body, elifs, else_body))
-
-        elif line.startswith('while '):
-            cond = parse_expr(line[len('while '):].strip())
-            body, i = parse_lines(lines, i)
-            stmts.append(While(cond, body))
-
-        elif line.startswith('for '):
-            m = re.match(r'for\s+([A-Za-z_][A-Za-z0-9_]*)\s+in\s+(.*)$', line)
-            if not m:
-                raise RuntimeError("bad for syntax")
-            var = m.group(1)
-            rng = m.group(2).strip()
-            if '..' not in rng:
-                raise RuntimeError("for only supports ranges a..b")
-            a,b = rng.split('..',1)
-            start = parse_expr(a)
-            end = parse_expr(b)
-            body, i = parse_lines(lines, i)
-            stmts.append(ForRange(var, start, end, body))
-
-        elif line.startswith('func '):
-            rest = line[len('func '):].strip()
-            name = rest[:rest.index('(')].strip()
-            args_raw = rest[rest.index('(')+1:rest.rindex(')')].strip()
-            params = []
-            if args_raw:
-                parts = split_outside(args_raw, ',')
-                for p in parts:
-                    if ':' in p:
-                        n,t = [q.strip() for q in p.split(':',1)]
-                    else:
-                        n,t = p.strip(), None
-                    params.append((n,t))
-            body, i = parse_lines(lines, i)
-            stmts.append(Func(name, params, body))
-
-        elif line == 'end':
-            return stmts, i
-        
-        elif line.startswith('elif '):
-            # Return when we hit elif - parent will handle it
-            return stmts, i - 1  # Back up so parent can see the elif
-        
-        elif line == 'else':
-            # Return when we hit else - parent will handle it
-            return stmts, i - 1  # Back up so parent can see the else
-
-        elif line.startswith('return '):
-            expr = parse_expr(line[len('return '):].strip())
-            stmts.append(Return(expr))
-
-        else:
-            if '=' in line:
-                left, right = line.split('=',1)
-                left = left.strip(); right = right.strip()
-                stmts.append(Let(left, None, parse_expr(right)))
-            else:
-                stmts.append(ExprStmt(parse_expr(line)))
-
-    return stmts, i
-
-# -------------------------
-# Compiler -> bytecode
-# -------------------------
-
-class Compiler:
+class TourmalineInterpreter:
     def __init__(self):
-        self.consts: List[Any] = []
-        self.const_map = {}
-        self.code: List[Tuple[str, Any]] = []
+        self.variables = {}
         self.functions = {}
-
-    def add_const(self, v):
-        key = (type(v), v)
-        if key in self.const_map:
-            return self.const_map[key]
-        idx = len(self.consts)
-        self.consts.append(v)
-        self.const_map[key] = idx
-        return idx
-
-    def emit(self, instr: str, arg=None):
-        self.code.append((instr, arg))
-
-    def compile_program(self, program: Program):
-        for s in program.stmts:
-            if isinstance(s, Func):
-                self.compile_func(s)
-
-        for s in program.stmts:
-            if not isinstance(s, Func):
-                self.compile_stmt(s)
-
-        self.emit('HALT', None)
-        return {'code': self.code, 'consts': self.consts, 'functions': self.functions}
-
-    def compile_stmt(self, s: Node):
-        if isinstance(s, Print):
-            self.compile_expr(s.expr)
-            self.emit('PRINT', None)
-
-        elif isinstance(s, Let):
-            self.compile_expr(s.expr)
-            self.emit('STORE', s.name)
-
-        elif isinstance(s, If):
-            jumps_to_end = []  # Track all jumps that need to go to the end
+        self.structs = {}
+        self.setup_builtins()
+    
+    def setup_builtins(self):
+        """Setup built-in functions"""
+        self.builtins = {
+            'print': lambda *args: print(*[str(a) for a in args]),
+            'input': lambda prompt="": input(prompt),
+            'len': len,
+            'str': str,
+            'int': int,
+            'float': float,
+            'type': lambda x: type(x).__name__,
             
-            # Compile main if condition
-            self.compile_expr(s.cond)
-            if_false_jump = len(self.code)
-            self.emit('JUMP_IF_FALSE', -1)  # placeholder
-            
-            # Compile then body
-            for stmt in s.then_body:
-                self.compile_stmt(stmt)
-            
-            # After then body, jump to end
-            jumps_to_end.append(len(self.code))
-            self.emit('JUMP', -1)  # placeholder
-            
-            # Patch the if's false jump to point here
-            self.code[if_false_jump] = ('JUMP_IF_FALSE', len(self.code))
-            
-            # Compile elifs
-            for (elif_cond, elif_body) in s.elifs:
-                # Evaluate elif condition
-                self.compile_expr(elif_cond)
-                elif_false_jump = len(self.code)
-                self.emit('JUMP_IF_FALSE', -1)  # placeholder
-                
-                # Compile elif body
-                for stmt in elif_body:
-                    self.compile_stmt(stmt)
-                
-                # After elif body, jump to end
-                jumps_to_end.append(len(self.code))
-                self.emit('JUMP', -1)  # placeholder
-                
-                # Patch elif's false jump to point here (next elif or else)
-                self.code[elif_false_jump] = ('JUMP_IF_FALSE', len(self.code))
-            
-            # Compile else body
-            if s.else_body:
-                for stmt in s.else_body:
-                    self.compile_stmt(stmt)
-            
-            # Patch all "jump to end" instructions
-            end_pos = len(self.code)
-            for jump_idx in jumps_to_end:
-                self.code[jump_idx] = ('JUMP', end_pos)
-
-        elif isinstance(s, Module):
-            subcompiler = Compiler()
-            subcompiler.compile_stmt(s.body)
-            self.funcs[s.name] = subcompiler.functions
-            
-        elif isinstance(s, Import):
-            module_funcs = self.funcs.get(s.module_name, {})
-            self.funcs.update(module_funcs)
+            # Math functions
+            'abs': abs,
+            'sqrt': math.sqrt,
+            'pow': pow,
+            'sin': math.sin,
+            'cos': math.cos,
+            'tan': math.tan,
+            'floor': math.floor,
+            'ceil': math.ceil,
+            'round': round,
+            'min': min,
+            'max': max,
+        }
+    
+    def tokenize(self, code: str) -> List[str]:
+        """Simple tokenizer"""
+        # Handle strings and preserve them
+        tokens = []
+        current = ""
+        in_string = False
+        string_char = None
         
-        elif isinstance(s, While):
-            loop_start = len(self.code)
-            self.compile_expr(s.cond)
-            jfalse_pos = len(self.code); self.emit('JUMP_IF_FALSE', None)
-
-            for stmt in s.body: self.compile_stmt(stmt)
-
-            self.emit('JUMP', loop_start)
-            self.code[jfalse_pos] = ('JUMP_IF_FALSE', len(self.code))
-
-        elif isinstance(s, ForRange):
-            # initialize loop variable to start
-            self.compile_expr(s.start)
-            self.emit('STORE', s.var)
-
-            loop_start = len(self.code)
-
-            # check loop condition: while var <= end
-            self.emit('LOAD', s.var)
-            self.compile_expr(s.end)
-            # use '<=' to continue while var <= end
-            self.emit('BINOP', '<=')
-            jfalse_pos = len(self.code); self.emit('JUMP_IF_FALSE', None)
-
-            # body
-            for stmt in s.body: self.compile_stmt(stmt)
-
-            # increment var by 1
-            self.emit('LOAD', s.var)
-            self.emit('PUSH_CONST', self.add_const(1))
-            self.emit('BINOP', '+')
-            self.emit('STORE', s.var)
-            # jump back to loop start to re-evaluate
-            self.emit('JUMP', loop_start)
-
-            # patch exit jump
-            self.code[jfalse_pos] = ('JUMP_IF_FALSE', len(self.code))
-
-        elif isinstance(s, ExprStmt):
-            self.compile_expr(s.expr)
-            self.emit('POP', None)
-
-        elif isinstance(s, Return):
-            self.compile_expr(s.expr)
-            self.emit('RET', None)
-
-        else:
-            raise RuntimeError(f"Unsupported statement: {type(s)}")
-
-    def compile_expr(self, e: Node):
-        if isinstance(e, Number):
-            idx = self.add_const(e.value)
-            self.emit('PUSH_CONST', idx)
-
-        elif isinstance(e, String):
-            idx = self.add_const(e.value)
-            self.emit('PUSH_CONST', idx)
-
-        elif isinstance(e, Bool):
-            idx = self.add_const(e.value)
-            self.emit('PUSH_CONST', idx)
-
-        elif isinstance(e, Var):
-            self.emit('LOAD', e.name)
-
-        elif isinstance(e, BinOp):
-            if e.op == '..':
-                self.compile_expr(e.left)
-                self.compile_expr(e.right)
-                self.emit('RANGE', None)
+        i = 0
+        while i < len(code):
+            char = code[i]
+            
+            if char in ('"', "'") and (i == 0 or code[i-1] != '\\'):
+                if not in_string:
+                    in_string = True
+                    string_char = char
+                    current = char
+                elif char == string_char:
+                    in_string = False
+                    current += char
+                    tokens.append(current)
+                    current = ""
+                    string_char = None
+                    i += 1
+                    continue
+                else:
+                    current += char
+            elif in_string:
+                current += char
+            elif char in ' \t\n':
+                if current:
+                    tokens.append(current)
+                    current = ""
+            elif char in '()[]{},:':
+                if current:
+                    tokens.append(current)
+                    current = ""
+                tokens.append(char)
+            elif char in '=!<>+-*/%':
+                if current:
+                    tokens.append(current)
+                    current = ""
+                # Check for multi-char operators
+                if i + 1 < len(code) and code[i:i+2] in ['==', '!=', '<=', '>=', '+=', '-=', '*=', '/=']:
+                    tokens.append(code[i:i+2])
+                    i += 2
+                    continue
+                tokens.append(char)
             else:
-                self.compile_expr(e.left)
-                self.compile_expr(e.right)
-                self.emit('BINOP', e.op)
-
-        elif isinstance(e, Call):
-            for arg in e.args: self.compile_expr(arg)
-            self.emit('CALL', (e.name, len(e.args)))
+                current += char
             
-        elif isinstance(e, ListNode):
-            for element in e.elements:
-                self.compile_expr(element)
-            self.emit('PUSHLIST', len(e.elements))  # push list of N elements
-
-        elif isinstance(e, Index):
-            self.compile_expr(e.collection)
-            self.compile_expr(e.index)
-            self.emit('INDEX', None)
-        else:
-            raise RuntimeError(f"Unsupported expr: {type(e)}")
-
-    def compile_func(self, f: Func):
-        subc = Compiler()
-
-        for stmt in f.body:
-            subc.compile_stmt(stmt)
-
-        subc.emit('RET', None)
-        obj = {'code': subc.code, 'consts': subc.consts, 'params': f.params}
-        self.functions[f.name] = obj
-
-# -------------------------
-# Small stack-based VM
-# -------------------------
-
-class Frame:
-    def __init__(self, code, consts, locals_):
-        self.code = code
-        self.consts = consts
-        self.locals = locals_
-        self.stack = []
-        self.ip = 0
-
-class VM:
-    def __init__(self, compiled):
-        self.code = compiled['code']
-        self.consts = compiled['consts']
-        self.funcs = compiled['functions']
-        self.globals = {}
-        self.stack = []
-        self.ip = 0
-        self.running = True
+            i += 1
         
-    def import_module(self, name):
-        if name in self.modules:
-            # Module already loaded
-            return self.modules[name]
-        # Load module code and execute to initialize
-        # For simplicity, assume modules compiled separately and available
-        module_funcs = self.funcs.get(name, {})
-        self.modules[name] = module_funcs
-        return module_funcs
-
-    def run(self):
-        debug = False  # Set to True to see execution trace
-        while self.ip < len(self.code) and self.running:
-            instr, arg = self.code[self.ip]
-            if debug:
-                print(f"IP={self.ip} {instr} {arg} | stack={self.stack}")
-            self.ip += 1
-
-            if instr == 'PUSH_CONST':
-                self.stack.append(self.consts[arg])
-
-            elif instr == 'LOAD':
-                self.stack.append(self.globals.get(arg, None))
-
-            elif instr == 'STORE':
-                val = self.stack.pop()
-                self.globals[arg] = val
-
-            elif instr == 'PRINT':
-                v = self.stack.pop()
-                if isinstance(v, list):
-                    s = "[" + ", ".join(str(x) for x in v) + "]"
-                    print(s)
+        if current:
+            tokens.append(current)
+        
+        return tokens
+    
+    def parse_value(self, token: str) -> Any:
+        """Parse a token into a value"""
+        # String
+        if token.startswith('"') or token.startswith("'"):
+            return token[1:-1].replace('\\n', '\n').replace('\\t', '\t')
+        # Boolean
+        if token == 'true':
+            return True
+        if token == 'false':
+            return False
+        # None/nil
+        if token == 'nil':
+            return None
+        # Number
+        try:
+            if '.' in token:
+                return float(token)
+            return int(token)
+        except ValueError:
+            pass
+        # Variable reference (don't try to resolve functions here)
+        if token in self.variables:
+            return self.variables[token]
+        if token in self.builtins:
+            return self.builtins[token]
+        
+        # If it's a function name, return the name for later resolution
+        if token in self.functions:
+            return token
+        
+        raise TourmalineError(f"Undefined variable: {token}")
+    
+    def evaluate_expression(self, tokens: List[str], start: int = 0, end: int = None) -> Any:
+        """Evaluate an expression"""
+        if end is None:
+            end = len(tokens)
+        
+        if start >= end:
+            raise TourmalineError("Empty expression")
+        
+        # Single token
+        if end - start == 1:
+            return self.parse_value(tokens[start])
+        
+        # First, resolve all function calls in the expression
+        tokens = self.resolve_function_calls(tokens, start, end)
+        start = 0
+        end = len(tokens)
+        
+        if end - start == 1:
+            return self.parse_value(tokens[0])
+        
+        # Handle parentheses (wrapped expression)
+        if tokens[start] == '(' and tokens[end-1] == ')':
+            depth = 1
+            i = start + 1
+            valid_wrap = True
+            while i < end - 1:
+                if tokens[i] == '(':
+                    depth += 1
+                elif tokens[i] == ')':
+                    depth -= 1
+                    if depth == 0:
+                        valid_wrap = False
+                        break
+                i += 1
+            if valid_wrap:
+                return self.evaluate_expression(tokens, start + 1, end - 1)
+        
+        # Handle list literals
+        if tokens[start] == '[':
+            return self.parse_list(tokens, start)
+        
+        # Handle dictionary literals
+        if tokens[start] == '{':
+            return self.parse_dict(tokens, start)
+        
+        # Handle operators (in order of precedence)
+        # Logical OR
+        for i in range(end - 1, start, -1):
+            if tokens[i] == 'or':
+                left = self.evaluate_expression(tokens, start, i)
+                right = self.evaluate_expression(tokens, i + 1, end)
+                return left or right
+        
+        # Logical AND
+        for i in range(end - 1, start, -1):
+            if tokens[i] == 'and':
+                left = self.evaluate_expression(tokens, start, i)
+                right = self.evaluate_expression(tokens, i + 1, end)
+                return left and right
+        
+        # Comparison operators
+        for i in range(end - 1, start, -1):
+            if tokens[i] in ['==', '!=', '<', '>', '<=', '>=']:
+                left = self.evaluate_expression(tokens, start, i)
+                right = self.evaluate_expression(tokens, i + 1, end)
+                op = tokens[i]
+                if op == '==': return left == right
+                if op == '!=': return left != right
+                if op == '<': return left < right
+                if op == '>': return left > right
+                if op == '<=': return left <= right
+                if op == '>=': return left >= right
+        
+        # Addition and subtraction
+        for i in range(end - 1, start, -1):
+            if tokens[i] in ['+', '-'] and i > start:
+                left = self.evaluate_expression(tokens, start, i)
+                right = self.evaluate_expression(tokens, i + 1, end)
+                if tokens[i] == '+':
+                    return left + right
                 else:
-                    print(v)
-
-            elif instr == 'POP':
-                if not self.stack:
-                    raise RuntimeError("POP on empty stack")
-                self.stack.pop()
-
-            elif instr == 'BINOP':
-                op = arg
-                b = self.stack.pop()
-                a = self.stack.pop()
-
-                if op == '+':
-                    if isinstance(a, str) or isinstance(b, str):
-                        self.stack.append(str(a) + str(b))
-                    else:
-                        self.stack.append(a + b)
-                elif op == '-':
-                    self.stack.append(a - b)
-                elif op == '*':
-                    self.stack.append(a * b)
-                elif op == '/':
-                    if isinstance(a, int) and isinstance(b, int):
-                        self.stack.append(a // b)
-                    else:
-                        self.stack.append(a / b)
-                elif op == '==':
-                    self.stack.append(a == b)
-                elif op == '!=':
-                    self.stack.append(a != b)
-                elif op == '>':
-                    self.stack.append(a > b)
-                elif op == '<':
-                    self.stack.append(a < b)
-                elif op == '>=':
-                    self.stack.append(a >= b)
-                elif op == '<=':
-                    self.stack.append(a <= b)
+                    return left - right
+        
+        # Multiplication, division, modulo
+        for i in range(end - 1, start, -1):
+            if tokens[i] in ['*', '/', '%']:
+                left = self.evaluate_expression(tokens, start, i)
+                right = self.evaluate_expression(tokens, i + 1, end)
+                if tokens[i] == '*':
+                    return left * right
+                elif tokens[i] == '/':
+                    return left / right
                 else:
-                    raise RuntimeError(f"Unknown BINOP {op}")
-
-            elif instr == 'RANGE':
-                end = self.stack.pop()
-                start = self.stack.pop()
-                self.stack.append(range(start, end + 1))
-
-            elif instr == 'JUMP':
-                self.ip = arg
-
-            elif instr == 'JUMP_IF_FALSE':
-                cond = self.stack.pop()
-                # Jump if condition is False, 0, None, or empty
-                if not cond:
-                    self.ip = arg
-
-            elif instr == 'CALL':
-                name, argc = arg
-
-                if name == 'print':
-                    args = [self.stack.pop() for _ in range(argc)][::-1]
-                    for a in args:
-                        print(a)
-                    self.stack.append(None)
-
-                elif name in self.funcs:
-                    func_obj = self.funcs[name]
-                    frame = Frame(func_obj['code'], func_obj['consts'], {})
-
-                    for (pname, ptype) in reversed(func_obj['params']):
-                        if argc <= 0:
-                            break
-                        val = self.stack.pop()
-                        frame.locals[pname] = val
-                        argc -= 1
-
-                    saved = (self.code, self.consts, self.ip, self.stack, self.globals)
-
-                    self.code = frame.code
-                    self.consts = frame.consts
-                    self.ip = 0
-                    self.stack = []
-                    self.globals = frame.locals
-
-                    while self.ip < len(self.code):
-                        instr2, arg2 = self.code[self.ip]
-                        self.ip += 1
-
-                        if instr2 == 'PUSH_CONST':
-                            self.stack.append(self.consts[arg2])
-
-                        elif instr2 == 'LOAD':
-                            self.stack.append(self.globals.get(arg2, None))
-
-                        elif instr2 == 'STORE':
-                            val = self.stack.pop()
-                            self.globals[arg2] = val
-
-                        elif instr2 == 'PRINT':
-                            v = self.stack.pop()
-                            if isinstance(v, list):
-                                s = "[" + ", ".join(str(x) for x in v) + "]"
-                                print(s)
-                            else:
-                                print(v)
-
-                        elif instr2 == 'POP':
-                            if not self.stack:
-                                raise RuntimeError("POP on empty stack in func")
-                            self.stack.pop()
-
-                        elif instr2 == 'BINOP':
-                            op2 = arg2
-                            b2 = self.stack.pop()
-                            a2 = self.stack.pop()
-
-                            if op2 == '+':
-                                if isinstance(a2, str) or isinstance(b2, str):
-                                    self.stack.append(str(a2) + str(b2))
-                                else:
-                                    self.stack.append(a2 + b2)
-                            elif op2 == '-':
-                                self.stack.append(a2 - b2)
-                            elif op2 == '*':
-                                self.stack.append(a2 * b2)
-                            elif op2 == '/':
-                                if isinstance(a2, int) and isinstance(b2, int):
-                                    self.stack.append(a2 // b2)
-                                else:
-                                    self.stack.append(a2 / b2)
-                            elif op2 == '==':
-                                self.stack.append(a2 == b2)
-                            elif op2 == '!=':
-                                self.stack.append(a2 != b2)
-                            elif op2 == '>':
-                                self.stack.append(a2 > b2)
-                            elif op2 == '<':
-                                self.stack.append(a2 < b2)
-                            elif op2 == '>=':
-                                self.stack.append(a2 >= b2)
-                            elif op2 == '<=':
-                                self.stack.append(a2 <= b2)
-                            else:
-                                raise RuntimeError("Unknown BINOP in func")
-
-                        elif instr2 == 'RET':
-                            retval = self.stack.pop() if self.stack else None
-                            self.code, self.consts, self.ip, caller_stack, caller_globals = saved
-                            self.stack = caller_stack
-                            self.globals = caller_globals
-                            self.stack.append(retval)
-                            break
-
-                        elif instr2 == 'JUMP':
-                            self.ip = arg2
-
-                        elif instr2 == 'JUMP_IF_FALSE':
-                            cond2 = self.stack.pop()
-                            if not cond2:
-                                self.ip = arg2
-
-                        elif instr2 == 'CALL':
-                            name2, argc2 = arg2
-                            if name2 == 'print':
-                                args2 = [self.stack.pop() for _ in range(argc2)][::-1]
-                                for a in args2:
-                                    print(a)
-                                self.stack.append(None)
-                            else:
-                                raise RuntimeError("Nested user-defined CALL inside function not supported")
-
+                    return left % right
+        
+        # Member access (dot notation)
+        for i in range(start, end):
+            if tokens[i] == '.':
+                obj = self.evaluate_expression(tokens, start, i)
+                member = tokens[i + 1]
+                if isinstance(obj, dict):
+                    return obj.get(member)
+                raise TourmalineError(f"Cannot access member '{member}'")
+        
+        # Index access
+        for i in range(start, end):
+            if tokens[i] == '[':
+                obj = self.evaluate_expression(tokens, start, i)
+                depth = 1
+                j = i + 1
+                while j < end and depth > 0:
+                    if tokens[j] == '[':
+                        depth += 1
+                    elif tokens[j] == ']':
+                        depth -= 1
+                    j += 1
+                index = self.evaluate_expression(tokens, i + 1, j - 1)
+                return obj[index]
+        
+        raise TourmalineError(f"Cannot evaluate expression: {' '.join(tokens[start:end])}")
+    
+    def parse_arguments(self, tokens: List[str], start: int) -> List[Any]:
+        """Parse function arguments"""
+        if start >= len(tokens) or tokens[start] != '(':
+            raise TourmalineError("Expected '('")
+        
+        depth = 1
+        i = start + 1
+        args = []
+        arg_start = i
+        
+        while i < len(tokens) and depth > 0:
+            if tokens[i] == '(':
+                depth += 1
+            elif tokens[i] == ')':
+                depth -= 1
+                if depth == 0:
+                    if i > arg_start:
+                        args.append(self.evaluate_expression(tokens, arg_start, i))
+                    break
+            elif tokens[i] == '[':
+                depth += 1
+            elif tokens[i] == ']':
+                depth -= 1
+            elif tokens[i] == ',' and depth == 1:
+                if i > arg_start:
+                    args.append(self.evaluate_expression(tokens, arg_start, i))
+                arg_start = i + 1
+            i += 1
+        
+        return args
+    
+    def parse_list(self, tokens: List[str], start: int) -> List[Any]:
+        """Parse a list literal"""
+        if tokens[start] != '[':
+            raise TourmalineError("Expected '['")
+        
+        depth = 1
+        i = start + 1
+        items = []
+        item_start = i
+        
+        while i < len(tokens) and depth > 0:
+            if tokens[i] == '[':
+                depth += 1
+            elif tokens[i] == ']':
+                depth -= 1
+                if depth == 0:
+                    if i > item_start:
+                        items.append(self.evaluate_expression(tokens, item_start, i))
+            elif tokens[i] == ',' and depth == 1:
+                if i > item_start:
+                    items.append(self.evaluate_expression(tokens, item_start, i))
+                item_start = i + 1
+            i += 1
+        
+        return items
+    
+    def parse_dict(self, tokens: List[str], start: int) -> Dict[str, Any]:
+        """Parse a dictionary literal"""
+        if tokens[start] != '{':
+            raise TourmalineError("Expected '{'")
+        
+        depth = 1
+        i = start + 1
+        result = {}
+        
+        while i < len(tokens) and depth > 0:
+            if tokens[i] == '{':
+                depth += 1
+                i += 1
+            elif tokens[i] == '}':
+                depth -= 1
+                if depth == 0:
+                    break
+                i += 1
+            elif tokens[i] == ',':
+                i += 1
+            else:
+                # Parse key
+                key_start = i
+                while i < len(tokens) and tokens[i] != ':':
+                    if tokens[i] in ['{', '[']:
+                        # Skip nested structures
+                        bracket = tokens[i]
+                        close_bracket = '}' if bracket == '{' else ']'
+                        depth2 = 1
+                        i += 1
+                        while i < len(tokens) and depth2 > 0:
+                            if tokens[i] == bracket:
+                                depth2 += 1
+                            elif tokens[i] == close_bracket:
+                                depth2 -= 1
+                            i += 1
+                    else:
+                        i += 1
+                
+                if key_start >= i:
+                    raise TourmalineError("Expected key in dictionary")
+                    
+                key = self.evaluate_expression(tokens, key_start, i)
+                
+                if i >= len(tokens) or tokens[i] != ':':
+                    raise TourmalineError("Expected ':' after dictionary key")
+                i += 1  # Skip ':'
+                
+                # Parse value
+                value_start = i
+                while i < len(tokens) and tokens[i] not in [',', '}']:
+                    if tokens[i] in ['{', '[']:
+                        bracket = tokens[i]
+                        close_bracket = '}' if bracket == '{' else ']'
+                        depth2 = 1
+                        i += 1
+                        while i < len(tokens) and depth2 > 0:
+                            if tokens[i] == bracket:
+                                depth2 += 1
+                            elif tokens[i] == close_bracket:
+                                depth2 -= 1
+                            i += 1
+                    else:
+                        i += 1
+                
+                if value_start >= i:
+                    raise TourmalineError("Expected value in dictionary")
+                
+                value = self.evaluate_expression(tokens, value_start, i)
+                result[str(key)] = value
+        
+        return result
+    
+    def resolve_function_calls(self, tokens: List[str], start: int, end: int) -> List[str]:
+        """Resolve all function calls in a token list and return new token list"""
+        result = []
+        i = start
+        
+        while i < end:
+            # Check if this is a function call
+            if i + 1 < end and tokens[i + 1] == '(':
+                func_name = tokens[i]
+                
+                if func_name in self.functions or func_name in self.builtins:
+                    # Find matching closing parenthesis
+                    depth = 1
+                    j = i + 2
+                    while j < end and depth > 0:
+                        if tokens[j] == '(':
+                            depth += 1
+                        elif tokens[j] == ')':
+                            depth -= 1
+                        j += 1
+                    
+                    # Parse and call the function
+                    try:
+                        args = self.parse_arguments(tokens, i + 1)
+                        
+                        if func_name in self.functions:
+                            func_result = self.call_user_function(func_name, args)
                         else:
-                            raise RuntimeError("Unsupported func instr: " + str(instr2))
-
-                else:
-                    raise RuntimeError(f"Unknown function '{name}'")
-
-            elif instr == 'RET':
-                self.running = False
-                return
-
-            elif instr == 'HALT':
-                return
-
-            elif instr == 'PUSHLIST':
-                count = arg
-                elements = [self.stack.pop() for _ in range(count)]
-                elements.reverse()
-                self.stack.append(elements)
+                            func_result = self.builtins[func_name](*args)
+                        
+                        # Add result as a token (preserve type for non-strings)
+                        if func_result is not None:
+                            if isinstance(func_result, str):
+                                result.append('"' + func_result + '"')
+                            else:
+                                result.append(str(func_result))
+                    except Exception as e:
+                        raise TourmalineError(f"Error calling function '{func_name}': {e}")
+                    
+                    i = j
+                    continue
             
-            elif instr == 'INDEX':
-                idx = self.stack.pop()
-                collection = self.stack.pop()
-                if isinstance(collection, list) and isinstance(idx, int):
-                    elem = collection[idx]
-                    self.stack.append(elem)
+            result.append(tokens[i])
+            i += 1
+        
+        return result
+    
+    def call_user_function(self, func_name: str, args: List[Any]) -> Any:
+        """Call a user-defined function"""
+        if func_name not in self.functions:
+            raise TourmalineError(f"Function '{func_name}' not defined")
+        
+        func_lines = self.functions[func_name]
+        
+        # Parse function definition to get parameters
+        first_line = func_lines[0].strip()
+        tokens = self.tokenize(first_line)
+        
+        # Extract parameter names
+        params = []
+        if '(' in tokens:
+            paren_idx = tokens.index('(')
+            i = paren_idx + 1
+            while i < len(tokens) and tokens[i] != ')':
+                if tokens[i] != ',':
+                    params.append(tokens[i])
+                i += 1
+        
+        # Save current variable state
+        saved_vars = self.variables.copy()
+        
+        # Set parameter values
+        for i, param in enumerate(params):
+            if i < len(args):
+                self.variables[param] = args[i]
+        
+        # Execute function body
+        body = '\n'.join(func_lines[1:-1])  # Exclude first and last (end) lines
+        result = None
+        try:
+            self.execute(body)
+        finally:
+            # Restore variable state
+            self.variables = saved_vars
+        
+        return result
+    
+    def execute(self, code: str):
+        """Execute Tourmaline code"""
+        lines = code.split('\n')
+        i = 0
+        
+        while i < len(lines):
+            line = lines[i].strip()
+            
+            if not line or line.startswith('#'):
+                i += 1
+                continue
+            
+            tokens = self.tokenize(line)
+            
+            if not tokens:
+                i += 1
+                continue
+            
+            # Variable declaration
+            if tokens[0] == 'let':
+                if len(tokens) < 4 or tokens[2] != '=':
+                    raise TourmalineError("Invalid variable declaration")
+                var_name = tokens[1]
+                value = self.evaluate_expression(tokens, 3)
+                self.variables[var_name] = value
+            
+            # Variable assignment
+            elif len(tokens) >= 3 and tokens[1] in ['=', '+=', '-=', '*=', '/=']:
+                var_name = tokens[0]
+                if var_name not in self.variables:
+                    raise TourmalineError(f"Variable '{var_name}' not declared")
+                
+                op = tokens[1]
+                value = self.evaluate_expression(tokens, 2)
+                
+                if op == '=':
+                    self.variables[var_name] = value
+                elif op == '+=':
+                    self.variables[var_name] += value
+                elif op == '-=':
+                    self.variables[var_name] -= value
+                elif op == '*=':
+                    self.variables[var_name] *= value
+                elif op == '/=':
+                    self.variables[var_name] /= value
+            
+            # Function definition
+            elif tokens[0] == 'function':
+                func_name = tokens[1]
+                # Find end of function
+                func_lines = [line]
+                i += 1
+                depth = 1
+                while i < len(lines) and depth > 0:
+                    l = lines[i].strip()
+                    func_lines.append(lines[i])
+                    if l.startswith('function') or l.startswith('if') or l.startswith('while') or l.startswith('for'):
+                        depth += 1
+                    elif l == 'end':
+                        depth -= 1
+                    i += 1
+                
+                self.functions[func_name] = func_lines
+                continue
+            
+            # Struct definition
+            elif tokens[0] == 'struct':
+                struct_name = tokens[1]
+                struct_fields = []
+                i += 1
+                while i < len(lines):
+                    l = lines[i].strip()
+                    if l == 'end':
+                        break
+                    if l and not l.startswith('#'):
+                        struct_fields.append(l)
+                    i += 1
+                
+                self.structs[struct_name] = struct_fields
+            
+            # If statement
+            elif tokens[0] == 'if':
+                condition = self.evaluate_expression(tokens, 1)
+                if_lines = []
+                elif_blocks = []
+                else_lines = []
+                
+                i += 1
+                depth = 1
+                current_block = if_lines
+                
+                while i < len(lines) and depth > 0:
+                    l = lines[i].strip()
+                    
+                    if l.startswith('if') or l.startswith('while') or l.startswith('for') or l.startswith('function'):
+                        depth += 1
+                        current_block.append(lines[i])
+                    elif l == 'end':
+                        depth -= 1
+                        if depth > 0:
+                            current_block.append(lines[i])
+                    elif l.startswith('elif') and depth == 1:
+                        elif_tokens = self.tokenize(l)
+                        elif_condition = self.evaluate_expression(elif_tokens, 1)
+                        elif_blocks.append((elif_condition, []))
+                        current_block = elif_blocks[-1][1]
+                    elif l == 'else' and depth == 1:
+                        current_block = else_lines
+                    else:
+                        current_block.append(lines[i])
+                    
+                    i += 1
+                
+                if condition:
+                    self.execute('\n'.join(if_lines))
                 else:
-                    self.stack.append(None)
+                    executed = False
+                    for elif_cond, elif_lines_block in elif_blocks:
+                        if elif_cond:
+                            self.execute('\n'.join(elif_lines_block))
+                            executed = True
+                            break
+                    if not executed and else_lines:
+                        self.execute('\n'.join(else_lines))
+                
+                continue
+            
+            # While loop
+            elif tokens[0] == 'while':
+                condition_tokens = tokens[1:]
+                loop_lines = []
+                i += 1
+                depth = 1
+                
+                while i < len(lines) and depth > 0:
+                    l = lines[i].strip()
+                    if l.startswith('while') or l.startswith('for') or l.startswith('if') or l.startswith('function'):
+                        depth += 1
+                    elif l == 'end':
+                        depth -= 1
+                    
+                    if depth > 0:
+                        loop_lines.append(lines[i])
+                    i += 1
+                
+                while self.evaluate_expression(condition_tokens):
+                    self.execute('\n'.join(loop_lines))
+                
+                continue
+            
+            # For loop
+            elif tokens[0] == 'for':
+                var_name = tokens[1]
+                if tokens[2] != 'in':
+                    raise TourmalineError("Expected 'in' in for loop")
+                
+                iterable = self.evaluate_expression(tokens, 3)
+                loop_lines = []
+                i += 1
+                depth = 1
+                
+                while i < len(lines) and depth > 0:
+                    l = lines[i].strip()
+                    if l.startswith('for') or l.startswith('while') or l.startswith('if') or l.startswith('function'):
+                        depth += 1
+                    elif l == 'end':
+                        depth -= 1
+                    
+                    if depth > 0:
+                        loop_lines.append(lines[i])
+                    i += 1
+                
+                for item in iterable:
+                    self.variables[var_name] = item
+                    self.execute('\n'.join(loop_lines))
+                
+                continue
+            
+            # Function call or expression
             else:
-                raise RuntimeError(f"Unknown instruction: {instr}")
+                try:
+                    self.evaluate_expression(tokens)
+                except Exception as e:
+                    # Silent errors for expressions that don't return values
+                    pass
+            
+            i += 1
 
-# -------------------------
-# Runner
-# -------------------------
+# Example usage and REPL
+if __name__ == "__main__":
+    import sys
+    
+    interpreter = TourmalineInterpreter()
+    
+    # Check if a file is provided as argument
+    if len(sys.argv) > 1:
+        filename = sys.argv[1]
+        if not filename.endswith('.trm'):
+            print(f"Error: File must have .trm extension")
+            sys.exit(1)
+        
+        try:
+            with open(filename, 'r') as f:
+                code = f.read()
+            interpreter.execute(code)
+        except FileNotFoundError:
+            print(f"Error: File '{filename}' not found")
+            sys.exit(1)
+        except TourmalineError as e:
+            print(f"Error: {e}")
+            import traceback
+            traceback.print_exc()
+            sys.exit(1)
+        except Exception as e:
+            print(f"Unexpected error: {e}")
+            import traceback
+            traceback.print_exc()
+            sys.exit(1)
+    else:
+        # Interactive mode
+        print("Tourmaline Language Interpreter")
+        print("Type 'exit' to quit")
+        print("Usage: python interpreter.py <file.trm> to run a file")
+        print()
+        
+        example_code = '''# Tourmaline Example Code
+let name = "World"
+print("Hello, " + name + "!\\n")
 
-def run_tourmaline(source: str):
-    lines = source.splitlines()
-    stmts, _ = parse_lines(lines)
-    prog = Program(stmts)
-    comp = Compiler()
-    compiled = comp.compile_program(prog)
-    vm = VM(compiled)
-    vm.run()
+# Variables and math
+let x = 10
+let y = 20
+let sum = x + y
+print("Sum: " + str(sum))
 
-# =====================================================================
-# CLI WRAPPER
-# =====================================================================
+# Lists
+let numbers = [1, 2, 3, 4, 5]
+print("Numbers: ")
+for num in numbers
+    print(num)
+end
 
-def main():
-    if len(sys.argv) < 2:
-        print("Usage: toma <file.toma>")
-        sys.exit(1)
+# Conditionals
+let age = 25
+if age >= 18
+    print("Adult")
+else
+    print("Minor")
+end
 
-    filename = sys.argv[1]
+# While loop
+let counter = 0
+while counter < 3
+    print("Count: " + str(counter))
+    counter += 1
+end
 
-    if not os.path.exists(filename):
-        print(f"Error: file not found: {filename}")
-        sys.exit(1)
+# Functions
+function greet(person)
+    print("Hello, " + person + "!")
+end
 
-    with open(filename, "r", encoding="utf-8") as f:
-        source = f.read()
+greet("Alice")
 
-    run_tourmaline(source)
-
-if __name__ == '__main__':
-    main()
+# Dictionary
+let person = {"name": "Bob", "age": 30}
+print("Person name: " + person["name"])
+'''
+        
+        print("Running example code:")
+        print("-" * 50)
+        try:
+            interpreter.execute(example_code)
+        except Exception as e:
+            print(f"Error: {e}")
+        
+        print("\n" + "-" * 50)
+        print("Interactive mode (type 'exit' to quit):")
+        
+        while True:
+            try:
+                code = input(">>> ")
+                if code.strip().lower() == 'exit':
+                    break
+                if code.strip():
+                    interpreter.execute(code)
+            except TourmalineError as e:
+                print(f"Error: {e}")
+            except Exception as e:
+                print(f"Unexpected error: {e}")
