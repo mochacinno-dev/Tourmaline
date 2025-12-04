@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- Replace with actual logo -->
-<img src="assets/Tourma.png" alt="Tourmaline Logo" width="400"/>
+<img src="src/assets/Tourma.png" alt="Tourmaline Logo" width="400"/>
 
 ### A simple, easy to learn programming language
 
