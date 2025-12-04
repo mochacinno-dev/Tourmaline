@@ -12,6 +12,8 @@ class TourmalineInterpreter:
         self.structs = {}
         self.return_value = None
         self.has_returned = False
+        self.exception_caught = False
+        self.exception_var = None
         self.setup_builtins()
     
     def setup_builtins(self):
@@ -21,8 +23,8 @@ class TourmalineInterpreter:
             'input': lambda prompt="": input(prompt),
             'len': len,
             'str': str,
-            'int': int,
-            'float': float,
+            'int': self.safe_int,
+            'float': self.safe_float,
             'type': lambda x: type(x).__name__,
             # Math functions
             'abs': abs,
@@ -37,6 +39,39 @@ class TourmalineInterpreter:
             'min': min,
             'max': max,
         }
+    
+    def safe_int(self, value):
+        """Safe integer conversion with better error handling"""
+        try:
+            if isinstance(value, str):
+                # Handle floats in string form
+                if '.' in value:
+                    return int(float(value))
+                return int(value)
+            elif isinstance(value, float):
+                return int(value)
+            elif isinstance(value, bool):
+                return 1 if value else 0
+            elif isinstance(value, int):
+                return value
+            else:
+                raise ValueError(f"Cannot convert {type(value).__name__} to int")
+        except ValueError as e:
+            raise TourmalineError(f"Cannot convert '{value}' to integer: {str(e)}")
+    
+    def safe_float(self, value):
+        """Safe float conversion with better error handling"""
+        try:
+            if isinstance(value, str):
+                return float(value)
+            elif isinstance(value, (int, float)):
+                return float(value)
+            elif isinstance(value, bool):
+                return 1.0 if value else 0.0
+            else:
+                raise ValueError(f"Cannot convert {type(value).__name__} to float")
+        except ValueError as e:
+            raise TourmalineError(f"Cannot convert '{value}' to float: {str(e)}")
     
     def tokenize(self, code: str) -> List[str]:
         """Simple tokenizer"""
@@ -589,6 +624,59 @@ class TourmalineInterpreter:
                 
                 self.structs[struct_name] = struct_fields
             
+            # Try-except block
+            elif tokens[0] == 'try':
+                try_lines = []
+                except_lines = []
+                exception_var = None
+                
+                i += 1
+                depth = 1
+                in_except = False
+                
+                while i < len(lines) and depth > 0:
+                    l = lines[i].strip()
+                    
+                    if l.startswith('try') or l.startswith('if') or l.startswith('while') or l.startswith('for') or l.startswith('function'):
+                        depth += 1
+                        if in_except:
+                            except_lines.append(lines[i])
+                        else:
+                            try_lines.append(lines[i])
+                    elif l == 'end':
+                        depth -= 1
+                        if depth > 0:
+                            if in_except:
+                                except_lines.append(lines[i])
+                            else:
+                                try_lines.append(lines[i])
+                    elif l.startswith('except') and depth == 1:
+                        in_except = True
+                        # Parse exception variable if present
+                        except_tokens = self.tokenize(l)
+                        if len(except_tokens) > 1:
+                            exception_var = except_tokens[1]
+                    else:
+                        if in_except:
+                            except_lines.append(lines[i])
+                        else:
+                            try_lines.append(lines[i])
+                    
+                    i += 1
+                
+                # Execute try block
+                try:
+                    self.execute('\n'.join(try_lines))
+                except (TourmalineError, Exception) as e:
+                    # Store exception in variable if specified
+                    if exception_var:
+                        self.variables[exception_var] = str(e)
+                    # Execute except block
+                    if except_lines:
+                        self.execute('\n'.join(except_lines))
+                
+                continue
+            
             # If statement
             elif tokens[0] == 'if':
                 condition = self.evaluate_expression(tokens, 1)
@@ -730,8 +818,6 @@ if __name__ == "__main__":
             sys.exit(1)
         except TourmalineError as e:
             print(f"Error: {e}")
-            import traceback
-            traceback.print_exc()
             sys.exit(1)
         except Exception as e:
             print(f"Unexpected error: {e}")
@@ -740,7 +826,7 @@ if __name__ == "__main__":
             sys.exit(1)
     else:
         # Interactive mode
-        print("Tourmaline Language Interpreter")
+        print("Tourmaline Language Interpreter v0.5.1 - Sunny Road")
         print("Type 'exit' to quit")
         print("Usage: python interpreter.py <file.trm> to run a file")
         print()
@@ -749,44 +835,28 @@ if __name__ == "__main__":
 let name = "World"
 print("Hello, " + name + "!\\n")
 
-# Variables and math
-let x = 10
-let y = 20
-let sum = x + y
-print("Sum: " + str(sum))
+# Type conversions
+let str_num = "42"
+let num = int(str_num)
+print("String to int: " + str(num))
 
-# Lists
-let numbers = [1, 2, 3, 4, 5]
-print("Numbers: ")
-for num in numbers
-    print(num)
+let str_float = "3.14"
+let pi = float(str_float)
+print("String to float: " + str(pi))
+
+let int_val = 100
+let float_val = float(int_val)
+print("Int to float: " + str(float_val))
+
+# Exception handling
+try
+    let bad_conversion = int("not a number")
+    print("This won't print")
+except error
+    print("Caught error: " + error)
 end
 
-# Conditionals
-let age = 25
-if age >= 18
-    print("Adult")
-else
-    print("Minor")
-end
-
-# While loop
-let counter = 0
-while counter < 3
-    print("Count: " + str(counter))
-    counter += 1
-end
-
-# Functions
-function greet(person)
-    print("Hello, " + person + "!")
-end
-
-greet("Alice")
-
-# Dictionary
-let person = {"name": "Bob", "age": 30}
-print("Person name: " + person["name"])
+print("Program continues after error!")
 '''
         
         print("Running example code:")
