@@ -2,7 +2,7 @@
   "name": "tourmaline-language",
   "displayName": "Tourmaline Language Support",
   "description": "Syntax highlighting, snippets, and language support for Tourmaline (.trm) - A simple, easy to learn programming language",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "publisher": "Mochacinno",
   "repository": {
     "type": "git",

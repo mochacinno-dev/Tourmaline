@@ -10,6 +10,8 @@ class TourmalineInterpreter:
         self.variables = {}
         self.functions = {}
         self.structs = {}
+        self.return_value = None
+        self.has_returned = False
         self.setup_builtins()
     
     def setup_builtins(self):
@@ -22,7 +24,6 @@ class TourmalineInterpreter:
             'int': int,
             'float': float,
             'type': lambda x: type(x).__name__,
-            
             # Math functions
             'abs': abs,
             'sqrt': math.sqrt,
@@ -135,14 +136,26 @@ class TourmalineInterpreter:
         if start >= end:
             raise TourmalineError("Empty expression")
         
+        # Handle list literals BEFORE anything else
+        if tokens[start] == '[':
+            return self.parse_list(tokens, start)
+        
+        # Handle dictionary literals BEFORE anything else
+        if tokens[start] == '{':
+            return self.parse_dict(tokens, start)
+        
         # Single token
         if end - start == 1:
             return self.parse_value(tokens[start])
         
-        # First, resolve all function calls in the expression
+        # Now resolve all function calls in the expression
         tokens = self.resolve_function_calls(tokens, start, end)
         start = 0
         end = len(tokens)
+        
+        # Check again after function resolution
+        if start >= end:
+            return None
         
         if end - start == 1:
             return self.parse_value(tokens[0])
@@ -164,15 +177,10 @@ class TourmalineInterpreter:
             if valid_wrap:
                 return self.evaluate_expression(tokens, start + 1, end - 1)
         
-        # Handle list literals
-        if tokens[start] == '[':
-            return self.parse_list(tokens, start)
-        
         # Handle dictionary literals
         if tokens[start] == '{':
             return self.parse_dict(tokens, start)
         
-        # Handle operators (in order of precedence)
         # Logical OR
         for i in range(end - 1, start, -1):
             if tokens[i] == 'or':
@@ -384,6 +392,34 @@ class TourmalineInterpreter:
         i = start
         
         while i < end:
+            # Skip dictionary literals entirely
+            if tokens[i] == '{':
+                depth = 1
+                result.append(tokens[i])
+                i += 1
+                while i < end and depth > 0:
+                    if tokens[i] == '{':
+                        depth += 1
+                    elif tokens[i] == '}':
+                        depth -= 1
+                    result.append(tokens[i])
+                    i += 1
+                continue
+            
+            # Skip list literals entirely
+            if tokens[i] == '[':
+                depth = 1
+                result.append(tokens[i])
+                i += 1
+                while i < end and depth > 0:
+                    if tokens[i] == '[':
+                        depth += 1
+                    elif tokens[i] == ']':
+                        depth -= 1
+                    result.append(tokens[i])
+                    i += 1
+                continue
+            
             # Check if this is a function call
             if i + 1 < end and tokens[i + 1] == '(':
                 func_name = tokens[i]
@@ -454,14 +490,22 @@ class TourmalineInterpreter:
             if i < len(args):
                 self.variables[param] = args[i]
         
+        # Set a flag for return value
+        self.return_value = None
+        self.has_returned = False
+        
         # Execute function body
         body = '\n'.join(func_lines[1:-1])  # Exclude first and last (end) lines
-        result = None
         try:
             self.execute(body)
         finally:
+            # Get return value before restoring
+            result = self.return_value
             # Restore variable state
             self.variables = saved_vars
+            # Clear return flags
+            self.has_returned = False
+            self.return_value = None
         
         return result
     
@@ -638,10 +682,21 @@ class TourmalineInterpreter:
                     i += 1
                 
                 for item in iterable:
+                    if self.has_returned:
+                        break
                     self.variables[var_name] = item
                     self.execute('\n'.join(loop_lines))
                 
                 continue
+            
+            # Return statement
+            elif tokens[0] == 'return':
+                if len(tokens) > 1:
+                    self.return_value = self.evaluate_expression(tokens, 1)
+                else:
+                    self.return_value = None
+                self.has_returned = True
+                return
             
             # Function call or expression
             else:
@@ -667,7 +722,7 @@ if __name__ == "__main__":
             sys.exit(1)
         
         try:
-            with open(filename, 'r') as f:
+            with open(filename, 'r', encoding='utf-8') as f:
                 code = f.read()
             interpreter.execute(code)
         except FileNotFoundError:
