@@ -1,9 +1,39 @@
+########################
+# Tourmaline 0.6.0 - Green Valley
+# Made by Mocha (The Mocha Foundation)
+########################
+# Licensed under the GNU General Public License v3.0
+########################
+
 import re
 import math
+import random as py_random
 from typing import Any, Dict, List, Callable
 
 class TourmalineError(Exception):
     pass
+
+class TourmalineList(list):
+    """Extended list with chainable methods"""
+    def append(self, item):
+        super().append(item)
+        return self
+    
+    def insert(self, index, item):
+        super().insert(index, item)
+        return self
+    
+    def remove(self, item):
+        super().remove(item)
+        return self
+    
+    def pop(self, index=-1):
+        result = super().pop(index)
+        return result
+    
+    def clear(self):
+        super().clear()
+        return self
 
 class TourmalineInterpreter:
     def __init__(self):
@@ -14,7 +44,9 @@ class TourmalineInterpreter:
         self.has_returned = False
         self.exception_caught = False
         self.exception_var = None
+        self.libraries = {}
         self.setup_builtins()
+        self.setup_libraries()
     
     def setup_builtins(self):
         """Setup built-in functions"""
@@ -38,7 +70,64 @@ class TourmalineInterpreter:
             'round': round,
             'min': min,
             'max': max,
+            # List methods
+            'append': self.list_append,
+            'insert': self.list_insert,
+            'remove': self.list_remove,
+            'pop': self.list_pop,
+            'clear': self.list_clear,
         }
+    
+    def setup_libraries(self):
+        """Setup standard libraries"""
+        # Random library
+        self.libraries['random'] = {
+            'randint': lambda a, b: py_random.randint(a, b),
+            'random': lambda: py_random.random(),
+            'choice': lambda lst: py_random.choice(lst),
+            'shuffle': lambda lst: py_random.shuffle(lst) or lst,
+            'uniform': lambda a, b: py_random.uniform(a, b),
+            'randrange': lambda start, stop=None, step=1: py_random.randrange(start, stop, step) if stop else py_random.randrange(start),
+        }
+    
+    def list_append(self, lst, item):
+        """Append item to list"""
+        if not isinstance(lst, list):
+            raise TourmalineError("append() requires a list as first argument")
+        lst.append(item)
+        return lst
+    
+    def list_insert(self, lst, index, item):
+        """Insert item at index in list"""
+        if not isinstance(lst, list):
+            raise TourmalineError("insert() requires a list as first argument")
+        lst.insert(index, item)
+        return lst
+    
+    def list_remove(self, lst, item):
+        """Remove first occurrence of item from list"""
+        if not isinstance(lst, list):
+            raise TourmalineError("remove() requires a list as first argument")
+        try:
+            lst.remove(item)
+        except ValueError:
+            raise TourmalineError(f"Item '{item}' not found in list")
+        return lst
+    
+    def list_pop(self, lst, index=-1):
+        """Remove and return item at index (default last)"""
+        if not isinstance(lst, list):
+            raise TourmalineError("pop() requires a list as first argument")
+        if len(lst) == 0:
+            raise TourmalineError("Cannot pop from empty list")
+        return lst.pop(index)
+    
+    def list_clear(self, lst):
+        """Remove all items from list"""
+        if not isinstance(lst, list):
+            raise TourmalineError("clear() requires a list as first argument")
+        lst.clear()
+        return lst
     
     def safe_int(self, value):
         """Safe integer conversion with better error handling"""
@@ -121,6 +210,15 @@ class TourmalineInterpreter:
                     i += 2
                     continue
                 tokens.append(char)
+            elif char == '.':
+                # Check if it's a decimal point in a number or member access
+                if current and current[0].isdigit():
+                    current += char
+                else:
+                    if current:
+                        tokens.append(current)
+                        current = ""
+                    tokens.append(char)
             else:
                 current += char
             
@@ -265,14 +363,25 @@ class TourmalineInterpreter:
                 else:
                     return left % right
         
-        # Member access (dot notation)
+        # Member access (dot notation) - including library access
         for i in range(start, end):
             if tokens[i] == '.':
                 obj = self.evaluate_expression(tokens, start, i)
-                member = tokens[i + 1]
+                
+                # Handle library access
+                if isinstance(obj, str) and obj in self.libraries:
+                    if i + 1 < end:
+                        member_name = tokens[i + 1]
+                        if member_name in self.libraries[obj]:
+                            return self.libraries[obj][member_name]
+                        raise TourmalineError(f"Library '{obj}' has no function '{member_name}'")
+                
+                # Handle dictionary access
                 if isinstance(obj, dict):
+                    member = tokens[i + 1]
                     return obj.get(member)
-                raise TourmalineError(f"Cannot access member '{member}'")
+                
+                raise TourmalineError(f"Cannot access member of {type(obj).__name__}")
         
         # Index access
         for i in range(start, end):
@@ -455,6 +564,40 @@ class TourmalineInterpreter:
                     i += 1
                 continue
             
+            # Check for library.function() calls
+            if i + 2 < end and tokens[i + 1] == '.' and tokens[i + 3] == '(':
+                lib_name = tokens[i]
+                func_name = tokens[i + 2]
+                
+                if lib_name in self.libraries and func_name in self.libraries[lib_name]:
+                    # Find matching closing parenthesis
+                    depth = 1
+                    j = i + 4
+                    while j < end and depth > 0:
+                        if tokens[j] == '(':
+                            depth += 1
+                        elif tokens[j] == ')':
+                            depth -= 1
+                        j += 1
+                    
+                    # Parse and call the function
+                    try:
+                        args = self.parse_arguments(tokens, i + 3)
+                        func = self.libraries[lib_name][func_name]
+                        func_result = func(*args)
+                        
+                        # Add result as a token
+                        if func_result is not None:
+                            if isinstance(func_result, str):
+                                result.append('"' + func_result + '"')
+                            else:
+                                result.append(str(func_result))
+                    except Exception as e:
+                        raise TourmalineError(f"Error calling {lib_name}.{func_name}(): {e}")
+                    
+                    i = j
+                    continue
+            
             # Check if this is a function call
             if i + 1 < end and tokens[i + 1] == '(':
                 func_name = tokens[i]
@@ -559,6 +702,18 @@ class TourmalineInterpreter:
             tokens = self.tokenize(line)
             
             if not tokens:
+                i += 1
+                continue
+            
+            # Import statement
+            if tokens[0] == 'import':
+                if len(tokens) < 2:
+                    raise TourmalineError("Invalid import statement")
+                lib_name = tokens[1]
+                if lib_name not in self.libraries:
+                    raise TourmalineError(f"Library '{lib_name}' not found")
+                # Store library name as a variable for access
+                self.variables[lib_name] = lib_name
                 i += 1
                 continue
             
@@ -828,45 +983,7 @@ if __name__ == "__main__":
         # Interactive mode
         print("Tourmaline Language Interpreter v0.5.1 - Sunny Road")
         print("Type 'exit' to quit")
-        print("Usage: python interpreter.py <file.trm> to run a file")
-        print()
-        
-        example_code = '''# Tourmaline Example Code
-let name = "World"
-print("Hello, " + name + "!\\n")
-
-# Type conversions
-let str_num = "42"
-let num = int(str_num)
-print("String to int: " + str(num))
-
-let str_float = "3.14"
-let pi = float(str_float)
-print("String to float: " + str(pi))
-
-let int_val = 100
-let float_val = float(int_val)
-print("Int to float: " + str(float_val))
-
-# Exception handling
-try
-    let bad_conversion = int("not a number")
-    print("This won't print")
-except error
-    print("Caught error: " + error)
-end
-
-print("Program continues after error!")
-'''
-        
-        print("Running example code:")
-        print("-" * 50)
-        try:
-            interpreter.execute(example_code)
-        except Exception as e:
-            print(f"Error: {e}")
-        
-        print("\n" + "-" * 50)
+        print("Usage: python tourmaline.py <file.trm> to run a file")
         print("Interactive mode (type 'exit' to quit):")
         
         while True:

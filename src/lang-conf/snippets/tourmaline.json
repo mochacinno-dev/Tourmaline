@@ -121,6 +121,31 @@
     "description": "Access list element by index"
   },
 
+  "List Appending": {
+    "prefix": "append",
+    "body": "append(${1:list}, ${2:item})"
+  },
+
+  "List Insertion": {
+    "prefix": "insert",
+    "body": "insert(${1:list}, ${2:index}, ${3:item})"
+  },
+
+  "List Removal": {
+    "prefix": "remove",
+    "body": "remove(${1:list}, ${2:item})"
+  },
+
+  "List Popping": {
+    "prefix": "pop",
+    "body": "let ${1:name} = pop(${2:list})"
+  },
+
+  "List Index Popping": {
+    "prefix": "popx",
+    "body": "let ${1:name} = pop(${2:list}, ${3:index})"
+  },
+
   "Dictionary Access": {
     "prefix": "dictget",
     "body": "${1:dict}[${2:\"key\"}]",

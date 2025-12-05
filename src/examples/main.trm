@@ -1,5 +1,6 @@
-# Tourmaline Language Showcase
-# test.trm - Demonstrating all language features
+########################
+# Tourmaline 0.6.0 - Showcase
+########################
 
 print("=== Tourmaline Language Test Suite ===\n")
 
@@ -400,5 +401,5 @@ print("Program continues after all exceptions!\n")
 # FINAL MESSAGE
 # ========================================
 print("=== All Tests Complete! ===")
-print("Tourmaline v0.5.1 - Sunny Road")
+print("Tourmaline v0.6.0 - Green Valley")
 print("\nTourmaline is working perfectly!\n")

@@ -65,7 +65,7 @@
         },
         {
           "name": "keyword.other.declaration.tourmaline",
-          "match": "\\b(let|function|struct)\\b"
+          "match": "\\b(let|function|struct|import)\\b"
         },
         {
           "name": "keyword.operator.logical.tourmaline",
@@ -133,7 +133,7 @@
         },
         {
           "name": "support.function.builtin.collection.tourmaline",
-          "match": "\\b(len)\\b"
+          "match": "\\b(len|append|insert|remove|pop|clear)\\b"
         },
         {
           "name": "support.function.builtin.math.tourmaline",

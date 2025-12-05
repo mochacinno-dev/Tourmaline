@@ -1,7 +1,7 @@
 # Tourmaline Language Support for VS Code
 
-![Version](https://img.shields.io/badge/version-0.5.0-pink)
-![Tourmaline](https://img.shields.io/badge/Tourmaline-Sunny%20Road-yellow)
+![Version](https://img.shields.io/badge/version-0.6.0-pink)
+![Tourmaline](https://img.shields.io/badge/Tourmaline-Green%20Valley-green)
 
 Visual Studio Code extension providing comprehensive language support for **Tourmaline** (`.trm`) files - a simple, easy to learn programming language with beautiful syntax inspired by Lua and Ruby.
 
@@ -21,9 +21,6 @@ Visual Studio Code extension providing comprehensive language support for **Tour
 - Smart bracket matching and auto-closing
 - Automatic indentation
 
-🎨 **Tourmaline Pastel Theme** (included)
-- Beautiful color scheme matching Tourmaline's pink, yellow, and green palette
-- Optimized for `.trm` files
 
 📦 **Code Folding**
 - Fold `if`, `while`, `for`, `function`, and `struct` blocks
@@ -171,7 +168,7 @@ Tourmaline is a simple, easy to learn programming language designed for educatio
 - Rich set of built-in math functions
 - Easy string manipulation
 
-### Version: 0.5.0 - Pastel Crunch
+### Version: 0.6.0 - Green Valley
 
 ## Requirements
 
@@ -184,7 +181,7 @@ Contributions are welcome! Please visit the [GitHub repository](https://github.c
 
 ## Release Notes
 
-### 0.5.0 - Pastel Crunch
+### 0.6.0 - Green Valley
 - Full syntax highlighting support
 - 40+ code snippets
 - Auto-completion and IntelliSense
@@ -203,4 +200,4 @@ GNU General Public License v3.0 - Made by **The Mocha Foundation**
 
 ---
 
-**Enjoy coding with Tourmaline!** 💎✨
+**Enjoy coding with Tourmaline!**

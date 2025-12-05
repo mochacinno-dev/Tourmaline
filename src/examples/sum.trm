@@ -1,0 +1,8 @@
+function sum(x, y)
+    return int(x) + int(y)
+end
+
+let a = input("First number: ")
+let b = input("Second number: ")
+
+print("If you add them, it is " + str(sum(a, b)))
