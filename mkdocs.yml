@@ -1,0 +1,49 @@
+site_name: Tourmaline Programming Language
+site_description: A simple, easy to learn programming language with beautiful syntax inspired by Lua and Ruby
+site_author: Camila "Mocha" Rose (CoffeeShop Development)
+repo_url: https://github.com/mochacinno-dev/Tourmaline
+repo_name: mochacinno-dev/Tourmaline
+
+theme:
+  name: readthedocs
+  highlightjs: true
+  hljs_languages:
+    - python
+    - bash
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: getting-started/installation.md
+    - Quick Start: getting-started/quick-start.md
+    - Your First Program: getting-started/first-program.md
+  - Language Guide:
+    - Variables & Types: guide/variables.md
+    - Operators: guide/operators.md
+    - Control Flow: guide/control-flow.md
+    - Functions: guide/functions.md
+    - Lists & Dictionaries: guide/collections.md
+    - Exception Handling: guide/exceptions.md
+  - Standard Library:
+    - Built-in Functions: stdlib/builtins.md
+    - Math Functions: stdlib/math.md
+    - Random Library: stdlib/random.md
+    - List Operations: stdlib/lists.md
+  - Examples:
+    - Basic Examples: examples/basic.md
+    - Advanced Examples: examples/advanced.md
+  - Reference:
+    - Syntax Reference: reference/syntax.md
+    - Error Messages: reference/errors.md
+  - About:
+    - License: about/license.md
+    - Contributing: about/contributing.md
+
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true
+  - pymdownx.highlight
+  - pymdownx.superfences
