@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Camila "Mocha" Rose (CoffeeShop Development)" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Syntax Reference - Tourmaline Programming Language</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Syntax Reference";
+        var mkdocs_page_input_path = "reference\\syntax.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Tourmaline Programming Language
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/quick-start/">Quick Start</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../getting-started/first-program.md">Your First Program</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Language Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/variables/">Variables & Types</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../guide/operators.md">Operators</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../guide/control-flow.md">Control Flow</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/functions/">Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../guide/collections.md">Lists & Dictionaries</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../guide/exceptions.md">Exception Handling</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Standard Library</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/builtins/">Built-in Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../stdlib/math.md">Math Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../stdlib/random.md">Random Library</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../stdlib/lists.md">List Operations</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../examples/basic.md">Basic Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../examples/advanced.md">Advanced Examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Syntax Reference</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#comments">Comments</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#variables">Variables</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#declaration">Declaration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#assignment">Assignment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#compound-assignment">Compound Assignment</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data-types">Data Types</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#literals">Literals</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#operators">Operators</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#arithmetic">Arithmetic</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#comparison">Comparison</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#logical">Logical</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#control-flow">Control Flow</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#if-statement">If Statement</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#if-elif-else">If-Elif-Else</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#while-loop">While Loop</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#for-loop">For Loop</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#function-definition">Function Definition</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#function-call">Function Call</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#function-without-parameters">Function Without Parameters</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#function-without-return">Function Without Return</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#collections">Collections</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#lists">Lists</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dictionaries">Dictionaries</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exception-handling">Exception Handling</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#try-except">Try-Except</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#try-except-with-variable">Try-Except with Variable</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#imports">Imports</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#using-imported-libraries">Using Imported Libraries</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#keywords">Keywords</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#whitespace-indentation">Whitespace &amp; Indentation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#naming-rules">Naming Rules</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#valid-identifiers">Valid Identifiers</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#string-escape-sequences">String Escape Sequences</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#precedence-rules">Precedence Rules</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#file-extensions">File Extensions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#program-structure">Program Structure</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#complete-example">Complete Example</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#style-guidelines">Style Guidelines</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#recommended-conventions">Recommended Conventions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#common-patterns">Common Patterns</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#input-validation-loop">Input Validation Loop</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#counter-loop">Counter Loop</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#list-iteration">List Iteration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dictionary-iteration">Dictionary Iteration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#error-messages">Error Messages</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#quick-reference-card">Quick Reference Card</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../errors.md">Error Messages</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../about/license.md">License</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../about/contributing.md">Contributing</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Tourmaline Programming Language</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Reference</li>
+      <li class="breadcrumb-item active">Syntax Reference</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/mochacinno-dev/Tourmaline/edit/master/docs/reference/syntax.md">Edit on mochacinno-dev/Tourmaline</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="syntax-reference">Syntax Reference<a class="headerlink" href="#syntax-reference" title="Permanent link">&para;</a></h1>
+<p>Complete syntax reference for the Tourmaline programming language.</p>
+<h2 id="comments">Comments<a class="headerlink" href="#comments" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># This is a single-line comment</span>
+
+<span class="n">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Comments can appear at the end of lines</span>
+
+<span class="c1"># Multiple lines require multiple # symbols</span>
+<span class="c1"># Like this</span>
+<span class="c1"># And this</span>
+</code></pre></div>
+<h2 id="variables">Variables<a class="headerlink" href="#variables" title="Permanent link">&para;</a></h2>
+<h3 id="declaration">Declaration<a class="headerlink" href="#declaration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">variable_name</span> <span class="o">=</span> <span class="n">value</span>
+</code></pre></div>
+<h3 id="assignment">Assignment<a class="headerlink" href="#assignment" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">variable_name</span> <span class="o">=</span> <span class="n">new_value</span>
+</code></pre></div>
+<h3 id="compound-assignment">Compound Assignment<a class="headerlink" href="#compound-assignment" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">variable</span> <span class="o">+=</span> <span class="n">value</span>   <span class="c1"># Addition</span>
+<span class="n">variable</span> <span class="o">-=</span> <span class="n">value</span>   <span class="c1"># Subtraction</span>
+<span class="n">variable</span> <span class="o">*=</span> <span class="n">value</span>   <span class="c1"># Multiplication</span>
+<span class="n">variable</span> <span class="o">/=</span> <span class="n">value</span>   <span class="c1"># Division</span>
+</code></pre></div>
+<h2 id="data-types">Data Types<a class="headerlink" href="#data-types" title="Permanent link">&para;</a></h2>
+<h3 id="literals">Literals<a class="headerlink" href="#literals" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="mi">42</span>              <span class="c1"># Integer</span>
+<span class="mf">3.14</span>            <span class="c1"># Float</span>
+<span class="s2">&quot;text&quot;</span>          <span class="c1"># String (double quotes)</span>
+<span class="s1">&#39;text&#39;</span>          <span class="c1"># String (single quotes)</span>
+<span class="n">true</span>            <span class="c1"># Boolean true</span>
+<span class="n">false</span>           <span class="c1"># Boolean false</span>
+<span class="n">nil</span>             <span class="c1"># Null/None value</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>       <span class="c1"># List</span>
+<span class="p">{</span><span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;val&quot;</span><span class="p">}</span>  <span class="c1"># Dictionary</span>
+</code></pre></div>
+<h2 id="operators">Operators<a class="headerlink" href="#operators" title="Permanent link">&para;</a></h2>
+<h3 id="arithmetic">Arithmetic<a class="headerlink" href="#arithmetic" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="o">+</span>   <span class="c1"># Addition</span>
+<span class="o">-</span>   <span class="c1"># Subtraction</span>
+<span class="o">*</span>   <span class="c1"># Multiplication</span>
+<span class="o">/</span>   <span class="c1"># Division</span>
+<span class="o">%</span>   <span class="c1"># Modulo (remainder)</span>
+</code></pre></div>
+<h3 id="comparison">Comparison<a class="headerlink" href="#comparison" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="o">==</span>  <span class="c1"># Equal to</span>
+<span class="o">!=</span>  <span class="c1"># Not equal to</span>
+<span class="o">&lt;</span>   <span class="c1"># Less than</span>
+<span class="o">&gt;</span>   <span class="c1"># Greater than</span>
+<span class="o">&lt;=</span>  <span class="c1"># Less than or equal to</span>
+<span class="o">&gt;=</span>  <span class="c1"># Greater than or equal to</span>
+</code></pre></div>
+<h3 id="logical">Logical<a class="headerlink" href="#logical" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="ow">and</span>  <span class="c1"># Logical AND</span>
+<span class="ow">or</span>   <span class="c1"># Logical OR</span>
+</code></pre></div>
+<h2 id="control-flow">Control Flow<a class="headerlink" href="#control-flow" title="Permanent link">&para;</a></h2>
+<h3 id="if-statement">If Statement<a class="headerlink" href="#if-statement" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">condition</span>
+    <span class="c1"># code</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="if-elif-else">If-Elif-Else<a class="headerlink" href="#if-elif-else" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">condition1</span>
+    <span class="c1"># code</span>
+<span class="k">elif</span> <span class="n">condition2</span>
+    <span class="c1"># code</span>
+<span class="k">elif</span> <span class="n">condition3</span>
+    <span class="c1"># code</span>
+<span class="k">else</span>
+    <span class="c1"># code</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="while-loop">While Loop<a class="headerlink" href="#while-loop" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">while</span> <span class="n">condition</span>
+    <span class="c1"># code</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="for-loop">For Loop<a class="headerlink" href="#for-loop" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">iterable</span>
+    <span class="c1"># code</span>
+<span class="n">end</span>
+</code></pre></div>
+<h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h2>
+<h3 id="function-definition">Function Definition<a class="headerlink" href="#function-definition" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">name</span><span class="p">(</span><span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">)</span>
+    <span class="c1"># code</span>
+    <span class="k">return</span> <span class="n">value</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="function-call">Function Call<a class="headerlink" href="#function-call" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">name</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="function-without-parameters">Function Without Parameters<a class="headerlink" href="#function-without-parameters" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">name</span><span class="p">()</span>
+    <span class="c1"># code</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="function-without-return">Function Without Return<a class="headerlink" href="#function-without-return" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">name</span><span class="p">()</span>
+    <span class="c1"># code</span>
+<span class="n">end</span>  <span class="c1"># Returns nil</span>
+</code></pre></div>
+<h2 id="collections">Collections<a class="headerlink" href="#collections" title="Permanent link">&para;</a></h2>
+<h3 id="lists">Lists<a class="headerlink" href="#lists" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Creation</span>
+<span class="n">let</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="n">item1</span><span class="p">,</span> <span class="n">item2</span><span class="p">,</span> <span class="n">item3</span><span class="p">]</span>
+
+<span class="c1"># Empty list</span>
+<span class="n">let</span> <span class="n">empty</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Access</span>
+<span class="n">let</span> <span class="n">item</span> <span class="o">=</span> <span class="nb">list</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+<span class="c1"># Modification</span>
+<span class="nb">list</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_value</span>
+</code></pre></div>
+<h3 id="dictionaries">Dictionaries<a class="headerlink" href="#dictionaries" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Creation</span>
+<span class="n">let</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;key1&quot;</span><span class="p">:</span> <span class="n">value1</span><span class="p">,</span>
+    <span class="s2">&quot;key2&quot;</span><span class="p">:</span> <span class="n">value2</span>
+<span class="p">}</span>
+
+<span class="c1"># Empty dictionary</span>
+<span class="n">let</span> <span class="n">empty</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># Access</span>
+<span class="n">let</span> <span class="n">value</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">]</span>
+
+<span class="c1"># Access with dot notation (for library functions)</span>
+<span class="n">library</span><span class="o">.</span><span class="n">function</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="exception-handling">Exception Handling<a class="headerlink" href="#exception-handling" title="Permanent link">&para;</a></h2>
+<h3 id="try-except">Try-Except<a class="headerlink" href="#try-except" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">try</span>
+    <span class="c1"># code that might fail</span>
+<span class="k">except</span>
+    <span class="c1"># error handling</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="try-except-with-variable">Try-Except with Variable<a class="headerlink" href="#try-except-with-variable" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">try</span>
+    <span class="c1"># code that might fail</span>
+<span class="k">except</span> <span class="n">error_variable</span>
+    <span class="c1"># error handling using error_variable</span>
+<span class="n">end</span>
+</code></pre></div>
+<h2 id="imports">Imports<a class="headerlink" href="#imports" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">library_name</span>
+</code></pre></div>
+<h3 id="using-imported-libraries">Using Imported Libraries<a class="headerlink" href="#using-imported-libraries" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="n">let</span> <span class="n">num</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="keywords">Keywords<a class="headerlink" href="#keywords" title="Permanent link">&para;</a></h2>
+<p>Reserved words in Tourmaline:</p>
+<ul>
+<li><code>let</code> - Variable declaration</li>
+<li><code>function</code> - Function definition</li>
+<li><code>return</code> - Return from function</li>
+<li><code>if</code> - Conditional statement</li>
+<li><code>elif</code> - Else if</li>
+<li><code>else</code> - Else clause</li>
+<li><code>while</code> - While loop</li>
+<li><code>for</code> - For loop</li>
+<li><code>in</code> - For loop iterator</li>
+<li><code>end</code> - Block terminator</li>
+<li><code>try</code> - Exception handling</li>
+<li><code>except</code> - Exception handler</li>
+<li><code>import</code> - Import library</li>
+<li><code>true</code> - Boolean true</li>
+<li><code>false</code> - Boolean false</li>
+<li><code>nil</code> - Null value</li>
+<li><code>and</code> - Logical AND</li>
+<li><code>or</code> - Logical OR</li>
+</ul>
+<h2 id="whitespace-indentation">Whitespace &amp; Indentation<a class="headerlink" href="#whitespace-indentation" title="Permanent link">&para;</a></h2>
+<p>Tourmaline uses <code>end</code> keywords instead of indentation:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Indentation is optional but recommended for readability</span>
+<span class="k">if</span> <span class="n">condition</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;True&quot;</span><span class="p">)</span>    <span class="c1"># Indented (recommended)</span>
+<span class="n">end</span>
+
+<span class="k">if</span> <span class="n">condition</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;True&quot;</span><span class="p">)</span>        <span class="c1"># Not indented (works but less readable)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h2 id="naming-rules">Naming Rules<a class="headerlink" href="#naming-rules" title="Permanent link">&para;</a></h2>
+<h3 id="valid-identifiers">Valid Identifiers<a class="headerlink" href="#valid-identifiers" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Must start with a letter (a-z, A-Z) or underscore (_)</li>
+<li>Can contain letters, numbers, and underscores</li>
+<li>Case-sensitive</li>
+<li>Cannot be a keyword</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># Valid</span>
+<span class="n">let</span> <span class="n">userName</span> <span class="o">=</span> <span class="s2">&quot;Alice&quot;</span>
+<span class="n">let</span> <span class="n">user_name</span> <span class="o">=</span> <span class="s2">&quot;Bob&quot;</span>
+<span class="n">let</span> <span class="n">_private</span> <span class="o">=</span> <span class="s2">&quot;secret&quot;</span>
+<span class="n">let</span> <span class="n">user123</span> <span class="o">=</span> <span class="s2">&quot;Charlie&quot;</span>
+
+<span class="c1"># Invalid</span>
+<span class="n">let</span> <span class="mi">123</span><span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;Invalid&quot;</span>    <span class="c1"># Starts with number</span>
+<span class="n">let</span> <span class="n">user</span><span class="o">-</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Invalid&quot;</span>  <span class="c1"># Contains hyphen</span>
+<span class="n">let</span> <span class="n">user</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Invalid&quot;</span>  <span class="c1"># Contains space</span>
+<span class="n">let</span> <span class="n">let</span> <span class="o">=</span> <span class="s2">&quot;Invalid&quot;</span>        <span class="c1"># Keyword</span>
+</code></pre></div>
+<h2 id="string-escape-sequences">String Escape Sequences<a class="headerlink" href="#string-escape-sequences" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>\<span class="n">n</span>  <span class="c1"># Newline</span>
+\<span class="n">t</span>  <span class="c1"># Tab</span>
+\<span class="s2">&quot;  # Double quote</span>
+\<span class="s1">&#39;  # Single quote</span>
+\\  <span class="c1"># Backslash</span>
+</code></pre></div>
+<p><strong>Example:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Line 1</span><span class="se">\n</span><span class="s2">Line 2</span><span class="se">\t</span><span class="s2">Tabbed&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="c1"># Output:</span>
+<span class="c1"># Line 1</span>
+<span class="c1"># Line 2    Tabbed</span>
+</code></pre></div>
+<h2 id="precedence-rules">Precedence Rules<a class="headerlink" href="#precedence-rules" title="Permanent link">&para;</a></h2>
+<p>Operations are evaluated in this order (highest to lowest):</p>
+<ol>
+<li>Parentheses <code>()</code></li>
+<li>Function calls <code>function()</code></li>
+<li>Member access <code>.</code></li>
+<li>Index access <code>[]</code></li>
+<li>Multiplication <code>*</code>, Division <code>/</code>, Modulo <code>%</code></li>
+<li>Addition <code>+</code>, Subtraction <code>-</code></li>
+<li>Comparison <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></li>
+<li>Equality <code>==</code>, <code>!=</code></li>
+<li>Logical AND <code>and</code></li>
+<li>Logical OR <code>or</code></li>
+</ol>
+<p><strong>Examples:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span>      <span class="c1"># 14 (multiplication first)</span>
+<span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span>    <span class="c1"># 20 (parentheses first)</span>
+<span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">&gt;</span> <span class="mi">5</span> <span class="ow">and</span> <span class="mi">3</span> <span class="o">&lt;</span> <span class="mi">7</span>   <span class="c1"># true (comparison before and)</span>
+</code></pre></div>
+<h2 id="file-extensions">File Extensions<a class="headerlink" href="#file-extensions" title="Permanent link">&para;</a></h2>
+<p>Tourmaline recognizes three file extensions:</p>
+<ul>
+<li><code>.trm</code> - Standard Tourmaline files</li>
+<li><code>.tli</code> - Tourmaline Language Interpreter files</li>
+<li><code>.tour</code> - Alternative extension</li>
+</ul>
+<p>All extensions work identically.</p>
+<h2 id="program-structure">Program Structure<a class="headerlink" href="#program-structure" title="Permanent link">&para;</a></h2>
+<p>A typical Tourmaline program:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">########################</span>
+<span class="c1"># Program Description</span>
+<span class="c1"># Author: Name</span>
+<span class="c1">########################</span>
+
+<span class="c1"># Imports (if needed)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="c1"># Global variables</span>
+<span class="n">let</span> <span class="n">global_var</span> <span class="o">=</span> <span class="s2">&quot;value&quot;</span>
+
+<span class="c1"># Function definitions</span>
+<span class="n">function</span> <span class="n">helper_function</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+    <span class="c1"># Function code</span>
+    <span class="k">return</span> <span class="n">result</span>
+<span class="n">end</span>
+
+<span class="c1"># Main program code</span>
+<span class="n">let</span> <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h2 id="complete-example">Complete Example<a class="headerlink" href="#complete-example" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1">########################</span>
+<span class="c1"># Calculator Program</span>
+<span class="c1">########################</span>
+
+<span class="c1"># Function to add two numbers</span>
+<span class="n">function</span> <span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="n">end</span>
+
+<span class="c1"># Function to get valid number</span>
+<span class="n">function</span> <span class="n">get_number</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">true</span>
+        <span class="n">let</span> <span class="n">input_str</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+        <span class="k">try</span>
+            <span class="n">let</span> <span class="n">num</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">input_str</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">num</span>
+        <span class="k">except</span> <span class="n">error</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please enter a valid number&quot;</span><span class="p">)</span>
+        <span class="n">end</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="c1"># Main program</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Simple Calculator ===&quot;</span><span class="p">)</span>
+
+<span class="n">let</span> <span class="n">num1</span> <span class="o">=</span> <span class="n">get_number</span><span class="p">(</span><span class="s2">&quot;Enter first number: &quot;</span><span class="p">)</span>
+<span class="n">let</span> <span class="n">num2</span> <span class="o">=</span> <span class="n">get_number</span><span class="p">(</span><span class="s2">&quot;Enter second number: &quot;</span><span class="p">)</span>
+
+<span class="n">let</span> <span class="nb">sum</span> <span class="o">=</span> <span class="n">add</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">)</span>
+<span class="n">let</span> <span class="n">difference</span> <span class="o">=</span> <span class="n">num1</span> <span class="o">-</span> <span class="n">num2</span>
+<span class="n">let</span> <span class="n">product</span> <span class="o">=</span> <span class="n">num1</span> <span class="o">*</span> <span class="n">num2</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Results:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sum: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">sum</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Difference: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">difference</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Product: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">product</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">num2</span> <span class="o">!=</span> <span class="mi">0</span>
+    <span class="n">let</span> <span class="n">quotient</span> <span class="o">=</span> <span class="n">num1</span> <span class="o">/</span> <span class="n">num2</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Quotient: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">quotient</span><span class="p">))</span>
+<span class="k">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cannot divide by zero&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h2 id="style-guidelines">Style Guidelines<a class="headerlink" href="#style-guidelines" title="Permanent link">&para;</a></h2>
+<h3 id="recommended-conventions">Recommended Conventions<a class="headerlink" href="#recommended-conventions" title="Permanent link">&para;</a></h3>
+<p><strong>Variable Naming:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">user_name</span> <span class="o">=</span> <span class="s2">&quot;Alice&quot;</span>     <span class="c1"># snake_case (recommended)</span>
+<span class="n">let</span> <span class="n">userName</span> <span class="o">=</span> <span class="s2">&quot;Bob&quot;</span>        <span class="c1"># camelCase (also acceptable)</span>
+<span class="n">let</span> <span class="n">MAX_SIZE</span> <span class="o">=</span> <span class="mi">100</span>          <span class="c1"># UPPERCASE for constants</span>
+</code></pre></div></p>
+<p><strong>Function Naming:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">calculate_total</span><span class="p">()</span>  <span class="c1"># snake_case (recommended)</span>
+<span class="n">function</span> <span class="n">calculateTotal</span><span class="p">()</span>   <span class="c1"># camelCase (also acceptable)</span>
+</code></pre></div></p>
+<p><strong>Indentation:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Use 4 spaces (recommended)</span>
+<span class="k">if</span> <span class="n">condition</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Indented with 4 spaces&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="c1"># Or 2 spaces (also acceptable)</span>
+<span class="k">if</span> <span class="n">condition</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Indented with 2 spaces&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div></p>
+<p><strong>Line Length:</strong>
+- Keep lines under 80-100 characters when possible
+- Break long lines for readability</p>
+<p><strong>Comments:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Use comments to explain WHY, not WHAT</span>
+<span class="n">let</span> <span class="n">tax_rate</span> <span class="o">=</span> <span class="mf">0.08</span>  <span class="c1"># State sales tax rate</span>
+
+<span class="c1"># Not: let tax_rate = 0.08  # Tax rate is 0.08</span>
+</code></pre></div></p>
+<h2 id="common-patterns">Common Patterns<a class="headerlink" href="#common-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="input-validation-loop">Input Validation Loop<a class="headerlink" href="#input-validation-loop" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">while</span> <span class="n">true</span>
+    <span class="n">let</span> <span class="n">value</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter value: &quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">validate</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">break</span>
+    <span class="n">end</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid input, try again&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="counter-loop">Counter Loop<a class="headerlink" href="#counter-loop" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="mi">10</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span>
+    <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="list-iteration">List Iteration<a class="headerlink" href="#list-iteration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">list</span>
+    <span class="n">process</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="dictionary-iteration">Dictionary Iteration<a class="headerlink" href="#dictionary-iteration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Iterate over keys</span>
+<span class="n">let</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="c1"># Note: Direct iteration not shown in examples</span>
+<span class="c1"># Access with dict[&quot;key&quot;]</span>
+</code></pre></div>
+<h2 id="error-messages">Error Messages<a class="headerlink" href="#error-messages" title="Permanent link">&para;</a></h2>
+<p>Common syntax errors and their meanings:</p>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Cause</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Undefined variable: x</code></td>
+<td>Using undeclared variable</td>
+<td>Use <code>let x = value</code> first</td>
+</tr>
+<tr>
+<td><code>Expected 'end'</code></td>
+<td>Missing <code>end</code> keyword</td>
+<td>Add <code>end</code> to close block</td>
+</tr>
+<tr>
+<td><code>Invalid variable declaration</code></td>
+<td>Wrong <code>let</code> syntax</td>
+<td>Use <code>let name = value</code></td>
+</tr>
+<tr>
+<td><code>Expected '('</code></td>
+<td>Missing parentheses</td>
+<td>Add <code>()</code> for function call</td>
+</tr>
+<tr>
+<td><code>Cannot evaluate expression</code></td>
+<td>Invalid expression syntax</td>
+<td>Check operators and values</td>
+</tr>
+</tbody>
+</table>
+<h2 id="quick-reference-card">Quick Reference Card<a class="headerlink" href="#quick-reference-card" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Variables</span>
+<span class="n">let</span> <span class="n">name</span> <span class="o">=</span> <span class="n">value</span>
+
+<span class="c1"># Output</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+<span class="c1"># Input</span>
+<span class="n">let</span> <span class="n">x</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;prompt&quot;</span><span class="p">)</span>
+
+<span class="c1"># Types</span>
+<span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Conditionals</span>
+<span class="k">if</span> <span class="n">cond</span>
+    <span class="n">code</span>
+<span class="k">elif</span> <span class="n">cond</span>
+    <span class="n">code</span>
+<span class="k">else</span>
+    <span class="n">code</span>
+<span class="n">end</span>
+
+<span class="c1"># Loops</span>
+<span class="k">while</span> <span class="n">cond</span>
+    <span class="n">code</span>
+<span class="n">end</span>
+
+<span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="nb">list</span>
+    <span class="n">code</span>
+<span class="n">end</span>
+
+<span class="c1"># Functions</span>
+<span class="n">function</span> <span class="n">name</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+    <span class="n">code</span>
+    <span class="k">return</span> <span class="n">value</span>
+<span class="n">end</span>
+
+<span class="c1"># Collections</span>
+<span class="n">let</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">let</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span><span class="p">}</span>
+
+<span class="c1"># Exception Handling</span>
+<span class="k">try</span>
+    <span class="n">code</span>
+<span class="k">except</span> <span class="n">error</span>
+    <span class="n">handler</span>
+<span class="n">end</span>
+</code></pre></div>
+<hr />
+<p>For more detailed information on specific features, see:
+- <strong><a href="../../guide/variables/">Variables &amp; Types</a></strong>
+- <strong><a href="../guide/operators.md">Operators</a></strong>
+- <strong><a href="../guide/control-flow.md">Control Flow</a></strong>
+- <strong><a href="../../guide/functions/">Functions</a></strong></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../stdlib/builtins/" class="btn btn-neutral float-left" title="Built-in Functions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/mochacinno-dev/Tourmaline" class="fa fa-code-fork" style="color: #fcfcfc"> mochacinno-dev/Tourmaline</a>
+        </span>
+    
+    
+      <span><a href="../../stdlib/builtins/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

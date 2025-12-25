@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Camila "Mocha" Rose (CoffeeShop Development)" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Quick Start - Tourmaline Programming Language</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Quick Start";
+        var mkdocs_page_input_path = "getting-started\\quick-start.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Tourmaline Programming Language
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Quick Start</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#your-first-line-of-code">Your First Line of Code</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#basic-concepts">Basic Concepts</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#variables">Variables</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#printing-output">Printing Output</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#getting-input">Getting Input</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data-types">Data Types</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#basic-operations">Basic Operations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#arithmetic">Arithmetic</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#comparisons">Comparisons</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#logical-operators">Logical Operators</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#control-flow">Control Flow</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#if-statements">If Statements</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#while-loops">While Loops</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#for-loops">For Loops</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#working-with-lists">Working with Lists</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#working-with-dictionaries">Working with Dictionaries</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#comments">Comments</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#quick-reference-card">Quick Reference Card</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#try-it-yourself">Try It Yourself!</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../first-program.md">Your First Program</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Language Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/variables/">Variables & Types</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../guide/operators.md">Operators</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../guide/control-flow.md">Control Flow</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/functions/">Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../guide/collections.md">Lists & Dictionaries</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../guide/exceptions.md">Exception Handling</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Standard Library</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/builtins/">Built-in Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../stdlib/math.md">Math Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../stdlib/random.md">Random Library</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../stdlib/lists.md">List Operations</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../examples/basic.md">Basic Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../examples/advanced.md">Advanced Examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/syntax/">Syntax Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../reference/errors.md">Error Messages</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../about/license.md">License</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../about/contributing.md">Contributing</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Tourmaline Programming Language</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Getting Started</li>
+      <li class="breadcrumb-item active">Quick Start</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/mochacinno-dev/Tourmaline/edit/master/docs/getting-started/quick-start.md">Edit on mochacinno-dev/Tourmaline</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="quick-start-guide">Quick Start Guide<a class="headerlink" href="#quick-start-guide" title="Permanent link">&para;</a></h1>
+<p>Get up and running with Tourmaline in minutes!</p>
+<h2 id="your-first-line-of-code">Your First Line of Code<a class="headerlink" href="#your-first-line-of-code" title="Permanent link">&para;</a></h2>
+<p>Open the Tourmaline REPL:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>Tourmaline.py
+</code></pre></div>
+<p>Try these commands:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
+<span class="n">Hello</span><span class="p">,</span> <span class="n">World</span><span class="err">!</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="mi">42</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">let</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Alice&quot;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, &quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span><span class="p">)</span>
+<span class="n">Hello</span><span class="p">,</span> <span class="n">Alice</span><span class="err">!</span>
+</code></pre></div>
+<h2 id="basic-concepts">Basic Concepts<a class="headerlink" href="#basic-concepts" title="Permanent link">&para;</a></h2>
+<h3 id="variables">Variables<a class="headerlink" href="#variables" title="Permanent link">&para;</a></h3>
+<p>Declare variables with <code>let</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">let</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Bob&quot;</span>
+<span class="n">let</span> <span class="n">price</span> <span class="o">=</span> <span class="mf">19.99</span>
+<span class="n">let</span> <span class="n">is_active</span> <span class="o">=</span> <span class="n">true</span>
+<span class="n">let</span> <span class="n">nothing</span> <span class="o">=</span> <span class="n">nil</span>
+</code></pre></div>
+<h3 id="printing-output">Printing Output<a class="headerlink" href="#printing-output" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Simple text&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">42</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Multiple&quot;</span><span class="p">,</span> <span class="s2">&quot;arguments&quot;</span><span class="p">,</span> <span class="s2">&quot;work&quot;</span><span class="p">,</span> <span class="s2">&quot;too&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="getting-input">Getting Input<a class="headerlink" href="#getting-input" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">user_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter your name: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, &quot;</span> <span class="o">+</span> <span class="n">user_name</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="data-types">Data Types<a class="headerlink" href="#data-types" title="Permanent link">&para;</a></h2>
+<p>Tourmaline supports several data types:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Integer</td>
+<td><code>42</code></td>
+<td>Whole numbers</td>
+</tr>
+<tr>
+<td>Float</td>
+<td><code>3.14</code></td>
+<td>Decimal numbers</td>
+</tr>
+<tr>
+<td>String</td>
+<td><code>"hello"</code></td>
+<td>Text in quotes</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td><code>true</code>, <code>false</code></td>
+<td>True/false values</td>
+</tr>
+<tr>
+<td>Nil</td>
+<td><code>nil</code></td>
+<td>Represents nothing</td>
+</tr>
+<tr>
+<td>List</td>
+<td><code>[1, 2, 3]</code></td>
+<td>Ordered collection</td>
+</tr>
+<tr>
+<td>Dictionary</td>
+<td><code>{"key": "value"}</code></td>
+<td>Key-value pairs</td>
+</tr>
+</tbody>
+</table>
+<h2 id="basic-operations">Basic Operations<a class="headerlink" href="#basic-operations" title="Permanent link">&para;</a></h2>
+<h3 id="arithmetic">Arithmetic<a class="headerlink" href="#arithmetic" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">let</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>  <span class="c1"># 13 - Addition</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span>  <span class="c1"># 7  - Subtraction</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span>  <span class="c1"># 30 - Multiplication</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">)</span>  <span class="c1"># 3.333... - Division</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">)</span>  <span class="c1"># 1  - Modulo (remainder)</span>
+</code></pre></div>
+<h3 id="comparisons">Comparisons<a class="headerlink" href="#comparisons" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">let</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># false - Equal to</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="o">!=</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># true  - Not equal to</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">)</span>   <span class="c1"># true  - Less than</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">)</span>   <span class="c1"># false - Greater than</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># true  - Less than or equal</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># false - Greater than or equal</span>
+</code></pre></div>
+<h3 id="logical-operators">Logical Operators<a class="headerlink" href="#logical-operators" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">is_sunny</span> <span class="o">=</span> <span class="n">true</span>
+<span class="n">let</span> <span class="n">is_warm</span> <span class="o">=</span> <span class="n">false</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">is_sunny</span> <span class="ow">and</span> <span class="n">is_warm</span><span class="p">)</span>  <span class="c1"># false - Both must be true</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">is_sunny</span> <span class="ow">or</span> <span class="n">is_warm</span><span class="p">)</span>   <span class="c1"># true  - At least one must be true</span>
+</code></pre></div>
+<h2 id="control-flow">Control Flow<a class="headerlink" href="#control-flow" title="Permanent link">&para;</a></h2>
+<h3 id="if-statements">If Statements<a class="headerlink" href="#if-statements" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">temperature</span> <span class="o">=</span> <span class="mi">25</span>
+
+<span class="k">if</span> <span class="n">temperature</span> <span class="o">&gt;</span> <span class="mi">30</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;It&#39;s hot!&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">temperature</span> <span class="o">&gt;</span> <span class="mi">20</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;It&#39;s pleasant!&quot;</span><span class="p">)</span>
+<span class="k">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;It&#39;s cold!&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Always end your <code>if</code> blocks with <code>end</code></p>
+</div>
+<h3 id="while-loops">While Loops<a class="headerlink" href="#while-loops" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">while</span> <span class="n">count</span> <span class="o">&lt;=</span> <span class="mi">5</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Count: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">))</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="for-loops">For Loops<a class="headerlink" href="#for-loops" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">fruit</span> <span class="ow">in</span> <span class="n">fruits</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I like &quot;</span> <span class="o">+</span> <span class="n">fruit</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h2>
+<p>Define reusable code with functions:</p>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">greet</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, &quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="n">greet</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">)</span>
+<span class="n">greet</span><span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Functions with return values:</p>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="n">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;5 + 3 = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+</code></pre></div>
+<h2 id="working-with-lists">Working with Lists<a class="headerlink" href="#working-with-lists" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create a list</span>
+<span class="n">let</span> <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="c1"># Access elements (0-indexed)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">numbers</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># 1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">numbers</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>  <span class="c1"># 3</span>
+
+<span class="c1"># Get list length</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">))</span>  <span class="c1"># 5</span>
+
+<span class="c1"># Add items</span>
+<span class="n">append</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>  <span class="c1"># [1, 2, 3, 4, 5, 6]</span>
+</code></pre></div>
+<h2 id="working-with-dictionaries">Working with Dictionaries<a class="headerlink" href="#working-with-dictionaries" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create a dictionary</span>
+<span class="n">let</span> <span class="n">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;New York&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># Access values</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">person</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>  <span class="c1"># Alice</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">person</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">])</span>   <span class="c1"># 30</span>
+</code></pre></div>
+<h2 id="comments">Comments<a class="headerlink" href="#comments" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># This is a single-line comment</span>
+
+<span class="n">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Comments can go at the end of lines</span>
+
+<span class="c1"># Use comments to explain your code</span>
+<span class="c1"># Multiple comment lines are fine</span>
+</code></pre></div>
+<h2 id="quick-reference-card">Quick Reference Card<a class="headerlink" href="#quick-reference-card" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Variables</span>
+<span class="n">let</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;value&quot;</span>
+
+<span class="c1"># Output</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>
+
+<span class="c1"># Input</span>
+<span class="n">let</span> <span class="n">var</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;prompt&quot;</span><span class="p">)</span>
+
+<span class="c1"># Conditionals</span>
+<span class="k">if</span> <span class="n">condition</span>
+    <span class="c1"># code</span>
+<span class="k">elif</span> <span class="n">condition</span>
+    <span class="c1"># code</span>
+<span class="k">else</span>
+    <span class="c1"># code</span>
+<span class="n">end</span>
+
+<span class="c1"># Loops</span>
+<span class="k">while</span> <span class="n">condition</span>
+    <span class="c1"># code</span>
+<span class="n">end</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">list</span>
+    <span class="c1"># code</span>
+<span class="n">end</span>
+
+<span class="c1"># Functions</span>
+<span class="n">function</span> <span class="n">name</span><span class="p">(</span><span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">)</span>
+    <span class="c1"># code</span>
+    <span class="k">return</span> <span class="n">value</span>
+<span class="n">end</span>
+
+<span class="c1"># Lists</span>
+<span class="n">let</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="c1"># Dictionaries</span>
+<span class="n">let</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span><span class="p">}</span>
+</code></pre></div>
+<h2 id="try-it-yourself">Try It Yourself!<a class="headerlink" href="#try-it-yourself" title="Permanent link">&para;</a></h2>
+<p>Create a file called <code>practice.trm</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Temperature Converter</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Temperature Converter ===&quot;</span><span class="p">)</span>
+
+<span class="n">let</span> <span class="n">celsius</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter temperature in Celsius: &quot;</span><span class="p">)</span>
+<span class="n">let</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">celsius</span><span class="p">)</span>
+<span class="n">let</span> <span class="n">fahrenheit</span> <span class="o">=</span> <span class="n">c</span> <span class="o">*</span> <span class="mi">9</span> <span class="o">/</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">32</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;°C = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">fahrenheit</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;°F&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Run it:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>Tourmaline.py<span class="w"> </span>practice.trm
+</code></pre></div>
+<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong><a href="first-program.md">Write Your First Program</a></strong> - Build a complete project</li>
+<li><strong><a href="../../guide/variables/">Language Guide</a></strong> - Deep dive into features</li>
+<li><strong><a href="../examples/basic.md">Examples</a></strong> - Learn from code samples</li>
+</ul>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This guide covers the essentials. There's much more to explore in Tourmaline!</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../installation/" class="btn btn-neutral float-left" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../guide/variables/" class="btn btn-neutral float-right" title="Variables & Types">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/mochacinno-dev/Tourmaline" class="fa fa-code-fork" style="color: #fcfcfc"> mochacinno-dev/Tourmaline</a>
+        </span>
+    
+    
+      <span><a href="../installation/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../guide/variables/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
