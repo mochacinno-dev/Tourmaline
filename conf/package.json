@@ -1,0 +1,64 @@
+{
+  "name": "tourmaline-language",
+  "displayName": "Tourmaline",
+  "description": "Syntax highlighting, snippets, and language support for Tourmaline (.trm) - A simple, easy to learn programming language",
+  "version": "1.0.0",
+  "publisher": "Mochacinno",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mochacinno-dev/Tourmaline"
+  },
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.50.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Formatters"
+  ],
+  "keywords": [
+    "tourmaline",
+    "trm",
+    "scripting",
+    "pastel",
+    "education"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "tourmaline",
+        "aliases": ["Tourmaline", "trm"],
+        "extensions": [".trm", ".tli", ".tour"],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./icons/file-icon.svg",
+          "dark": "./icons/file-icon.svg"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "tourmaline",
+        "scopeName": "source.tourmaline",
+        "path": "./syntaxes/tourmaline.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "tourmaline",
+        "path": "./snippets/tourmaline.json"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "echo 'No compilation needed'",
+    "watch": "echo 'No watch needed'",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.50.0",
+    "vsce": "^2.0.0"
+  }
+}

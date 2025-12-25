@@ -1,0 +1,405 @@
+########################
+# Tourmaline 1.0.0 - Main Release Showcase
+########################
+
+print("=== Tourmaline 1.0.0: Tourmal Waters ===\n")
+
+# ========================================
+# 1. VARIABLES AND DATA TYPES
+# ========================================
+print("1. Variables and Data Types")
+print("-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-")
+
+let integer_num = 42
+let float_num = 3.14
+let text = "Hello, Tourmaline!"
+let is_awesome = true
+let nothing = nil
+
+print("Integer: " + str(integer_num))
+print("Float: " + str(float_num))
+print("String: " + text)
+print("Boolean: " + str(is_awesome))
+print("Nil: " + str(nothing))
+print("\n")
+
+# ========================================
+# 2. ARITHMETIC OPERATIONS
+# ========================================
+print("2. Arithmetic Operations")
+print("-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-")
+
+let a = 10
+let b = 3
+
+print("a = " + str(a) + ", b = " + str(b))
+print("Addition: " + str(a + b))
+print("Subtraction: " + str(a - b))
+print("Multiplication: " + str(a * b))
+print("Division: " + str(a / b))
+print("Modulo: " + str(a % b))
+print("\n")
+
+# ========================================
+# 3. MATH FUNCTIONS
+# ========================================
+print("3. Math Functions")
+print("-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-")
+
+let num = 16
+print("sqrt(16) = " + str(sqrt(num)))
+print("pow(2, 3) = " + str(pow(2, 3)))
+print("abs(-5) = " + str(abs(-5)))
+print("min(3, 7, 2) = " + str(min(3, 7, 2)))
+print("max(3, 7, 2) = " + str(max(3, 7, 2)))
+print("floor(3.7) = " + str(floor(3.7)))
+print("ceil(3.2) = " + str(ceil(3.2)))
+print("\n")
+
+# ========================================
+# 4. COMPOUND ASSIGNMENT OPERATORS
+# ========================================
+print("4. Compound Assignment")
+print("-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-")
+
+let counter = 5
+print("counter starts at: " + str(counter))
+
+counter += 3
+print("After += 3: " + str(counter))
+
+counter -= 2
+print("After -= 2: " + str(counter))
+
+counter *= 2
+print("After *= 2: " + str(counter))
+
+counter /= 4
+print("After /= 4: " + str(counter))
+print("\n")
+
+# ========================================
+# 5. LISTS
+# ========================================
+print("5. Lists")
+print("-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-")
+
+let fruits = ["apple", "banana", "cherry", "date"]
+print("Fruits list: " + str(fruits))
+print("First fruit: " + fruits[0])
+print("Last fruit: " + fruits[3])
+print("List length: " + str(len(fruits)))
+print("\n")
+
+# ========================================
+# 6. DICTIONARIES
+# ========================================
+print("6. Dictionaries")
+print("-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-")
+
+let person = {"name": "Alice", "age": 28, "city": "New York"}
+print("Person: " + str(person))
+print("Name: " + person["name"])
+print("Age: " + str(person["age"]))
+print("City: " + person["city"])
+print("\n")
+
+# ========================================
+# 7. CONDITIONALS (IF/ELIF/ELSE)
+# ========================================
+print("7. Conditionals")
+print("-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-")
+
+let score = 85
+
+if score >= 90
+    print("Grade: A (Excellent!)")
+elif score >= 80
+    print("Grade: B (Good job!)")
+elif score >= 70
+    print("Grade: C (Not bad)")
+else
+    print("Grade: F (Need improvement)")
+end
+
+let temp = 25
+if temp > 30
+    print("It's hot outside!")
+elif temp > 20
+    print("It's a nice day!")
+else
+    print("It's cold!")
+end
+print("\n")
+
+# ========================================
+# 8. COMPARISON OPERATORS
+# ========================================
+print("8. Comparison Operators")
+print("-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-")
+
+let x = 5
+let y = 10
+
+print("x = " + str(x) + ", y = " + str(y))
+print("x == y: " + str(x == y))
+print("x != y: " + str(x != y))
+print("x < y: " + str(x < y))
+print("x > y: " + str(x > y))
+print("x <= y: " + str(x <= y))
+print("x >= y: " + str(x >= y))
+print("\n")
+
+# ========================================
+# 9. LOGICAL OPERATORS
+# ========================================
+print("9. Logical Operators")
+print("-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-")
+
+let has_ticket = true
+let has_id = false
+
+if has_ticket and has_id
+    print("Entry granted (both)")
+end
+
+if has_ticket or has_id
+    print("Entry granted (at least one)")
+end
+print("\n")
+
+# ========================================
+# 10. FOR LOOPS
+# ========================================
+print("10. For Loops")
+print("-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-")
+
+let colors = ["red", "green", "blue"]
+print("Iterating through colors:")
+for color in colors
+    print("  - " + color)
+end
+
+print("Counting with for loop:")
+let numbers = [1, 2, 3, 4, 5]
+for n in numbers
+    print("Number: " + str(n))
+end
+print("\n")
+
+# ========================================
+# 11. WHILE LOOPS
+# ========================================
+print("11. While Loops")
+print("-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-")
+
+let countdown = 5
+print("Countdown:")
+while countdown > 0
+    print(str(countdown) + "...")
+    countdown -= 1
+end
+print("Liftoff!\n")
+
+# ========================================
+# 12. FUNCTIONS
+# ========================================
+print("12. Functions")
+print("-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-")
+
+function sayHello(name)
+    print("Hello, " + name + "!")
+end
+
+function add(x, y)
+    let result = x + y
+    print(str(x) + " + " + str(y) + " = " + str(result))
+end
+
+function calculateArea(width, height)
+    let area = width * height
+    print("Area: " + str(area))
+end
+
+sayHello("Bob")
+sayHello("Charlie")
+add(15, 27)
+calculateArea(5, 8)
+print("\n")
+
+# ========================================
+# 13. NESTED LOOPS
+# ========================================
+print("13. Nested Loops")
+print("-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-")
+
+print("Multiplication table (3x3):")
+let rows = [1, 2, 3]
+for i in rows
+    let cols = [1, 2, 3]
+    for j in cols
+        let product = i * j
+        print(str(i) + "x" + str(j) + "=" + str(product) + " ")
+    end
+end
+print("\n")
+
+# ========================================
+# 14. COMPLEX FUNCTION EXAMPLE
+# ========================================
+print("14. Complex Functions")
+print("-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-")
+
+function fibonacci(n)
+    if n <= 1
+        print(str(n))
+    else
+        let prev = 0
+        let curr = 1
+        let i = 2
+        print(str(prev))
+        print(str(curr))
+        while i <= n
+            let next = prev + curr
+            print(str(next))
+            prev = curr
+            curr = next
+            i += 1
+        end
+    end
+end
+
+print("Fibonacci sequence (first 10):")
+fibonacci(10)
+print("\n")
+
+# ========================================
+# 15. NESTED CONDITIONALS
+# ========================================
+print("15. Nested Conditionals")
+print("-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-")
+
+let age = 20
+let has_license = true
+
+if age >= 18
+    if has_license
+        print("You can drive!")
+    else
+        print("You need a license to drive.")
+    end
+else
+    print("You're too young to drive.")
+end
+print("\n")
+
+# ========================================
+# 16. TYPE CONVERSIONS
+# ========================================
+print("16. Type Conversions")
+print("-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-")
+
+# String to Integer
+let str_num = "42"
+let converted_int = int(str_num)
+print("String to Int: \"42\" -> " + str(converted_int))
+
+# String to Float
+let str_float = "3.14"
+let converted_float = float(str_float)
+print("String to Float: \"3.14\" -> " + str(converted_float))
+
+# Integer to Float
+let int_val = 100
+let int_to_float = float(int_val)
+print("Int to Float: 100 -> " + str(int_to_float))
+
+# Float to Integer
+let float_val = 7.89
+let float_to_int = int(float_val)
+print("Float to Int: 7.89 -> " + str(float_to_int))
+
+# String with float to Integer
+let str_with_decimal = "15.7"
+let decimal_to_int = int(str_with_decimal)
+print("String Float to Int: \"15.7\" -> " + str(decimal_to_int))
+
+# Boolean conversions
+let bool_true = true
+let bool_false = false
+print("Bool to Int: true -> " + str(int(bool_true)))
+print("Bool to Int: false -> " + str(int(bool_false)))
+print("Bool to Float: true -> " + str(float(bool_true)))
+print("\n")
+
+# ========================================
+# 17. EXCEPTION HANDLING
+# ========================================
+print("17. Exception Handling (Try-Except)")
+print("-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-" + "-")
+
+# Example 1: Catching conversion errors
+print("Example 1: Invalid conversion")
+try
+    let bad_number = int("not a number")
+    print("This line won't execute")
+except error
+    print("Caught error: " + error)
+end
+
+# Example 2: Division and error handling
+print("\nExample 2: Safe division")
+function safe_divide(a, b)
+    try
+        let result = a / b
+        print("Result: " + str(result))
+        return result
+    except error
+        print("Error in division: " + error)
+        return nil
+    end
+end
+
+safe_divide(10, 2)
+safe_divide(10, 0)
+
+# Example 3: Multiple operations with error handling
+print("\nExample 3: Processing user data")
+let user_inputs = ["25", "30", "invalid", "42"]
+
+for input in user_inputs
+    try
+        let number = int(input)
+        let doubled = number * 2
+        print("Input: " + input + " -> Doubled: " + str(doubled))
+    except error
+        print("Could not process: " + input + " (error: " + error + ")")
+    end
+end
+
+# Example 4: Nested try-except
+print("\nExample 4: Nested error handling")
+try
+    print("Outer try block")
+    try
+        print("Inner try block")
+        let val = int("123")
+        print("Successfully converted: " + str(val))
+    except inner_error
+        print("Inner exception: " + inner_error)
+    end
+    
+    # This will cause an error
+    let bad_val = float("xyz")
+except outer_error
+    print("Outer exception caught: " + outer_error)
+end
+
+print("Program continues after all exceptions!\n")
+
+# ========================================
+# FINAL MESSAGE
+# ========================================
+print("=== All Tests Complete! ===")
+print("Tourmaline v0.6.0 - Green Valley")
+print("\nTourmaline is working perfectly!\n")

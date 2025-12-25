@@ -1,0 +1,30 @@
+########################
+# Tourmaline 1.0.0 - Samples
+# List Functionality Testing
+########################
+
+let fruits = ["apple", "banana"]
+
+append(fruits, "pear")
+
+# Insert at index
+insert(fruits, 0, "mango")
+
+# Let's check what fruits do we have!
+print("Fruits list: " + str(fruits))
+
+# Remove item
+remove(fruits, "mango")
+
+# Let's check what do we have now!
+print("Fruits list: " + str(fruits))
+
+# Pop (remove and return)
+let last = pop(fruits)
+let first = pop(fruits, 0)
+
+# Clear all items
+clear(fruits)
+
+# Is it clear?
+print("Fruits list: " + str(fruits))

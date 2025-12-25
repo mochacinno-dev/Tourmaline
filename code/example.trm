@@ -1,0 +1,394 @@
+########################
+# Tourmaline 1.0.0 - Samples
+# Advanced Mathematical and
+# Statistical Functions Testing
+# under UTF-8 Encoding Testing
+# excuse.
+########################
+
+
+print("╔════════════════════════════════════════╗")
+print("║  TOURMALINE MATHCASE v1.0.0            ║")
+print("╚════════════════════════════════════════╝\n")
+
+# ============================================
+# MATHEMATICAL FUNCTIONS
+# ============================================
+
+function calculate_factorial(n)
+    if n <= 1
+        return 1
+    end
+    
+    let result = 1
+    let i = 2
+    
+    while i <= n
+        result *= i
+        i += 1
+    end
+    
+    print("Factorial of " + str(n) + " = " + str(result))
+end
+
+function is_prime(num)
+    if num < 2
+        return false
+    end
+    
+    if num == 2
+        return true
+    end
+    
+    let i = 2
+    while i * i <= num
+        if num % i == 0
+            return false
+        end
+        i += 1
+    end
+    
+    return true
+end
+
+function find_primes_up_to(limit)
+    print("\nPrime numbers up to " + str(limit) + ":")
+    let count = 0
+    let num = 2
+    
+    while num <= limit
+        if is_prime(num)
+            print("  " + str(num))
+            count += 1
+        end
+        num += 1
+    end
+    
+    print("Total primes found: " + str(count))
+end
+
+function fibonacci_sequence(n)
+    print("\nFibonacci sequence (first " + str(n) + " numbers):")
+    
+    if n >= 1
+        print("  1: 0")
+    end
+    
+    if n >= 2
+        print("  2: 1")
+    end
+    
+    if n > 2
+        let prev = 0
+        let curr = 1
+        let pos = 3
+        
+        while pos <= n
+            let next = prev + curr
+            print("  " + str(pos) + ": " + str(next))
+            prev = curr
+            curr = next
+            pos += 1
+        end
+    end
+end
+
+function calculate_power_series(base, max_power)
+    print("\nPower series for " + str(base) + ":")
+    let power = 0
+    
+    while power <= max_power
+        let result = pow(base, power)
+        print("  " + str(base) + "^" + str(power) + " = " + str(result))
+        power += 1
+    end
+end
+
+# ============================================
+# STATISTICAL ANALYSIS FUNCTIONS
+# ============================================
+
+function calculate_sum(numbers)
+    let total = 0
+    for num in numbers
+        total += num
+    end
+    return total
+end
+
+function calculate_average(numbers)
+    let sum = calculate_sum(numbers)
+    let count = len(numbers)
+    return sum / count
+end
+
+function find_minimum(numbers)
+    let minimum = numbers[0]
+    for num in numbers
+        if num < minimum
+            minimum = num
+        end
+    end
+    return minimum
+end
+
+function find_maximum(numbers)
+    let maximum = numbers[0]
+    for num in numbers
+        if num > maximum
+            maximum = num
+        end
+    end
+    return maximum
+end
+
+function calculate_range(numbers)
+    let min_val = find_minimum(numbers)
+    let max_val = find_maximum(numbers)
+    return max_val - min_val
+end
+
+function analyze_dataset(numbers, dataset_name)
+    print("\n=== ANALYSIS: " + dataset_name + " ===")
+    print("Dataset: " + str(numbers))
+    print("----------------------------------------")
+    
+    let sum = calculate_sum(numbers)
+    let avg = calculate_average(numbers)
+    let min_val = find_minimum(numbers)
+    let max_val = find_maximum(numbers)
+    let range_val = calculate_range(numbers)
+    let count = len(numbers)
+    
+    print("Count:      " + str(count) + " values")
+    print("Sum:        " + str(sum))
+    print("Average:    " + str(avg))
+    print("Minimum:    " + str(min_val))
+    print("Maximum:    " + str(max_val))
+    print("Range:      " + str(range_val))
+    
+    # Determine data characteristics
+    if avg > 50
+        print("Status:     HIGH average")
+    elif avg > 25
+        print("Status:     MEDIUM average")
+    else
+        print("Status:     LOW average")
+    end
+end
+
+# ============================================
+# GEOMETRIC CALCULATIONS
+# ============================================
+
+function calculate_circle_area(radius)
+    let pi = 3.14159
+    let area = pi * radius * radius
+    print("Circle with radius " + str(radius) + ":")
+    print("  Area = " + str(area))
+    print("  Circumference = " + str(2 * pi * radius))
+end
+
+function calculate_triangle_area(base, height)
+    let area = base * height / 2
+    print("Triangle (base=" + str(base) + ", height=" + str(height) + "):")
+    print("  Area = " + str(area))
+end
+
+function calculate_rectangle_properties(width, height)
+    let area = width * height
+    let perimeter = 2 * width + 2 * height
+    let diagonal = sqrt(width * width + height * height)
+    
+    print("Rectangle (" + str(width) + " x " + str(height) + "):")
+    print("  Area:      " + str(area))
+    print("  Perimeter: " + str(perimeter))
+    print("  Diagonal:  " + str(diagonal))
+end
+
+# ============================================
+# PATTERN GENERATION
+# ============================================
+
+function generate_multiplication_table(number, up_to)
+    print("\nMultiplication table for " + str(number) + ":")
+    let i = 1
+    
+    while i <= up_to
+        let result = number * i
+        print("  " + str(number) + " x " + str(i) + " = " + str(result))
+        i += 1
+    end
+end
+
+function count_divisors(num)
+    print("\nDivisors of " + str(num) + ":")
+    let count = 0
+    let i = 1
+    
+    while i <= num
+        if num % i == 0
+            print("  " + str(i))
+            count += 1
+        end
+        i += 1
+    end
+    
+    print("Total divisors: " + str(count))
+end
+
+function print_number_pyramid(height)
+    print("\nNumber pyramid (height " + str(height) + "):")
+    let row = 1
+    
+    while row <= height
+        let spaces = height - row
+        let output = ""
+        
+        # This would need string multiplication in a full implementation
+        let col = 1
+        while col <= row
+            print(str(row))
+            col += 1
+        end
+        
+        row += 1
+    end
+end
+
+# ============================================
+# COMPARISON & RANKING
+# ============================================
+
+function compare_numbers(a, b, c)
+    print("\n=== COMPARING THREE NUMBERS ===")
+    print("Numbers: " + str(a) + ", " + str(b) + ", " + str(c))
+    
+    let smallest = min(a, b, c)
+    let largest = max(a, b, c)
+    let total = a + b + c
+    let average = total / 3
+    
+    print("Smallest:  " + str(smallest))
+    print("Largest:   " + str(largest))
+    print("Sum:       " + str(total))
+    print("Average:   " + str(average))
+    
+    if a == b and b == c
+        print("Result:    All numbers are equal")
+    elif a == b or b == c or a == c
+        print("Result:    Two numbers are equal")
+    else
+        print("Result:    All numbers are different")
+    end
+end
+
+# ============================================
+# DEMONSTRATION
+# ============================================
+
+print("\n" + "=" * 40)
+print("MATHEMATICAL ANALYSIS DEMONSTRATIONS")
+print("=" * 40)
+
+# Factorial calculations
+print("\n--- FACTORIALS ---")
+calculate_factorial(5)
+calculate_factorial(7)
+calculate_factorial(10)
+
+# Prime number analysis
+find_primes_up_to(30)
+
+# Fibonacci sequence
+fibonacci_sequence(12)
+
+# Power series
+calculate_power_series(2, 8)
+
+# Statistical analysis
+let dataset1 = [23, 45, 67, 12, 89, 34, 56]
+let dataset2 = [100, 95, 88, 92, 78, 85, 90]
+let dataset3 = [5, 10, 15, 20, 25, 30]
+
+analyze_dataset(dataset1, "Random Numbers")
+analyze_dataset(dataset2, "Test Scores")
+analyze_dataset(dataset3, "Sequential Data")
+
+# Geometric calculations
+print("\n--- GEOMETRY ---")
+calculate_circle_area(5)
+calculate_circle_area(10)
+
+print("")
+calculate_triangle_area(8, 12)
+calculate_triangle_area(15, 20)
+
+print("")
+calculate_rectangle_properties(5, 8)
+calculate_rectangle_properties(12, 9)
+
+# Multiplication tables
+generate_multiplication_table(7, 10)
+generate_multiplication_table(12, 12)
+
+# Divisor analysis
+count_divisors(24)
+count_divisors(36)
+
+# Number comparisons
+compare_numbers(15, 28, 42)
+compare_numbers(50, 50, 75)
+compare_numbers(100, 100, 100)
+
+# Complex nested logic demonstration
+print("\n--- GRADE CLASSIFICATION SYSTEM ---")
+
+let scores = [95, 82, 78, 91, 65, 88, 74, 93]
+let score_index = 0
+
+print("\nAnalyzing " + str(len(scores)) + " test scores...")
+
+for score in scores
+    score_index += 1
+    let grade = ""
+    let status = ""
+    
+    if score >= 90
+        grade = "A"
+        status = "Excellent"
+    elif score >= 80
+        grade = "B"
+        status = "Good"
+    elif score >= 70
+        grade = "C"
+        status = "Satisfactory"
+    elif score >= 60
+        grade = "D"
+        status = "Needs Improvement"
+    else
+        grade = "F"
+        status = "Failing"
+    end
+    
+    print("  Test " + str(score_index) + ": Score " + str(score) + " = Grade " + grade + " (" + status + ")")
+end
+
+let avg_score = calculate_average(scores)
+print("\nClass Average: " + str(avg_score))
+
+if avg_score >= 85
+    print("Class Performance: OUTSTANDING!")
+elif avg_score >= 75
+    print("Class Performance: GOOD")
+elif avg_score >= 65
+    print("Class Performance: ADEQUATE")
+else
+    print("Class Performance: NEEDS WORK")
+end
+
+# Final summary
+print("\n" + "=" * 40)
+print("ANALYSIS COMPLETE")
+print("=" * 40)
+print("Made by Mocha for Tourmaline 0.6.0\n")

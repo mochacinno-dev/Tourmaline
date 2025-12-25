@@ -1,0 +1,165 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "scopeName": "source.tourmaline",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#keywords" },
+    { "include": "#constants" },
+    { "include": "#numbers" },
+    { "include": "#operators" },
+    { "include": "#builtins" },
+    { "include": "#functions" },
+    { "include": "#variables" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.number-sign.tourmaline",
+          "match": "#.*$"
+        }
+      ]
+    },
+
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.tourmaline",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.tourmaline",
+              "match": "\\\\(n|t|\\\\|\"|')"
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.tourmaline",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "name": "constant.character.escape.tourmaline",
+              "match": "\\\\(n|t|\\\\|\"|')"
+            }
+          ]
+        }
+      ]
+    },
+
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.conditional.tourmaline",
+          "match": "\\b(if|elif|else)\\b"
+        },
+        {
+          "name": "keyword.control.loop.tourmaline",
+          "match": "\\b(while|for|in)\\b"
+        },
+        {
+          "name": "keyword.control.tourmaline",
+          "match": "\\b(end)\\b"
+        },
+        {
+          "name": "keyword.other.declaration.tourmaline",
+          "match": "\\b(let|function|struct|import)\\b"
+        },
+        {
+          "name": "keyword.operator.logical.tourmaline",
+          "match": "\\b(and|or|not)\\b"
+        }
+      ]
+    },
+
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.tourmaline",
+          "match": "\\b(true|false)\\b"
+        },
+        {
+          "name": "constant.language.null.tourmaline",
+          "match": "\\b(nil)\\b"
+        }
+      ]
+    },
+
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.float.tourmaline",
+          "match": "\\b[0-9]+\\.[0-9]+\\b"
+        },
+        {
+          "name": "constant.numeric.integer.tourmaline",
+          "match": "\\b[0-9]+\\b"
+        }
+      ]
+    },
+
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.comparison.tourmaline",
+          "match": "(==|!=|<=|>=|<|>)"
+        },
+        {
+          "name": "keyword.operator.arithmetic.tourmaline",
+          "match": "(\\+|-|\\*|/|%)"
+        },
+        {
+          "name": "keyword.operator.assignment.compound.tourmaline",
+          "match": "(\\+=|-=|\\*=|/=)"
+        },
+        {
+          "name": "keyword.operator.assignment.tourmaline",
+          "match": "="
+        }
+      ]
+    },
+
+    "builtins": {
+      "patterns": [
+        {
+          "name": "support.function.builtin.io.tourmaline",
+          "match": "\\b(print|input)\\b"
+        },
+        {
+          "name": "support.function.builtin.conversion.tourmaline",
+          "match": "\\b(str|int|float|type)\\b"
+        },
+        {
+          "name": "support.function.builtin.collection.tourmaline",
+          "match": "\\b(len|append|insert|remove|pop|clear)\\b"
+        },
+        {
+          "name": "support.function.builtin.math.tourmaline",
+          "match": "\\b(abs|sqrt|pow|sin|cos|tan|floor|ceil|round|min|max)\\b"
+        }
+      ]
+    },
+
+    "functions": {
+      "patterns": [
+        {
+          "name": "entity.name.function.tourmaline",
+          "match": "\\b([A-Za-z_][A-Za-z0-9_]*)\\s*(?=\\()"
+        }
+      ]
+    },
+
+    "variables": {
+      "patterns": [
+        {
+          "name": "variable.other.tourmaline",
+          "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\b"
+        }
+      ]
+    }
+  },
+  "fileTypes": ["trm"],
+  "name": "Tourmaline"
+}

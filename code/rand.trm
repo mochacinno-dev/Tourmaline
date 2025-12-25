@@ -1,0 +1,27 @@
+########################
+# Tourmaline 1.0.0 - Samples
+# Random Library Testing
+########################
+
+import random
+
+# Random integer between a and b (inclusive)
+let num = random.randint(1, 10)
+
+# Random float between 0 and 1
+let val = random.random()
+
+# Random choice from list
+let item = random.choice([1, 2, 3, 4, 5])
+
+# Random float between a and b
+let decimal = random.uniform(1.5, 5.5)
+
+# Random number from range
+let n = random.randrange(0, 100, 5)
+
+print(num)
+print(val)
+print(item)
+print(decimal)
+print(n)

@@ -1,0 +1,343 @@
+{
+  "Print Statement": {
+    "prefix": "print",
+    "body": "print(${1:value})",
+    "description": "Print a value to console"
+  },
+
+  "Input Statement": {
+    "prefix": "input",
+    "body": "let ${1:variable} = input(${2:\"prompt\"})",
+    "description": "Get user input"
+  },
+
+  "Let Declaration": {
+    "prefix": "let",
+    "body": "let ${1:name} = ${2:value}",
+    "description": "Declare a variable"
+  },
+
+  "If Statement": {
+    "prefix": "if",
+    "body": [
+      "if ${1:condition}",
+      "\t${2:# body}",
+      "end"
+    ],
+    "description": "If statement"
+  },
+
+  "If-Else Statement": {
+    "prefix": "ife",
+    "body": [
+      "if ${1:condition}",
+      "\t${2:# then}",
+      "else",
+      "\t${3:# else}",
+      "end"
+    ],
+    "description": "If-else statement"
+  },
+
+  "If-Elif-Else Statement": {
+    "prefix": "ifel",
+    "body": [
+      "if ${1:condition}",
+      "\t${2:# then}",
+      "elif ${3:condition}",
+      "\t${4:# elif}",
+      "else",
+      "\t${5:# else}",
+      "end"
+    ],
+    "description": "If-elif-else statement"
+  },
+
+  "While Loop": {
+    "prefix": "while",
+    "body": [
+      "while ${1:condition}",
+      "\t${2:# body}",
+      "end"
+    ],
+    "description": "While loop"
+  },
+
+  "For Loop": {
+    "prefix": "for",
+    "body": [
+      "for ${1:item} in ${2:collection}",
+      "\t${3:# body}",
+      "end"
+    ],
+    "description": "For-in loop"
+  },
+
+  "Function Declaration": {
+    "prefix": "function",
+    "body": [
+      "function ${1:name}(${2:params})",
+      "\t${3:# body}",
+      "end"
+    ],
+    "description": "Function declaration"
+  },
+
+  "Function with Single Parameter": {
+    "prefix": "func",
+    "body": [
+      "function ${1:name}(${2:param})",
+      "\t${3:# body}",
+      "end"
+    ],
+    "description": "Function with one parameter"
+  },
+
+  "Struct Declaration": {
+    "prefix": "struct",
+    "body": [
+      "struct ${1:name}",
+      "\t${2:field}",
+      "end"
+    ],
+    "description": "Struct declaration"
+  },
+
+  "List Literal": {
+    "prefix": "list",
+    "body": "[${1:elements}]",
+    "description": "Create a list"
+  },
+
+  "Dictionary Literal": {
+    "prefix": "dict",
+    "body": "{${1:\"key\"}: ${2:value}}",
+    "description": "Create a dictionary"
+  },
+
+  "List Access": {
+    "prefix": "idx",
+    "body": "${1:list}[${2:index}]",
+    "description": "Access list element by index"
+  },
+
+  "List Appending": {
+    "prefix": "append",
+    "body": "append(${1:list}, ${2:item})"
+  },
+
+  "List Insertion": {
+    "prefix": "insert",
+    "body": "insert(${1:list}, ${2:index}, ${3:item})"
+  },
+
+  "List Removal": {
+    "prefix": "remove",
+    "body": "remove(${1:list}, ${2:item})"
+  },
+
+  "List Popping": {
+    "prefix": "pop",
+    "body": "let ${1:name} = pop(${2:list})"
+  },
+
+  "List Index Popping": {
+    "prefix": "popx",
+    "body": "let ${1:name} = pop(${2:list}, ${3:index})"
+  },
+
+  "Dictionary Access": {
+    "prefix": "dictget",
+    "body": "${1:dict}[${2:\"key\"}]",
+    "description": "Access dictionary value by key"
+  },
+
+  "Comment": {
+    "prefix": "#",
+    "body": "# ${1:comment}",
+    "description": "Line comment"
+  },
+
+  "Comparison Equal": {
+    "prefix": "eq",
+    "body": "${1:a} == ${2:b}",
+    "description": "Equality comparison"
+  },
+
+  "Comparison Not Equal": {
+    "prefix": "neq",
+    "body": "${1:a} != ${2:b}",
+    "description": "Not equal comparison"
+  },
+
+  "Greater Than": {
+    "prefix": "gt",
+    "body": "${1:a} > ${2:b}",
+    "description": "Greater than comparison"
+  },
+
+  "Greater Than or Equal": {
+    "prefix": "gte",
+    "body": "${1:a} >= ${2:b}",
+    "description": "Greater than or equal comparison"
+  },
+
+  "Less Than": {
+    "prefix": "lt",
+    "body": "${1:a} < ${2:b}",
+    "description": "Less than comparison"
+  },
+
+  "Less Than or Equal": {
+    "prefix": "lte",
+    "body": "${1:a} <= ${2:b}",
+    "description": "Less than or equal comparison"
+  },
+
+  "Boolean True": {
+    "prefix": "true",
+    "body": "true",
+    "description": "Boolean true literal"
+  },
+
+  "Boolean False": {
+    "prefix": "false",
+    "body": "false",
+    "description": "Boolean false literal"
+  },
+
+  "Nil": {
+    "prefix": "nil",
+    "body": "nil",
+    "description": "Nil/null value"
+  },
+
+  "Compound Assignment Add": {
+    "prefix": "+=",
+    "body": "${1:variable} += ${2:value}",
+    "description": "Add and assign"
+  },
+
+  "Compound Assignment Subtract": {
+    "prefix": "-=",
+    "body": "${1:variable} -= ${2:value}",
+    "description": "Subtract and assign"
+  },
+
+  "Compound Assignment Multiply": {
+    "prefix": "*=",
+    "body": "${1:variable} *= ${2:value}",
+    "description": "Multiply and assign"
+  },
+
+  "Compound Assignment Divide": {
+    "prefix": "/=",
+    "body": "${1:variable} /= ${2:value}",
+    "description": "Divide and assign"
+  },
+
+  "String Conversion": {
+    "prefix": "str",
+    "body": "str(${1:value})",
+    "description": "Convert to string"
+  },
+
+  "Integer Conversion": {
+    "prefix": "int",
+    "body": "int(${1:value})",
+    "description": "Convert to integer"
+  },
+
+  "Float Conversion": {
+    "prefix": "float",
+    "body": "float(${1:value})",
+    "description": "Convert to float"
+  },
+
+  "Length Function": {
+    "prefix": "len",
+    "body": "len(${1:collection})",
+    "description": "Get length of collection"
+  },
+
+  "Square Root": {
+    "prefix": "sqrt",
+    "body": "sqrt(${1:number})",
+    "description": "Square root"
+  },
+
+  "Power": {
+    "prefix": "pow",
+    "body": "pow(${1:base}, ${2:exponent})",
+    "description": "Raise to power"
+  },
+
+  "Absolute Value": {
+    "prefix": "abs",
+    "body": "abs(${1:number})",
+    "description": "Absolute value"
+  },
+
+  "Minimum": {
+    "prefix": "min",
+    "body": "min(${1:values})",
+    "description": "Find minimum value"
+  },
+
+  "Maximum": {
+    "prefix": "max",
+    "body": "max(${1:values})",
+    "description": "Find maximum value"
+  },
+
+  "Floor": {
+    "prefix": "floor",
+    "body": "floor(${1:number})",
+    "description": "Round down"
+  },
+
+  "Ceiling": {
+    "prefix": "ceil",
+    "body": "ceil(${1:number})",
+    "description": "Round up"
+  },
+
+  "Round": {
+    "prefix": "round",
+    "body": "round(${1:number})",
+    "description": "Round to nearest integer"
+  },
+
+  "Logical AND": {
+    "prefix": "and",
+    "body": "${1:condition1} and ${2:condition2}",
+    "description": "Logical AND"
+  },
+
+  "Logical OR": {
+    "prefix": "or",
+    "body": "${1:condition1} or ${2:condition2}",
+    "description": "Logical OR"
+  },
+
+  "Hello World": {
+    "prefix": "hello",
+    "body": [
+      "# Hello World in Tourmaline",
+      "let name = \"${1:World}\"",
+      "print(\"Hello, \" + name + \"!\")"
+    ],
+    "description": "Hello World template"
+  },
+
+  "Main Template": {
+    "prefix": "main",
+    "body": [
+      "# ${1:Program Name}",
+      "# Tourmaline v0.4.0",
+      "",
+      "${2:# Your code here}"
+    ],
+    "description": "Main program template"
+  }
+}
