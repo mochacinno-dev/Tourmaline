@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Camila "Mocha" Rose (CoffeeShop Development)" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Math Functions - Tourmaline Programming Language</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Math Functions";
+        var mkdocs_page_input_path = "stdlib\\math.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Tourmaline Programming Language
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/quick-start/">Quick Start</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/first-program/">Your First Program</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Language Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/variables/">Variables & Types</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/operators/">Operators</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/control-flow/">Control Flow</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/functions/">Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/collections/">Lists & Dictionaries</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/exceptions/">Exception Handling</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Standard Library</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../builtins/">Built-in Functions</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Math Functions</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#basic-math-functions">Basic Math Functions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#abs">abs()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pow">pow()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sqrt">sqrt()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rounding-functions">Rounding Functions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#floor">floor()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ceil">ceil()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#round">round()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#trigonometric-functions">Trigonometric Functions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#sin">sin()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cos">cos()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tan">tan()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#practical-examples">Practical Examples</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#circle-calculations">Circle Calculations</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#triangle-calculations">Triangle Calculations</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#quadratic-formula">Quadratic Formula</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#statistics-calculations">Statistics Calculations</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#scientific-calculations">Scientific Calculations</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#geometric-mean">Geometric Mean</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#compound-interest-calculator">Compound Interest Calculator</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#projectile-motion">Projectile Motion</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#quick-reference">Quick Reference</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#constants">Constants</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tips-best-practices">Tips &amp; Best Practices</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../random/">Random Library</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lists/">List Operations</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/basic/">Basic Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/advanced/">Advanced Examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/syntax/">Syntax Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/errors/">Error Messages</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/license/">License</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/contributing/">Contributing</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Tourmaline Programming Language</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Standard Library</li>
+      <li class="breadcrumb-item active">Math Functions</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/mochacinno-dev/Tourmaline/edit/master/docs/stdlib/math.md">Edit on mochacinno-dev/Tourmaline</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="math-functions">Math Functions<a class="headerlink" href="#math-functions" title="Permanent link">&para;</a></h1>
+<p>Tourmaline includes powerful mathematical functions for calculations, trigonometry, and more.</p>
+<h2 id="basic-math-functions">Basic Math Functions<a class="headerlink" href="#basic-math-functions" title="Permanent link">&para;</a></h2>
+<h3 id="abs"><code>abs()</code><a class="headerlink" href="#abs" title="Permanent link">&para;</a></h3>
+<p>Return the absolute value of a number.</p>
+<p><strong>Syntax:</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">abs</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>      <span class="c1"># 5</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">))</span>     <span class="c1"># 5</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="o">-</span><span class="mf">3.14</span><span class="p">))</span>  <span class="c1"># 3.14</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>      <span class="c1"># 0</span>
+</code></pre></div></p>
+<p><strong>Use Cases:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Calculate distance</span>
+<span class="n">function</span> <span class="n">distance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">distance</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">))</span>   <span class="c1"># 15</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">distance</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>   <span class="c1"># 15</span>
+</code></pre></div></p>
+<hr />
+<h3 id="pow"><code>pow()</code><a class="headerlink" href="#pow" title="Permanent link">&para;</a></h3>
+<p>Raise a number to a power.</p>
+<p><strong>Syntax:</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">pow</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">exponent</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>    <span class="c1"># 8 (2³)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>    <span class="c1"># 25 (5²)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>   <span class="c1"># 1 (anything⁰ = 1)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>   <span class="c1"># 0.5 (2⁻¹)</span>
+</code></pre></div></p>
+<p><strong>Use Cases:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Calculate compound interest</span>
+<span class="n">function</span> <span class="n">compound_interest</span><span class="p">(</span><span class="n">principal</span><span class="p">,</span> <span class="n">rate</span><span class="p">,</span> <span class="n">years</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">principal</span> <span class="o">*</span> <span class="nb">pow</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">rate</span><span class="p">,</span> <span class="n">years</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">amount</span> <span class="o">=</span> <span class="n">compound_interest</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Amount after 10 years: $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">amount</span><span class="p">))</span>
+</code></pre></div></p>
+<hr />
+<h3 id="sqrt"><code>sqrt()</code><a class="headerlink" href="#sqrt" title="Permanent link">&para;</a></h3>
+<p>Calculate the square root.</p>
+<p><strong>Syntax:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">sqrt</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">16</span><span class="p">))</span>    <span class="c1"># 4.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">25</span><span class="p">))</span>    <span class="c1"># 5.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>     <span class="c1"># 1.414...</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>   <span class="c1"># 10.0</span>
+</code></pre></div></p>
+<p><strong>Use Cases:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Pythagorean theorem</span>
+<span class="n">function</span> <span class="n">hypotenuse</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">hypotenuse</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>  <span class="c1"># 5.0</span>
+
+<span class="c1"># Distance between points</span>
+<span class="n">function</span> <span class="n">distance_2d</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">dx</span> <span class="o">=</span> <span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span>
+    <span class="n">let</span> <span class="n">dy</span> <span class="o">=</span> <span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span>
+    <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">dx</span> <span class="o">*</span> <span class="n">dx</span> <span class="o">+</span> <span class="n">dy</span> <span class="o">*</span> <span class="n">dy</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">distance_2d</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>  <span class="c1"># 5.0</span>
+</code></pre></div></p>
+<hr />
+<h2 id="rounding-functions">Rounding Functions<a class="headerlink" href="#rounding-functions" title="Permanent link">&para;</a></h2>
+<h3 id="floor"><code>floor()</code><a class="headerlink" href="#floor" title="Permanent link">&para;</a></h3>
+<p>Round down to the nearest integer.</p>
+<p><strong>Syntax:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">floor</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">floor</span><span class="p">(</span><span class="mf">3.7</span><span class="p">))</span>    <span class="c1"># 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">floor</span><span class="p">(</span><span class="mf">3.2</span><span class="p">))</span>    <span class="c1"># 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">floor</span><span class="p">(</span><span class="mf">3.9</span><span class="p">))</span>    <span class="c1"># 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">floor</span><span class="p">(</span><span class="o">-</span><span class="mf">2.3</span><span class="p">))</span>   <span class="c1"># -3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">floor</span><span class="p">(</span><span class="mf">5.0</span><span class="p">))</span>    <span class="c1"># 5</span>
+</code></pre></div></p>
+<p><strong>Use Cases:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Calculate full dozens</span>
+<span class="n">function</span> <span class="n">count_dozens</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">floor</span><span class="p">(</span><span class="n">items</span> <span class="o">/</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">count_dozens</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>   <span class="c1"># 4 dozens</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">count_dozens</span><span class="p">(</span><span class="mi">37</span><span class="p">))</span>   <span class="c1"># 3 dozens</span>
+</code></pre></div></p>
+<hr />
+<h3 id="ceil"><code>ceil()</code><a class="headerlink" href="#ceil" title="Permanent link">&para;</a></h3>
+<p>Round up to the nearest integer.</p>
+<p><strong>Syntax:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">ceil</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="mf">3.1</span><span class="p">))</span>    <span class="c1"># 4</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="mf">3.7</span><span class="p">))</span>    <span class="c1"># 4</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="mf">3.0</span><span class="p">))</span>    <span class="c1"># 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="o">-</span><span class="mf">2.3</span><span class="p">))</span>   <span class="c1"># -2</span>
+</code></pre></div></p>
+<p><strong>Use Cases:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Calculate required boxes</span>
+<span class="n">function</span> <span class="n">boxes_needed</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">box_capacity</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ceil</span><span class="p">(</span><span class="n">items</span> <span class="o">/</span> <span class="n">box_capacity</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">boxes_needed</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>  <span class="c1"># 5 boxes</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">boxes_needed</span><span class="p">(</span><span class="mi">37</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>  <span class="c1"># 4 boxes</span>
+</code></pre></div></p>
+<hr />
+<h3 id="round"><code>round()</code><a class="headerlink" href="#round" title="Permanent link">&para;</a></h3>
+<p>Round to the nearest integer.</p>
+<p><strong>Syntax:</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">round</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="mf">3.4</span><span class="p">))</span>    <span class="c1"># 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="mf">3.5</span><span class="p">))</span>    <span class="c1"># 4</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="mf">3.6</span><span class="p">))</span>    <span class="c1"># 4</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="o">-</span><span class="mf">2.5</span><span class="p">))</span>   <span class="c1"># -2 or -3 (depends on implementation)</span>
+</code></pre></div></p>
+<p><strong>Use Cases:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Format currency</span>
+<span class="n">function</span> <span class="n">format_price</span><span class="p">(</span><span class="n">price</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">rounded</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">price</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
+    <span class="k">return</span> <span class="s2">&quot;$&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">rounded</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">format_price</span><span class="p">(</span><span class="mf">19.994</span><span class="p">))</span>  <span class="c1"># $19.99</span>
+</code></pre></div></p>
+<hr />
+<h2 id="trigonometric-functions">Trigonometric Functions<a class="headerlink" href="#trigonometric-functions" title="Permanent link">&para;</a></h2>
+<h3 id="sin"><code>sin()</code><a class="headerlink" href="#sin" title="Permanent link">&para;</a></h3>
+<p>Calculate sine (radians).</p>
+<p><strong>Syntax:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">sin</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14159</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>           <span class="c1"># 0.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>      <span class="c1"># 1.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">pi</span><span class="p">))</span>          <span class="c1"># 0.0 (approximately)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>  <span class="c1"># -1.0</span>
+</code></pre></div></p>
+<p><strong>Use Cases:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Calculate y-coordinate on unit circle</span>
+<span class="n">function</span> <span class="n">circle_y</span><span class="p">(</span><span class="n">angle_degrees</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14159</span>
+    <span class="n">let</span> <span class="n">radians</span> <span class="o">=</span> <span class="n">angle_degrees</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span>
+    <span class="k">return</span> <span class="n">sin</span><span class="p">(</span><span class="n">radians</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">circle_y</span><span class="p">(</span><span class="mi">90</span><span class="p">))</span>   <span class="c1"># 1.0 (top of circle)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">circle_y</span><span class="p">(</span><span class="mi">270</span><span class="p">))</span>  <span class="c1"># -1.0 (bottom of circle)</span>
+</code></pre></div></p>
+<hr />
+<h3 id="cos"><code>cos()</code><a class="headerlink" href="#cos" title="Permanent link">&para;</a></h3>
+<p>Calculate cosine (radians).</p>
+<p><strong>Syntax:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">cos</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14159</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>           <span class="c1"># 1.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>      <span class="c1"># 0.0 (approximately)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">pi</span><span class="p">))</span>          <span class="c1"># -1.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span><span class="p">))</span>      <span class="c1"># 1.0</span>
+</code></pre></div></p>
+<p><strong>Use Cases:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Calculate x-coordinate on unit circle</span>
+<span class="n">function</span> <span class="n">circle_x</span><span class="p">(</span><span class="n">angle_degrees</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14159</span>
+    <span class="n">let</span> <span class="n">radians</span> <span class="o">=</span> <span class="n">angle_degrees</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span>
+    <span class="k">return</span> <span class="n">cos</span><span class="p">(</span><span class="n">radians</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">circle_x</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>    <span class="c1"># 1.0 (right side)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">circle_x</span><span class="p">(</span><span class="mi">180</span><span class="p">))</span>  <span class="c1"># -1.0 (left side)</span>
+</code></pre></div></p>
+<hr />
+<h3 id="tan"><code>tan()</code><a class="headerlink" href="#tan" title="Permanent link">&para;</a></h3>
+<p>Calculate tangent (radians).</p>
+<p><strong>Syntax:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">tan</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14159</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">tan</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>        <span class="c1"># 0.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tan</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">))</span>   <span class="c1"># 1.0 (approximately)</span>
+</code></pre></div></p>
+<p><strong>Use Cases:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Calculate slope</span>
+<span class="n">function</span> <span class="n">calculate_slope</span><span class="p">(</span><span class="n">angle_degrees</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14159</span>
+    <span class="n">let</span> <span class="n">radians</span> <span class="o">=</span> <span class="n">angle_degrees</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span>
+    <span class="k">return</span> <span class="n">tan</span><span class="p">(</span><span class="n">radians</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">calculate_slope</span><span class="p">(</span><span class="mi">45</span><span class="p">))</span>  <span class="c1"># 1.0 (45° slope)</span>
+</code></pre></div></p>
+<hr />
+<h2 id="practical-examples">Practical Examples<a class="headerlink" href="#practical-examples" title="Permanent link">&para;</a></h2>
+<h3 id="circle-calculations">Circle Calculations<a class="headerlink" href="#circle-calculations" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14159</span>
+
+<span class="n">function</span> <span class="n">circle_area</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">radius</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">circle_circumference</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">radius</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Radius: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Area: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">circle_area</span><span class="p">(</span><span class="n">r</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Circumference: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">circle_circumference</span><span class="p">(</span><span class="n">r</span><span class="p">)))</span>
+</code></pre></div>
+<h3 id="triangle-calculations">Triangle Calculations<a class="headerlink" href="#triangle-calculations" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">triangle_area</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">base</span> <span class="o">*</span> <span class="n">height</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">right_triangle_hypotenuse</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Triangle (base=6, height=8):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Area: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">triangle_area</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hypotenuse: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">right_triangle_hypotenuse</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">)))</span>
+</code></pre></div>
+<h3 id="quadratic-formula">Quadratic Formula<a class="headerlink" href="#quadratic-formula" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">solve_quadratic</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+    <span class="c1"># ax² + bx + c = 0</span>
+    <span class="n">let</span> <span class="n">discriminant</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">b</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">c</span>
+
+    <span class="k">if</span> <span class="n">discriminant</span> <span class="o">&lt;</span> <span class="mi">0</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No real solutions&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">nil</span>
+    <span class="n">end</span>
+
+    <span class="n">let</span> <span class="n">sqrt_disc</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">discriminant</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">x1</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="o">+</span> <span class="n">sqrt_disc</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">x2</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="o">-</span> <span class="n">sqrt_disc</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Solutions:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x1 = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x1</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x2 = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x2</span><span class="p">))</span>
+<span class="n">end</span>
+
+<span class="c1"># Solve x² - 5x + 6 = 0</span>
+<span class="n">solve_quadratic</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>  <span class="c1"># x = 3 and x = 2</span>
+</code></pre></div>
+<h3 id="statistics-calculations">Statistics Calculations<a class="headerlink" href="#statistics-calculations" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">standard_deviation</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+    <span class="c1"># Calculate mean</span>
+    <span class="n">let</span> <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span>
+        <span class="nb">sum</span> <span class="o">+=</span> <span class="n">num</span>
+    <span class="n">end</span>
+    <span class="n">let</span> <span class="n">mean</span> <span class="o">=</span> <span class="nb">sum</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+
+    <span class="c1"># Calculate variance</span>
+    <span class="n">let</span> <span class="n">variance_sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span>
+        <span class="n">let</span> <span class="n">diff</span> <span class="o">=</span> <span class="n">num</span> <span class="o">-</span> <span class="n">mean</span>
+        <span class="n">variance_sum</span> <span class="o">+=</span> <span class="n">diff</span> <span class="o">*</span> <span class="n">diff</span>
+    <span class="n">end</span>
+    <span class="n">let</span> <span class="n">variance</span> <span class="o">=</span> <span class="n">variance_sum</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+
+    <span class="c1"># Return standard deviation</span>
+    <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">variance</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">16</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Standard Deviation: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">standard_deviation</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span>
+</code></pre></div>
+<h3 id="scientific-calculations">Scientific Calculations<a class="headerlink" href="#scientific-calculations" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Speed of light calculation</span>
+<span class="n">function</span> <span class="n">time_for_light</span><span class="p">(</span><span class="n">distance_km</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">speed_of_light</span> <span class="o">=</span> <span class="mf">299792.458</span>  <span class="c1"># km/s</span>
+    <span class="k">return</span> <span class="n">distance_km</span> <span class="o">/</span> <span class="n">speed_of_light</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">earth_to_moon</span> <span class="o">=</span> <span class="mi">384400</span>  <span class="c1"># km</span>
+<span class="n">let</span> <span class="n">time_seconds</span> <span class="o">=</span> <span class="n">time_for_light</span><span class="p">(</span><span class="n">earth_to_moon</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Light takes &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">time_seconds</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; seconds to reach the Moon&quot;</span><span class="p">)</span>
+
+<span class="c1"># Gravitational force</span>
+<span class="n">function</span> <span class="n">gravity_force</span><span class="p">(</span><span class="n">mass1</span><span class="p">,</span> <span class="n">mass2</span><span class="p">,</span> <span class="n">distance</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">G</span> <span class="o">=</span> <span class="mf">0.0000000000667430</span>  <span class="c1"># Gravitational constant</span>
+    <span class="k">return</span> <span class="n">G</span> <span class="o">*</span> <span class="n">mass1</span> <span class="o">*</span> <span class="n">mass2</span> <span class="o">/</span> <span class="p">(</span><span class="n">distance</span> <span class="o">*</span> <span class="n">distance</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="geometric-mean">Geometric Mean<a class="headerlink" href="#geometric-mean" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">geometric_mean</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">product</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span>
+        <span class="n">product</span> <span class="o">*=</span> <span class="n">num</span>
+    <span class="n">end</span>
+
+    <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">pow</span><span class="p">(</span><span class="n">product</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Geometric Mean: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">geometric_mean</span><span class="p">(</span><span class="n">values</span><span class="p">)))</span>
+</code></pre></div>
+<h3 id="compound-interest-calculator">Compound Interest Calculator<a class="headerlink" href="#compound-interest-calculator" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">calculate_investment</span><span class="p">(</span><span class="n">principal</span><span class="p">,</span> <span class="n">annual_rate</span><span class="p">,</span> <span class="n">years</span><span class="p">,</span> <span class="n">compounds_per_year</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">rate_per_period</span> <span class="o">=</span> <span class="n">annual_rate</span> <span class="o">/</span> <span class="n">compounds_per_year</span>
+    <span class="n">let</span> <span class="n">total_periods</span> <span class="o">=</span> <span class="n">compounds_per_year</span> <span class="o">*</span> <span class="n">years</span>
+
+    <span class="n">let</span> <span class="n">amount</span> <span class="o">=</span> <span class="n">principal</span> <span class="o">*</span> <span class="nb">pow</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">rate_per_period</span><span class="p">,</span> <span class="n">total_periods</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">interest</span> <span class="o">=</span> <span class="n">amount</span> <span class="o">-</span> <span class="n">principal</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Initial Investment: $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">principal</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Annual Rate: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">annual_rate</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Years: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">years</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Compounds per Year: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">compounds_per_year</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Final Amount: $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">amount</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Interest Earned: $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">interest</span><span class="p">)))</span>
+
+    <span class="k">return</span> <span class="n">amount</span>
+<span class="n">end</span>
+
+<span class="n">calculate_investment</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="projectile-motion">Projectile Motion<a class="headerlink" href="#projectile-motion" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">projectile_range</span><span class="p">(</span><span class="n">velocity</span><span class="p">,</span> <span class="n">angle_degrees</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14159</span>
+    <span class="n">let</span> <span class="n">g</span> <span class="o">=</span> <span class="mf">9.81</span>  <span class="c1"># Gravity (m/s²)</span>
+
+    <span class="c1"># Convert to radians</span>
+    <span class="n">let</span> <span class="n">angle_rad</span> <span class="o">=</span> <span class="n">angle_degrees</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span>
+
+    <span class="c1"># Calculate range</span>
+    <span class="n">let</span> <span class="nb">range</span> <span class="o">=</span> <span class="n">velocity</span> <span class="o">*</span> <span class="n">velocity</span> <span class="o">*</span> <span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">angle_rad</span><span class="p">)</span> <span class="o">/</span> <span class="n">g</span>
+
+    <span class="k">return</span> <span class="nb">range</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Projectile launched at 30 m/s:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;At 30°: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">projectile_range</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; meters&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;At 45°: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">projectile_range</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">45</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; meters&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;At 60°: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">projectile_range</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">60</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; meters&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="quick-reference">Quick Reference<a class="headerlink" href="#quick-reference" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Purpose</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>abs(x)</code></td>
+<td>Absolute value</td>
+<td><code>abs(-5)</code></td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>pow(x, y)</code></td>
+<td>x to power y</td>
+<td><code>pow(2, 3)</code></td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>sqrt(x)</code></td>
+<td>Square root</td>
+<td><code>sqrt(16)</code></td>
+<td>4.0</td>
+</tr>
+<tr>
+<td><code>floor(x)</code></td>
+<td>Round down</td>
+<td><code>floor(3.7)</code></td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>ceil(x)</code></td>
+<td>Round up</td>
+<td><code>ceil(3.2)</code></td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>round(x)</code></td>
+<td>Round nearest</td>
+<td><code>round(3.5)</code></td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>sin(x)</code></td>
+<td>Sine (radians)</td>
+<td><code>sin(0)</code></td>
+<td>0.0</td>
+</tr>
+<tr>
+<td><code>cos(x)</code></td>
+<td>Cosine (radians)</td>
+<td><code>cos(0)</code></td>
+<td>1.0</td>
+</tr>
+<tr>
+<td><code>tan(x)</code></td>
+<td>Tangent (radians)</td>
+<td><code>tan(0)</code></td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+<h2 id="constants">Constants<a class="headerlink" href="#constants" title="Permanent link">&para;</a></h2>
+<p>Define commonly-used mathematical constants:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">PI</span> <span class="o">=</span> <span class="mf">3.14159265359</span>
+<span class="n">let</span> <span class="n">E</span> <span class="o">=</span> <span class="mf">2.71828182846</span>
+<span class="n">let</span> <span class="n">GOLDEN_RATIO</span> <span class="o">=</span> <span class="mf">1.61803398875</span>
+
+<span class="c1"># Use in calculations</span>
+<span class="n">let</span> <span class="n">circle_area</span> <span class="o">=</span> <span class="n">PI</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">radius</span>
+<span class="n">let</span> <span class="n">exponential</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="tips-best-practices">Tips &amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Convert Degrees to Radians</p>
+<p>Trigonometric functions use radians:
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">degrees</span> <span class="o">=</span> <span class="mi">90</span>
+<span class="n">let</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14159</span>
+<span class="n">let</span> <span class="n">radians</span> <span class="o">=</span> <span class="n">degrees</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">radians</span><span class="p">))</span>  <span class="c1"># 1.0</span>
+</code></pre></div></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Check for Domain Errors</p>
+<p>Some functions have restrictions:
+<div class="highlight"><pre><span></span><code><span class="c1"># sqrt() requires non-negative numbers</span>
+<span class="k">if</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+    <span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="k">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cannot take square root of negative number&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Floating Point Precision</p>
+<p>Be aware of floating-point rounding:
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># Might be 1.9999999 or 2.0000001, not exactly 2</span>
+
+<span class="c1"># Use rounding for comparisons</span>
+<span class="n">let</span> <span class="n">rounded</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">result</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
+</code></pre></div></p>
+</div>
+<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong><a href="../random/">Random Library</a></strong> - Generate random numbers</li>
+<li><strong><a href="../builtins/">Built-in Functions</a></strong> - Other useful functions</li>
+<li><strong><a href="../../examples/advanced/">Examples</a></strong> - Math in practice</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../builtins/" class="btn btn-neutral float-left" title="Built-in Functions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../random/" class="btn btn-neutral float-right" title="Random Library">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/mochacinno-dev/Tourmaline" class="fa fa-code-fork" style="color: #fcfcfc"> mochacinno-dev/Tourmaline</a>
+        </span>
+    
+    
+      <span><a href="../builtins/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../random/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

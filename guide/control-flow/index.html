@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Camila "Mocha" Rose (CoffeeShop Development)" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Control Flow - Tourmaline Programming Language</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Control Flow";
+        var mkdocs_page_input_path = "guide\\control-flow.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Tourmaline Programming Language
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/quick-start/">Quick Start</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/first-program/">Your First Program</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Language Guide</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../variables/">Variables & Types</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../operators/">Operators</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Control Flow</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#conditional-statements">Conditional Statements</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#if-statement">If Statement</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#if-else-statement">If-Else Statement</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#if-elif-else-statement">If-Elif-Else Statement</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#nested-if-statements">Nested If Statements</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#while-loops">While Loops</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#infinite-loops-with-break-condition">Infinite Loops with Break Condition</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#common-while-loop-patterns">Common While Loop Patterns</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#for-loops">For Loops</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#iterating-over-ranges">Iterating Over Ranges</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#for-loop-with-index">For Loop with Index</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#nested-for-loops">Nested For Loops</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#practical-examples">Practical Examples</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#menu-system">Menu System</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#number-classifier">Number Classifier</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#grade-calculator">Grade Calculator</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#fibonacci-sequence-generator">Fibonacci Sequence Generator</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#prime-number-finder">Prime Number Finder</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pattern-generator">Pattern Generator</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#list-statistics">List Statistics</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#word-counter">Word Counter</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#control-flow-best-practices">Control Flow Best Practices</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-keep-conditions-simple">1. Keep Conditions Simple</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-avoid-deep-nesting">2. Avoid Deep Nesting</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-use-meaningful-loop-variables">3. Use Meaningful Loop Variables</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-guard-against-infinite-loops">4. Guard Against Infinite Loops</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#common-patterns">Common Patterns</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#sentinel-loop">Sentinel Loop</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#counter-loop">Counter Loop</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#search-pattern">Search Pattern</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#filter-pattern">Filter Pattern</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../functions/">Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../collections/">Lists & Dictionaries</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exceptions/">Exception Handling</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Standard Library</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/builtins/">Built-in Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/math/">Math Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/random/">Random Library</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/lists/">List Operations</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/basic/">Basic Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/advanced/">Advanced Examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/syntax/">Syntax Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/errors/">Error Messages</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/license/">License</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/contributing/">Contributing</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Tourmaline Programming Language</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Language Guide</li>
+      <li class="breadcrumb-item active">Control Flow</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/mochacinno-dev/Tourmaline/edit/master/docs/guide/control-flow.md">Edit on mochacinno-dev/Tourmaline</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="control-flow">Control Flow<a class="headerlink" href="#control-flow" title="Permanent link">&para;</a></h1>
+<p>Control flow statements let you control the order in which code executes. Learn about conditionals and loops in Tourmaline.</p>
+<h2 id="conditional-statements">Conditional Statements<a class="headerlink" href="#conditional-statements" title="Permanent link">&para;</a></h2>
+<h3 id="if-statement">If Statement<a class="headerlink" href="#if-statement" title="Permanent link">&para;</a></h3>
+<p>Execute code only when a condition is true:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">temperature</span> <span class="o">=</span> <span class="mi">25</span>
+
+<span class="k">if</span> <span class="n">temperature</span> <span class="o">&gt;</span> <span class="mi">30</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;It&#39;s hot!&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All conditional blocks must end with <code>end</code></p>
+</div>
+<h3 id="if-else-statement">If-Else Statement<a class="headerlink" href="#if-else-statement" title="Permanent link">&para;</a></h3>
+<p>Provide alternative code when condition is false:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">16</span>
+
+<span class="k">if</span> <span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">18</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You can vote&quot;</span><span class="p">)</span>
+<span class="k">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You cannot vote yet&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="if-elif-else-statement">If-Elif-Else Statement<a class="headerlink" href="#if-elif-else-statement" title="Permanent link">&para;</a></h3>
+<p>Check multiple conditions in sequence:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">score</span> <span class="o">=</span> <span class="mi">85</span>
+
+<span class="k">if</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">90</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Grade: A&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">80</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Grade: B&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">70</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Grade: C&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">60</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Grade: D&quot;</span><span class="p">)</span>
+<span class="k">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Grade: F&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<p><strong>How It Works:</strong>
+1. Checks first condition (<code>score &gt;= 90</code>)
+2. If false, checks next condition (<code>score &gt;= 80</code>)
+3. Continues until a condition is true
+4. Executes that block and skips the rest
+5. If no condition is true, executes <code>else</code> block</p>
+<h3 id="nested-if-statements">Nested If Statements<a class="headerlink" href="#nested-if-statements" title="Permanent link">&para;</a></h3>
+<p>Place if statements inside other if statements:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">let</span> <span class="n">has_license</span> <span class="o">=</span> <span class="n">true</span>
+
+<span class="k">if</span> <span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">18</span>
+    <span class="k">if</span> <span class="n">has_license</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You can drive&quot;</span><span class="p">)</span>
+    <span class="k">else</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You need a license&quot;</span><span class="p">)</span>
+    <span class="n">end</span>
+<span class="k">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You&#39;re too young to drive&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<p><strong>Better Alternative:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">let</span> <span class="n">has_license</span> <span class="o">=</span> <span class="n">true</span>
+
+<span class="k">if</span> <span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">18</span> <span class="ow">and</span> <span class="n">has_license</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You can drive&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">18</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You need a license&quot;</span><span class="p">)</span>
+<span class="k">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You&#39;re too young to drive&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div></p>
+<h2 id="while-loops">While Loops<a class="headerlink" href="#while-loops" title="Permanent link">&para;</a></h2>
+<p>Execute code repeatedly while a condition is true:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">while</span> <span class="n">count</span> <span class="o">&lt;=</span> <span class="mi">5</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Count: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">))</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">end</span>
+</code></pre></div>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>Count: 1
+Count: 2
+Count: 3
+Count: 4
+Count: 5
+</code></pre></div></p>
+<h3 id="infinite-loops-with-break-condition">Infinite Loops with Break Condition<a class="headerlink" href="#infinite-loops-with-break-condition" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">running</span> <span class="o">=</span> <span class="n">true</span>
+
+<span class="k">while</span> <span class="n">running</span>
+    <span class="n">let</span> <span class="n">choice</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Continue? (yes/no): &quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;no&quot;</span>
+        <span class="n">running</span> <span class="o">=</span> <span class="n">false</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="common-while-loop-patterns">Common While Loop Patterns<a class="headerlink" href="#common-while-loop-patterns" title="Permanent link">&para;</a></h3>
+<p><strong>Countdown:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">countdown</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="k">while</span> <span class="n">countdown</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">countdown</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span><span class="p">)</span>
+    <span class="n">countdown</span> <span class="o">-=</span> <span class="mi">1</span>
+<span class="n">end</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Liftoff!&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Input Validation:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">valid_input</span> <span class="o">=</span> <span class="n">false</span>
+
+<span class="k">while</span> <span class="n">valid_input</span> <span class="o">==</span> <span class="n">false</span>
+    <span class="n">let</span> <span class="n">age_str</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter your age: &quot;</span><span class="p">)</span>
+
+    <span class="k">try</span>
+        <span class="n">let</span> <span class="n">age</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">age_str</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">age</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">age</span> <span class="o">&lt;</span> <span class="mi">150</span>
+            <span class="n">valid_input</span> <span class="o">=</span> <span class="n">true</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Valid age: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">age</span><span class="p">))</span>
+        <span class="k">else</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please enter a realistic age&quot;</span><span class="p">)</span>
+        <span class="n">end</span>
+    <span class="k">except</span> <span class="n">error</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please enter a number&quot;</span><span class="p">)</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+</code></pre></div></p>
+<p><strong>Accumulator Pattern:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">let</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">while</span> <span class="n">count</span> <span class="o">&lt;=</span> <span class="mi">10</span>
+    <span class="n">total</span> <span class="o">+=</span> <span class="n">count</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sum of 1-10: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">total</span><span class="p">))</span>  <span class="c1"># 55</span>
+</code></pre></div></p>
+<h2 id="for-loops">For Loops<a class="headerlink" href="#for-loops" title="Permanent link">&para;</a></h2>
+<p>Iterate over items in a collection:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">fruit</span> <span class="ow">in</span> <span class="n">fruits</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I like &quot;</span> <span class="o">+</span> <span class="n">fruit</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>I like apple
+I like banana
+I like cherry
+</code></pre></div></p>
+<h3 id="iterating-over-ranges">Iterating Over Ranges<a class="headerlink" href="#iterating-over-ranges" title="Permanent link">&para;</a></h3>
+<p>Create a list of numbers to iterate:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">))</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="for-loop-with-index">For Loop with Index<a class="headerlink" href="#for-loop-with-index" title="Permanent link">&para;</a></h3>
+<p>Track the position while iterating:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;first&quot;</span><span class="p">,</span> <span class="s2">&quot;second&quot;</span><span class="p">,</span> <span class="s2">&quot;third&quot;</span><span class="p">]</span>
+<span class="n">let</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span>
+    <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;. &quot;</span> <span class="o">+</span> <span class="n">item</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>1. first
+2. second
+3. third
+</code></pre></div></p>
+<h3 id="nested-for-loops">Nested For Loops<a class="headerlink" href="#nested-for-loops" title="Permanent link">&para;</a></h3>
+<p>Loop inside another loop:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">rows</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span>
+    <span class="n">let</span> <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cols</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;x&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">col</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">row</span> <span class="o">*</span> <span class="n">col</span><span class="p">))</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+</code></pre></div>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>1x1=1
+1x2=2
+1x3=3
+2x1=2
+2x2=4
+2x3=6
+3x1=3
+3x2=6
+3x3=9
+</code></pre></div></p>
+<h2 id="practical-examples">Practical Examples<a class="headerlink" href="#practical-examples" title="Permanent link">&para;</a></h2>
+<h3 id="menu-system">Menu System<a class="headerlink" href="#menu-system" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">show_menu</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== MAIN MENU ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1. Option One&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2. Option Two&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;3. Option Three&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;4. Exit&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">running</span> <span class="o">=</span> <span class="n">true</span>
+
+<span class="k">while</span> <span class="n">running</span>
+    <span class="n">show_menu</span><span class="p">()</span>
+    <span class="n">let</span> <span class="n">choice</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Enter choice: &quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You selected Option One&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;2&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You selected Option Two&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;3&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You selected Option Three&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;4&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Goodbye!&quot;</span><span class="p">)</span>
+        <span class="n">running</span> <span class="o">=</span> <span class="n">false</span>
+    <span class="k">else</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid choice. Please try again.&quot;</span><span class="p">)</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="number-classifier">Number Classifier<a class="headerlink" href="#number-classifier" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">classify_number</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+    <span class="c1"># Check if prime</span>
+    <span class="n">let</span> <span class="n">is_prime</span> <span class="o">=</span> <span class="n">true</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="mi">2</span>
+        <span class="n">is_prime</span> <span class="o">=</span> <span class="n">false</span>
+    <span class="k">else</span>
+        <span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">num</span>
+            <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span>
+                <span class="n">is_prime</span> <span class="o">=</span> <span class="n">false</span>
+            <span class="n">end</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">end</span>
+    <span class="n">end</span>
+
+    <span class="c1"># Check if even</span>
+    <span class="n">let</span> <span class="n">is_even</span> <span class="o">=</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
+
+    <span class="c1"># Report findings</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Number: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">is_even</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Even number&quot;</span><span class="p">)</span>
+    <span class="k">else</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Odd number&quot;</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="k">if</span> <span class="n">is_prime</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Prime number&quot;</span><span class="p">)</span>
+    <span class="k">else</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Not prime&quot;</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Positive&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="mi">0</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Negative&quot;</span><span class="p">)</span>
+    <span class="k">else</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Zero&quot;</span><span class="p">)</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">test_numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">test_numbers</span>
+    <span class="n">classify_number</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="grade-calculator">Grade Calculator<a class="headerlink" href="#grade-calculator" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">students</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mi">92</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mi">78</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Charlie&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mi">85</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Diana&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mi">95</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== GRADE REPORT ===</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">students</span>
+    <span class="n">let</span> <span class="n">name</span> <span class="o">=</span> <span class="n">student</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+    <span class="n">let</span> <span class="n">score</span> <span class="o">=</span> <span class="n">student</span><span class="p">[</span><span class="s2">&quot;score&quot;</span><span class="p">]</span>
+    <span class="n">let</span> <span class="n">grade</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">90</span>
+        <span class="n">grade</span> <span class="o">=</span> <span class="s2">&quot;A&quot;</span>
+    <span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">80</span>
+        <span class="n">grade</span> <span class="o">=</span> <span class="s2">&quot;B&quot;</span>
+    <span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">70</span>
+        <span class="n">grade</span> <span class="o">=</span> <span class="s2">&quot;C&quot;</span>
+    <span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">60</span>
+        <span class="n">grade</span> <span class="o">=</span> <span class="s2">&quot;D&quot;</span>
+    <span class="k">else</span>
+        <span class="n">grade</span> <span class="o">=</span> <span class="s2">&quot;F&quot;</span>
+    <span class="n">end</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">score</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; (&quot;</span> <span class="o">+</span> <span class="n">grade</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="fibonacci-sequence-generator">Fibonacci Sequence Generator<a class="headerlink" href="#fibonacci-sequence-generator" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fibonacci sequence (first &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; numbers):&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">1</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1. 0&quot;</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">2</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2. 1&quot;</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">2</span>
+        <span class="n">let</span> <span class="n">prev</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">let</span> <span class="n">curr</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">let</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">3</span>
+
+        <span class="k">while</span> <span class="n">pos</span> <span class="o">&lt;=</span> <span class="n">n</span>
+            <span class="n">let</span> <span class="nb">next</span> <span class="o">=</span> <span class="n">prev</span> <span class="o">+</span> <span class="n">curr</span>
+            <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;. &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">next</span><span class="p">))</span>
+            <span class="n">prev</span> <span class="o">=</span> <span class="n">curr</span>
+            <span class="n">curr</span> <span class="o">=</span> <span class="nb">next</span>
+            <span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">end</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="n">fibonacci</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="prime-number-finder">Prime Number Finder<a class="headerlink" href="#prime-number-finder" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">find_primes</span><span class="p">(</span><span class="n">limit</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prime numbers up to &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">limit</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">let</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">2</span>
+
+    <span class="k">while</span> <span class="n">num</span> <span class="o">&lt;=</span> <span class="n">limit</span>
+        <span class="n">let</span> <span class="n">is_prime</span> <span class="o">=</span> <span class="n">true</span>
+        <span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span>
+
+        <span class="k">while</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">num</span>
+            <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span>
+                <span class="n">is_prime</span> <span class="o">=</span> <span class="n">false</span>
+            <span class="n">end</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">end</span>
+
+        <span class="k">if</span> <span class="n">is_prime</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">))</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">end</span>
+
+        <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">end</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Total primes found: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">))</span>
+<span class="n">end</span>
+
+<span class="n">find_primes</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="pattern-generator">Pattern Generator<a class="headerlink" href="#pattern-generator" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">print_triangle</span><span class="p">(</span><span class="n">height</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">row</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">while</span> <span class="n">row</span> <span class="o">&lt;=</span> <span class="n">height</span>
+        <span class="n">let</span> <span class="n">col</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">col</span> <span class="o">&lt;=</span> <span class="n">row</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">)</span>
+            <span class="n">col</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">end</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">row</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Triangle Pattern:&quot;</span><span class="p">)</span>
+<span class="n">print_triangle</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="list-statistics">List Statistics<a class="headerlink" href="#list-statistics" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">calculate_statistics</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;List is empty&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="n">end</span>
+
+    <span class="c1"># Calculate sum</span>
+    <span class="n">let</span> <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">num</span>
+    <span class="n">end</span>
+
+    <span class="c1"># Calculate average</span>
+    <span class="n">let</span> <span class="n">average</span> <span class="o">=</span> <span class="n">total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+
+    <span class="c1"># Find min and max</span>
+    <span class="n">let</span> <span class="n">minimum</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">let</span> <span class="n">maximum</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span>
+        <span class="k">if</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="n">minimum</span>
+            <span class="n">minimum</span> <span class="o">=</span> <span class="n">num</span>
+        <span class="n">end</span>
+        <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="n">maximum</span>
+            <span class="n">maximum</span> <span class="o">=</span> <span class="n">num</span>
+        <span class="n">end</span>
+    <span class="n">end</span>
+
+    <span class="c1"># Count positives and negatives</span>
+    <span class="n">let</span> <span class="n">positive_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">let</span> <span class="n">negative_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">let</span> <span class="n">zero_count</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span>
+        <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span>
+            <span class="n">positive_count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="mi">0</span>
+            <span class="n">negative_count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span>
+            <span class="n">zero_count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">end</span>
+    <span class="n">end</span>
+
+    <span class="c1"># Print report</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== STATISTICS ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Count: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sum: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">total</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">average</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Minimum: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">minimum</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Maximum: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">maximum</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Range: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">maximum</span> <span class="o">-</span> <span class="n">minimum</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Positive: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">positive_count</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Negative: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">negative_count</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Zero: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">zero_count</span><span class="p">))</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">31</span><span class="p">]</span>
+<span class="n">calculate_statistics</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="word-counter">Word Counter<a class="headerlink" href="#word-counter" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">count_words</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">words</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">let</span> <span class="n">current_word</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Simple word splitting (space-based)</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="c1"># This is simplified; real implementation would be more complex</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">end</span>
+
+    <span class="c1"># For demonstration</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total characters: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)))</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">sample</span> <span class="o">=</span> <span class="s2">&quot;Hello world from Tourmaline&quot;</span>
+<span class="n">count_words</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="control-flow-best-practices">Control Flow Best Practices<a class="headerlink" href="#control-flow-best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="1-keep-conditions-simple">1. Keep Conditions Simple<a class="headerlink" href="#1-keep-conditions-simple" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Less readable</span>
+<span class="k">if</span> <span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">18</span> <span class="ow">and</span> <span class="n">has_license</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">suspended</span> <span class="ow">and</span> <span class="n">passed_test</span> <span class="ow">and</span> <span class="n">has_insurance</span>
+    <span class="c1"># ...</span>
+<span class="n">end</span>
+
+<span class="c1"># More readable</span>
+<span class="n">let</span> <span class="n">is_adult</span> <span class="o">=</span> <span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">18</span>
+<span class="n">let</span> <span class="n">can_legally_drive</span> <span class="o">=</span> <span class="n">has_license</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">suspended</span> <span class="ow">and</span> <span class="n">passed_test</span>
+<span class="n">let</span> <span class="n">is_insured</span> <span class="o">=</span> <span class="n">has_insurance</span>
+
+<span class="k">if</span> <span class="n">is_adult</span> <span class="ow">and</span> <span class="n">can_legally_drive</span> <span class="ow">and</span> <span class="n">is_insured</span>
+    <span class="c1"># ...</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="2-avoid-deep-nesting">2. Avoid Deep Nesting<a class="headerlink" href="#2-avoid-deep-nesting" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Too deeply nested</span>
+<span class="k">if</span> <span class="n">condition1</span>
+    <span class="k">if</span> <span class="n">condition2</span>
+        <span class="k">if</span> <span class="n">condition3</span>
+            <span class="k">if</span> <span class="n">condition4</span>
+                <span class="c1"># code</span>
+            <span class="n">end</span>
+        <span class="n">end</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="c1"># Better: Early returns or flat structure</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">condition1</span>
+    <span class="k">return</span>
+<span class="n">end</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">condition2</span>
+    <span class="k">return</span>
+<span class="n">end</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">condition3</span>
+    <span class="k">return</span>
+<span class="n">end</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">condition4</span>
+    <span class="k">return</span>
+<span class="n">end</span>
+<span class="c1"># code</span>
+</code></pre></div>
+<h3 id="3-use-meaningful-loop-variables">3. Use Meaningful Loop Variables<a class="headerlink" href="#3-use-meaningful-loop-variables" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Less clear</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">y</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="c1"># More clear</span>
+<span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">students</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">student</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">shopping_cart</span>
+    <span class="n">process_item</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="4-guard-against-infinite-loops">4. Guard Against Infinite Loops<a class="headerlink" href="#4-guard-against-infinite-loops" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Dangerous: might loop forever</span>
+<span class="k">while</span> <span class="n">true</span>
+    <span class="c1"># code with no break condition</span>
+<span class="n">end</span>
+
+<span class="c1"># Safer: include exit condition</span>
+<span class="n">let</span> <span class="n">max_iterations</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">let</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">while</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="n">max_iterations</span>
+    <span class="c1"># code</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">some_condition</span>
+        <span class="k">break</span>  <span class="c1"># (conceptually)</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+</code></pre></div>
+<h2 id="common-patterns">Common Patterns<a class="headerlink" href="#common-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="sentinel-loop">Sentinel Loop<a class="headerlink" href="#sentinel-loop" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">running</span> <span class="o">=</span> <span class="n">true</span>
+
+<span class="k">while</span> <span class="n">running</span>
+    <span class="n">let</span> <span class="n">command</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter command (or &#39;quit&#39;): &quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">command</span> <span class="o">==</span> <span class="s2">&quot;quit&quot;</span>
+        <span class="n">running</span> <span class="o">=</span> <span class="n">false</span>
+    <span class="k">else</span>
+        <span class="c1"># Process command</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Processing: &quot;</span> <span class="o">+</span> <span class="n">command</span><span class="p">)</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="counter-loop">Counter Loop<a class="headerlink" href="#counter-loop" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">let</span> <span class="n">target</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="n">target</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Iteration: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">counter</span><span class="p">))</span>
+    <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="search-pattern">Search Pattern<a class="headerlink" href="#search-pattern" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">]</span>
+<span class="n">let</span> <span class="n">search_term</span> <span class="o">=</span> <span class="s2">&quot;cherry&quot;</span>
+<span class="n">let</span> <span class="n">found</span> <span class="o">=</span> <span class="n">false</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span>
+    <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="n">search_term</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found: &quot;</span> <span class="o">+</span> <span class="n">item</span><span class="p">)</span>
+        <span class="n">found</span> <span class="o">=</span> <span class="n">true</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">found</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Not found&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="filter-pattern">Filter Pattern<a class="headerlink" href="#filter-pattern" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">let</span> <span class="n">evens</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="n">append</span><span class="p">(</span><span class="n">evens</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Even numbers: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">evens</span><span class="p">))</span>
+</code></pre></div>
+<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong><a href="../functions/">Functions</a></strong> - Organize control flow into reusable blocks</li>
+<li><strong><a href="../collections/">Lists &amp; Dictionaries</a></strong> - Iterate over complex data</li>
+<li><strong><a href="../exceptions/">Exception Handling</a></strong> - Control flow for error handling</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../operators/" class="btn btn-neutral float-left" title="Operators"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../functions/" class="btn btn-neutral float-right" title="Functions">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/mochacinno-dev/Tourmaline" class="fa fa-code-fork" style="color: #fcfcfc"> mochacinno-dev/Tourmaline</a>
+        </span>
+    
+    
+      <span><a href="../operators/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../functions/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

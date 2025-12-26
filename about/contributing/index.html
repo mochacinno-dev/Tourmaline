@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Camila "Mocha" Rose (CoffeeShop Development)" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Contributing - Tourmaline Programming Language</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Contributing";
+        var mkdocs_page_input_path = "about\\contributing.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Tourmaline Programming Language
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/quick-start/">Quick Start</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/first-program/">Your First Program</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Language Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/variables/">Variables & Types</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/operators/">Operators</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/control-flow/">Control Flow</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/functions/">Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/collections/">Lists & Dictionaries</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/exceptions/">Exception Handling</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Standard Library</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/builtins/">Built-in Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/math/">Math Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/random/">Random Library</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/lists/">List Operations</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/basic/">Basic Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/advanced/">Advanced Examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/syntax/">Syntax Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/errors/">Error Messages</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../license/">License</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Contributing</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#ways-to-contribute">Ways to Contribute</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#report-bugs">🐛 Report Bugs</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#suggest-features">💡 Suggest Features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#improve-documentation">📝 Improve Documentation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#submit-code">🔧 Submit Code</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#code-contributions">Code Contributions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#getting-started">Getting Started</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#code-style-guidelines">Code Style Guidelines</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#python-code-interpreter">Python Code (Interpreter)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#tourmaline-code-examples">Tourmaline Code (Examples)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#testing">Testing</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pull-request-guidelines">Pull Request Guidelines</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#project-structure">Project Structure</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#key-components">Key Components</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#feature-development-process">Feature Development Process</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-planning">1. Planning</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-implementation">2. Implementation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-documentation">3. Documentation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-review">4. Review</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#areas-needing-help">Areas Needing Help</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#high-priority">High Priority</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#medium-priority">Medium Priority</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ideas-for-new-contributors">Ideas for New Contributors</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#code-of-conduct">Code of Conduct</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#our-standards">Our Standards</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#unacceptable-behavior">Unacceptable Behavior</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#enforcement">Enforcement</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#recognition">Recognition</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#legal">Legal</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#questions">Questions?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#thank-you">Thank You!</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Tourmaline Programming Language</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">About</li>
+      <li class="breadcrumb-item active">Contributing</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/mochacinno-dev/Tourmaline/edit/master/docs/about/contributing.md">Edit on mochacinno-dev/Tourmaline</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="contributing-to-tourmaline">Contributing to Tourmaline<a class="headerlink" href="#contributing-to-tourmaline" title="Permanent link">&para;</a></h1>
+<p>Thank you for your interest in contributing to Tourmaline! This guide will help you get started.</p>
+<h2 id="ways-to-contribute">Ways to Contribute<a class="headerlink" href="#ways-to-contribute" title="Permanent link">&para;</a></h2>
+<p>There are many ways to help improve Tourmaline:</p>
+<h3 id="report-bugs">🐛 Report Bugs<a class="headerlink" href="#report-bugs" title="Permanent link">&para;</a></h3>
+<p>Found a bug? Please report it!</p>
+<ol>
+<li>Check if it's already reported in <a href="https://github.com/mochacinno-dev/Tourmaline/issues">GitHub Issues</a></li>
+<li>If not, create a new issue with:</li>
+<li>Clear description of the bug</li>
+<li>Steps to reproduce</li>
+<li>Expected vs actual behavior</li>
+<li>Tourmaline version</li>
+<li>Operating system</li>
+</ol>
+<p><strong>Example Bug Report:</strong>
+<div class="highlight"><pre><span></span><code><span class="gs">**Bug Description:**</span>
+Division by zero doesn&#39;t raise an error in certain cases
+
+<span class="gs">**Steps to Reproduce:**</span>
+<span class="k">1.</span> Create variable: let x = 10
+<span class="k">2.</span> Create variable: let y = 0
+<span class="k">3.</span> Calculate: let z = x / y
+<span class="k">4.</span> No error is raised
+
+<span class="gs">**Expected Behavior:**</span>
+Should raise &quot;Division by zero&quot; error
+
+<span class="gs">**Environment:**</span>
+<span class="k">-</span><span class="w"> </span>Tourmaline: v1.0.0
+<span class="k">-</span><span class="w"> </span>Python: 3.9
+<span class="k">-</span><span class="w"> </span>OS: Windows 10
+</code></pre></div></p>
+<h3 id="suggest-features">💡 Suggest Features<a class="headerlink" href="#suggest-features" title="Permanent link">&para;</a></h3>
+<p>Have an idea for a new feature?</p>
+<ol>
+<li>Check existing feature requests</li>
+<li>Open a new issue with:</li>
+<li>Clear description</li>
+<li>Use cases</li>
+<li>Example syntax (if applicable)</li>
+<li>Why it would be valuable</li>
+</ol>
+<h3 id="improve-documentation">📝 Improve Documentation<a class="headerlink" href="#improve-documentation" title="Permanent link">&para;</a></h3>
+<p>Documentation improvements are always welcome:</p>
+<ul>
+<li>Fix typos or unclear explanations</li>
+<li>Add examples</li>
+<li>Improve code samples</li>
+<li>Translate documentation</li>
+<li>Write tutorials or guides</li>
+</ul>
+<h3 id="submit-code">🔧 Submit Code<a class="headerlink" href="#submit-code" title="Permanent link">&para;</a></h3>
+<p>Ready to code? Great!</p>
+<ol>
+<li>Fork the repository</li>
+<li>Create a feature branch</li>
+<li>Make your changes</li>
+<li>Test thoroughly</li>
+<li>Submit a pull request</li>
+</ol>
+<h2 id="code-contributions">Code Contributions<a class="headerlink" href="#code-contributions" title="Permanent link">&para;</a></h2>
+<h3 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Fork and Clone</strong>
+   <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/YOUR-USERNAME/Tourmaline.git
+<span class="nb">cd</span><span class="w"> </span>Tourmaline
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Create a Branch</strong>
+   <div class="highlight"><pre><span></span><code>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature/your-feature-name
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Make Changes</strong></p>
+</li>
+<li>Write clean, readable code</li>
+<li>Follow existing code style</li>
+<li>
+<p>Add comments for complex logic</p>
+</li>
+<li>
+<p><strong>Test Your Changes</strong>
+   <div class="highlight"><pre><span></span><code>python<span class="w"> </span>Tourmaline.py<span class="w"> </span>test_file.trm
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Commit</strong>
+   <div class="highlight"><pre><span></span><code>git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add: clear description of changes&quot;</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Push and Create Pull Request</strong>
+   <div class="highlight"><pre><span></span><code>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>feature/your-feature-name
+</code></pre></div></p>
+</li>
+</ol>
+<h3 id="code-style-guidelines">Code Style Guidelines<a class="headerlink" href="#code-style-guidelines" title="Permanent link">&para;</a></h3>
+<h4 id="python-code-interpreter">Python Code (Interpreter)<a class="headerlink" href="#python-code-interpreter" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Use 4 spaces for indentation</li>
+<li>Follow PEP 8 where reasonable</li>
+<li>Use descriptive variable names</li>
+<li>Add docstrings to functions</li>
+</ul>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">evaluate_expression</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokens</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Evaluate an expression from a list of tokens.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        tokens: List of tokenized expression elements</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The evaluated result</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        TourmalineError: If expression cannot be evaluated</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Implementation...</span>
+</code></pre></div></p>
+<h4 id="tourmaline-code-examples">Tourmaline Code (Examples)<a class="headerlink" href="#tourmaline-code-examples" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Use consistent naming (snake_case for variables)</li>
+<li>Comment complex logic</li>
+<li>Keep functions focused and small</li>
+<li>Use meaningful variable names</li>
+</ul>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Calculate the area of a circle</span>
+<span class="n">function</span> <span class="n">calculate_circle_area</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14159</span>
+    <span class="n">let</span> <span class="n">area</span> <span class="o">=</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">radius</span>
+    <span class="k">return</span> <span class="n">area</span>
+<span class="n">end</span>
+</code></pre></div></p>
+<h3 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h3>
+<p>Before submitting:</p>
+<ol>
+<li><strong>Test basic functionality</strong></li>
+<li>Run existing example programs</li>
+<li>Test your specific changes</li>
+<li>
+<p>Try edge cases</p>
+</li>
+<li>
+<p><strong>Test error handling</strong></p>
+</li>
+<li>Provide invalid input</li>
+<li>Test boundary conditions</li>
+<li>
+<p>Ensure errors are caught</p>
+</li>
+<li>
+<p><strong>Create test files</strong></p>
+</li>
+<li>Add <code>.trm</code> files demonstrating your feature</li>
+<li>Include both success and error cases</li>
+</ol>
+<h3 id="pull-request-guidelines">Pull Request Guidelines<a class="headerlink" href="#pull-request-guidelines" title="Permanent link">&para;</a></h3>
+<p><strong>Title Format:</strong>
+- <code>Add: Feature description</code> for new features
+- <code>Fix: Bug description</code> for bug fixes
+- <code>Docs: Documentation improvement</code> for docs
+- <code>Refactor: Code improvement</code> for refactoring</p>
+<p><strong>Description Should Include:</strong>
+- What changes were made
+- Why they were necessary
+- How to test them
+- Any breaking changes
+- Related issues (if any)</p>
+<p><strong>Example PR Description:</strong>
+<div class="highlight"><pre><span></span><code><span class="gu">## Changes</span>
+Added support for list slicing with <span class="sb">`list[start:end]`</span> syntax
+
+<span class="gu">## Motivation</span>
+Users requested the ability to extract sublists more easily
+
+<span class="gu">## Testing</span>
+<span class="k">-</span><span class="w"> </span>Added test_slice.trm with various slice examples
+<span class="k">-</span><span class="w"> </span>Tested with positive and negative indices
+<span class="k">-</span><span class="w"> </span>Tested edge cases (empty lists, out of bounds)
+
+<span class="gu">## Breaking Changes</span>
+None
+
+<span class="gu">## Related Issues</span>
+Closes <span class="ni">#42</span>
+</code></pre></div></p>
+<h2 id="project-structure">Project Structure<a class="headerlink" href="#project-structure" title="Permanent link">&para;</a></h2>
+<p>Understanding the codebase:</p>
+<div class="highlight"><pre><span></span><code>Tourmaline/
+├── Tourmaline.py          # Main interpreter
+├── LICENSE                # GPL-3.0 license
+├── README.md             # Project overview
+├── code/                 # Example programs
+│   ├── example.trm
+│   ├── main.trm
+│   └── ...
+└── scripts/              # Helper scripts
+    ├── tli.sh
+    └── tli.bat
+</code></pre></div>
+<h3 id="key-components">Key Components<a class="headerlink" href="#key-components" title="Permanent link">&para;</a></h3>
+<p><strong>Tourmaline.py Sections:</strong>
+1. <code>TourmalineError</code> - Exception class
+2. <code>TourmalineInterpreter</code> - Main interpreter
+   - <code>tokenize()</code> - Lexical analysis
+   - <code>parse_value()</code> - Value parsing
+   - <code>evaluate_expression()</code> - Expression evaluation
+   - <code>execute()</code> - Main execution loop
+3. Built-in functions setup
+4. Standard libraries setup</p>
+<h2 id="feature-development-process">Feature Development Process<a class="headerlink" href="#feature-development-process" title="Permanent link">&para;</a></h2>
+<h3 id="1-planning">1. Planning<a class="headerlink" href="#1-planning" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Discuss the feature in an issue first</li>
+<li>Get feedback from maintainers</li>
+<li>Consider backward compatibility</li>
+<li>Think about edge cases</li>
+</ul>
+<h3 id="2-implementation">2. Implementation<a class="headerlink" href="#2-implementation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Start with tests/examples</li>
+<li>Implement incrementally</li>
+<li>Keep commits focused</li>
+<li>Write clear commit messages</li>
+</ul>
+<h3 id="3-documentation">3. Documentation<a class="headerlink" href="#3-documentation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Update relevant docs</li>
+<li>Add examples</li>
+<li>Document new syntax</li>
+<li>Update README if needed</li>
+</ul>
+<h3 id="4-review">4. Review<a class="headerlink" href="#4-review" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Self-review your code</li>
+<li>Test thoroughly</li>
+<li>Ensure it works on different systems</li>
+<li>Request feedback</li>
+</ul>
+<h2 id="areas-needing-help">Areas Needing Help<a class="headerlink" href="#areas-needing-help" title="Permanent link">&para;</a></h2>
+<p>Current priorities:</p>
+<h3 id="high-priority">High Priority<a class="headerlink" href="#high-priority" title="Permanent link">&para;</a></h3>
+<ul>
+<li>🐛 <strong>Bug Fixes</strong> - Especially parsing edge cases</li>
+<li>📖 <strong>Documentation</strong> - More examples and tutorials</li>
+<li>✅ <strong>Testing</strong> - Comprehensive test suite</li>
+<li>🔧 <strong>Error Messages</strong> - More helpful messages</li>
+</ul>
+<h3 id="medium-priority">Medium Priority<a class="headerlink" href="#medium-priority" title="Permanent link">&para;</a></h3>
+<ul>
+<li>🎨 <strong>Syntax Improvements</strong> - Better error handling</li>
+<li>📦 <strong>Standard Library</strong> - More built-in functions</li>
+<li>🚀 <strong>Performance</strong> - Optimization opportunities</li>
+<li>🌐 <strong>Internationalization</strong> - Non-English support</li>
+</ul>
+<h3 id="ideas-for-new-contributors">Ideas for New Contributors<a class="headerlink" href="#ideas-for-new-contributors" title="Permanent link">&para;</a></h3>
+<p>Easy first contributions:</p>
+<ol>
+<li><strong>Add Example Programs</strong></li>
+<li>Create <code>.trm</code> files demonstrating features</li>
+<li>
+<p>Add to <code>code/</code> directory</p>
+</li>
+<li>
+<p><strong>Improve Error Messages</strong></p>
+</li>
+<li>Make them more descriptive</li>
+<li>
+<p>Add suggestions for fixes</p>
+</li>
+<li>
+<p><strong>Write Tutorials</strong></p>
+</li>
+<li>Beginner guides</li>
+<li>Specific use cases</li>
+<li>
+<p>Video tutorials</p>
+</li>
+<li>
+<p><strong>Fix Typos</strong></p>
+</li>
+<li>Documentation typos</li>
+<li>Code comments</li>
+<li>Example programs</li>
+</ol>
+<h2 id="code-of-conduct">Code of Conduct<a class="headerlink" href="#code-of-conduct" title="Permanent link">&para;</a></h2>
+<h3 id="our-standards">Our Standards<a class="headerlink" href="#our-standards" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Be respectful and inclusive</li>
+<li>Welcome newcomers</li>
+<li>Accept constructive criticism</li>
+<li>Focus on what's best for the project</li>
+<li>Show empathy toward others</li>
+</ul>
+<h3 id="unacceptable-behavior">Unacceptable Behavior<a class="headerlink" href="#unacceptable-behavior" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Harassment or discrimination</li>
+<li>Trolling or insulting comments</li>
+<li>Personal or political attacks</li>
+<li>Publishing others' private information</li>
+</ul>
+<h3 id="enforcement">Enforcement<a class="headerlink" href="#enforcement" title="Permanent link">&para;</a></h3>
+<p>Violations may result in:
+- Warning
+- Temporary ban
+- Permanent ban</p>
+<p>Report issues to project maintainers.</p>
+<h2 id="recognition">Recognition<a class="headerlink" href="#recognition" title="Permanent link">&para;</a></h2>
+<p>Contributors will be:
+- Listed in CONTRIBUTORS.md (if created)
+- Credited in release notes
+- Acknowledged in relevant documentation
+- Appreciated! 🎉</p>
+<h2 id="legal">Legal<a class="headerlink" href="#legal" title="Permanent link">&para;</a></h2>
+<p>By contributing, you agree that:</p>
+<ul>
+<li>Your contributions are your original work</li>
+<li>You have the right to submit them</li>
+<li>Your contributions will be under the GPL-3.0 license</li>
+<li>You understand the implications of the GPL-3.0</li>
+</ul>
+<p>See <a href="../license/">License</a> for details.</p>
+<h2 id="questions">Questions?<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>General Questions</strong>: Open a GitHub Discussion</li>
+<li><strong>Bug Reports</strong>: GitHub Issues</li>
+<li><strong>Security Issues</strong>: Contact maintainers privately</li>
+<li><strong>Feature Ideas</strong>: GitHub Issues with "enhancement" label</li>
+</ul>
+<h2 id="thank-you">Thank You!<a class="headerlink" href="#thank-you" title="Permanent link">&para;</a></h2>
+<p>Every contribution helps make Tourmaline better. Whether you're:
+- Fixing a typo
+- Adding a feature
+- Writing documentation
+- Reporting a bug
+- Suggesting improvements</p>
+<p>Your help is valuable and appreciated! 💎</p>
+<hr />
+<p><strong>Ready to contribute? Check out the <a href="https://github.com/mochacinno-dev/Tourmaline/issues">open issues</a> or <a href="https://github.com/mochacinno-dev/Tourmaline">fork the repository</a> to get started!</strong></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../license/" class="btn btn-neutral float-left" title="License"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/mochacinno-dev/Tourmaline" class="fa fa-code-fork" style="color: #fcfcfc"> mochacinno-dev/Tourmaline</a>
+        </span>
+    
+    
+      <span><a href="../license/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

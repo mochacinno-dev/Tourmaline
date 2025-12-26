@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Camila "Mocha" Rose (CoffeeShop Development)" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Error Messages - Tourmaline Programming Language</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Error Messages";
+        var mkdocs_page_input_path = "reference\\errors.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Tourmaline Programming Language
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/quick-start/">Quick Start</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/first-program/">Your First Program</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Language Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/variables/">Variables & Types</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/operators/">Operators</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/control-flow/">Control Flow</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/functions/">Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/collections/">Lists & Dictionaries</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/exceptions/">Exception Handling</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Standard Library</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/builtins/">Built-in Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/math/">Math Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/random/">Random Library</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/lists/">List Operations</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/basic/">Basic Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/advanced/">Advanced Examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../syntax/">Syntax Reference</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Error Messages</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#variable-errors">Variable Errors</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#undefined-variable">Undefined Variable</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#invalid-variable-declaration">Invalid Variable Declaration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#function-errors">Function Errors</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#function-not-defined">Function Not Defined</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#expected">Expected '('</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#expected-end">Expected 'end'</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#type-errors">Type Errors</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#cannot-convert-to-integer">Cannot Convert to Integer</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cannot-convert-to-float">Cannot Convert to Float</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#list-errors">List Errors</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#list-index-out-of-range">List Index Out of Range</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#item-not-found-in-list">Item Not Found in List</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cannot-pop-from-empty-list">Cannot Pop from Empty List</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dictionary-errors">Dictionary Errors</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#key-not-found">Key Not Found</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#expression-errors">Expression Errors</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#cannot-evaluate-expression">Cannot Evaluate Expression</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#division-by-zero">Division by Zero</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#import-errors">Import Errors</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#library-not-found">Library Not Found</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#function-not-found-in-library">Function Not Found in Library</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#control-flow-errors">Control Flow Errors</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#invalid-if-statement">Invalid 'if' Statement</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#invalid-while-loop">Invalid 'while' Loop</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#invalid-for-loop">Invalid 'for' Loop</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#common-mistake-patterns">Common Mistake Patterns</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#forgetting-string-conversion">Forgetting String Conversion</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#using-instead-of">Using = Instead of ==</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#missing-quotes-for-strings">Missing Quotes for Strings</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#incorrect-indentation-confusion">Incorrect Indentation Confusion</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#debugging-tips">Debugging Tips</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-read-the-error-message-carefully">1. Read the Error Message Carefully</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-check-common-issues">2. Check Common Issues</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-use-print-statements">3. Use Print Statements</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-test-small-parts">4. Test Small Parts</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5-use-try-except-for-testing">5. Use Try-Except for Testing</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#getting-help">Getting Help</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#prevention-checklist">Prevention Checklist</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/license/">License</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/contributing/">Contributing</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Tourmaline Programming Language</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Reference</li>
+      <li class="breadcrumb-item active">Error Messages</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/mochacinno-dev/Tourmaline/edit/master/docs/reference/errors.md">Edit on mochacinno-dev/Tourmaline</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="error-messages">Error Messages<a class="headerlink" href="#error-messages" title="Permanent link">&para;</a></h1>
+<p>Guide to common error messages in Tourmaline and how to fix them.</p>
+<h2 id="variable-errors">Variable Errors<a class="headerlink" href="#variable-errors" title="Permanent link">&para;</a></h2>
+<h3 id="undefined-variable">Undefined Variable<a class="headerlink" href="#undefined-variable" title="Permanent link">&para;</a></h3>
+<p><strong>Error Message:</strong>
+<div class="highlight"><pre><span></span><code>Undefined variable: variable_name
+</code></pre></div></p>
+<p><strong>Cause:</strong> Trying to use a variable that hasn't been declared with <code>let</code>.</p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Wrong</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>  <span class="c1"># name not declared</span>
+
+<span class="c1"># Right</span>
+<span class="n">let</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Alice&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Solution:</strong> Always declare variables with <code>let</code> before using them.</p>
+<hr />
+<h3 id="invalid-variable-declaration">Invalid Variable Declaration<a class="headerlink" href="#invalid-variable-declaration" title="Permanent link">&para;</a></h3>
+<p><strong>Error Message:</strong>
+<div class="highlight"><pre><span></span><code>Invalid variable declaration
+</code></pre></div></p>
+<p><strong>Cause:</strong> Incorrect <code>let</code> statement syntax.</p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Wrong</span>
+<span class="n">let</span> <span class="n">x</span>  <span class="c1"># Missing value</span>
+<span class="n">let</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># Missing variable name</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># Missing &#39;let&#39; for first declaration</span>
+
+<span class="c1"># Right</span>
+<span class="n">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+</code></pre></div></p>
+<p><strong>Solution:</strong> Use the format <code>let variable_name = value</code>.</p>
+<hr />
+<h2 id="function-errors">Function Errors<a class="headerlink" href="#function-errors" title="Permanent link">&para;</a></h2>
+<h3 id="function-not-defined">Function Not Defined<a class="headerlink" href="#function-not-defined" title="Permanent link">&para;</a></h3>
+<p><strong>Error Message:</strong>
+<div class="highlight"><pre><span></span><code>Function &#39;function_name&#39; not defined
+</code></pre></div></p>
+<p><strong>Cause:</strong> Calling a function that doesn't exist.</p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Wrong</span>
+<span class="n">my_function</span><span class="p">()</span>  <span class="c1"># Function doesn&#39;t exist</span>
+
+<span class="c1"># Right</span>
+<span class="n">function</span> <span class="n">my_function</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="n">my_function</span><span class="p">()</span>
+</code></pre></div></p>
+<p><strong>Solution:</strong> Define the function before calling it, or check the spelling.</p>
+<hr />
+<h3 id="expected">Expected '('<a class="headerlink" href="#expected" title="Permanent link">&para;</a></h3>
+<p><strong>Error Message:</strong>
+<div class="highlight"><pre><span></span><code>Expected &#39;(&#39;
+</code></pre></div></p>
+<p><strong>Cause:</strong> Missing parentheses in function call or definition.</p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Wrong</span>
+<span class="n">function</span> <span class="n">greet</span> <span class="n">name</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="c1"># Wrong</span>
+<span class="nb">print</span> <span class="s2">&quot;Hello&quot;</span>
+
+<span class="c1"># Right</span>
+<span class="n">function</span> <span class="n">greet</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Solution:</strong> Always include parentheses for function calls and definitions.</p>
+<hr />
+<h3 id="expected-end">Expected 'end'<a class="headerlink" href="#expected-end" title="Permanent link">&para;</a></h3>
+<p><strong>Error Message:</strong>
+<div class="highlight"><pre><span></span><code>Expected &#39;end&#39;
+</code></pre></div></p>
+<p><strong>Cause:</strong> Missing <code>end</code> keyword to close a block.</p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Wrong</span>
+<span class="n">function</span> <span class="n">greet</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span>
+<span class="c1"># Missing &#39;end&#39;</span>
+
+<span class="c1"># Wrong</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">5</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Big&quot;</span><span class="p">)</span>
+<span class="c1"># Missing &#39;end&#39;</span>
+
+<span class="c1"># Right</span>
+<span class="n">function</span> <span class="n">greet</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">5</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Big&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div></p>
+<p><strong>Solution:</strong> Every function, if, while, and for block needs an <code>end</code> keyword.</p>
+<hr />
+<h2 id="type-errors">Type Errors<a class="headerlink" href="#type-errors" title="Permanent link">&para;</a></h2>
+<h3 id="cannot-convert-to-integer">Cannot Convert to Integer<a class="headerlink" href="#cannot-convert-to-integer" title="Permanent link">&para;</a></h3>
+<p><strong>Error Message:</strong>
+<div class="highlight"><pre><span></span><code>Cannot convert &#39;value&#39; to integer
+</code></pre></div></p>
+<p><strong>Cause:</strong> Trying to convert a non-numeric string to an integer.</p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Wrong</span>
+<span class="n">let</span> <span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
+
+<span class="c1"># Right</span>
+<span class="k">try</span>
+    <span class="n">let</span> <span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">error</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid number&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="c1"># Or with valid input</span>
+<span class="n">let</span> <span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="s2">&quot;42&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Solution:</strong> Validate input before conversion or use try-except blocks.</p>
+<hr />
+<h3 id="cannot-convert-to-float">Cannot Convert to Float<a class="headerlink" href="#cannot-convert-to-float" title="Permanent link">&para;</a></h3>
+<p><strong>Error Message:</strong>
+<div class="highlight"><pre><span></span><code>Cannot convert &#39;value&#39; to float
+</code></pre></div></p>
+<p><strong>Cause:</strong> Trying to convert a non-numeric string to a float.</p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Wrong</span>
+<span class="n">let</span> <span class="n">num</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>
+
+<span class="c1"># Right</span>
+<span class="k">try</span>
+    <span class="n">let</span> <span class="n">num</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">error</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid number&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div></p>
+<p><strong>Solution:</strong> Use try-except or validate input first.</p>
+<hr />
+<h2 id="list-errors">List Errors<a class="headerlink" href="#list-errors" title="Permanent link">&para;</a></h2>
+<h3 id="list-index-out-of-range">List Index Out of Range<a class="headerlink" href="#list-index-out-of-range" title="Permanent link">&para;</a></h3>
+<p><strong>Error Message:</strong>
+<div class="highlight"><pre><span></span><code>Index out of range
+</code></pre></div></p>
+<p><strong>Cause:</strong> Accessing a list index that doesn't exist.</p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">]</span>
+
+<span class="c1"># Wrong</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>  <span class="c1"># Only indices 0-1 exist</span>
+
+<span class="c1"># Right</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">5</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+<span class="k">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Index too large&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div></p>
+<p><strong>Solution:</strong> Check list length before accessing indices.</p>
+<hr />
+<h3 id="item-not-found-in-list">Item Not Found in List<a class="headerlink" href="#item-not-found-in-list" title="Permanent link">&para;</a></h3>
+<p><strong>Error Message:</strong>
+<div class="highlight"><pre><span></span><code>Item &#39;value&#39; not found in list
+</code></pre></div></p>
+<p><strong>Cause:</strong> Trying to remove an item that doesn't exist.</p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">]</span>
+
+<span class="c1"># Wrong</span>
+<span class="n">remove</span><span class="p">(</span><span class="n">fruits</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">)</span>  <span class="c1"># cherry not in list</span>
+
+<span class="c1"># Right</span>
+<span class="k">try</span>
+    <span class="n">remove</span><span class="p">(</span><span class="n">fruits</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">error</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Item not found&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div></p>
+<p><strong>Solution:</strong> Check if item exists before removing, or use try-except.</p>
+<hr />
+<h3 id="cannot-pop-from-empty-list">Cannot Pop from Empty List<a class="headerlink" href="#cannot-pop-from-empty-list" title="Permanent link">&para;</a></h3>
+<p><strong>Error Message:</strong>
+<div class="highlight"><pre><span></span><code>Cannot pop from empty list
+</code></pre></div></p>
+<p><strong>Cause:</strong> Trying to pop from a list with no items.</p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Wrong</span>
+<span class="n">let</span> <span class="n">item</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+
+<span class="c1"># Right</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="n">let</span> <span class="n">item</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+<span class="k">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;List is empty&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div></p>
+<p><strong>Solution:</strong> Check list length before popping.</p>
+<hr />
+<h2 id="dictionary-errors">Dictionary Errors<a class="headerlink" href="#dictionary-errors" title="Permanent link">&para;</a></h2>
+<h3 id="key-not-found">Key Not Found<a class="headerlink" href="#key-not-found" title="Permanent link">&para;</a></h3>
+<p><strong>Error Message:</strong>
+<div class="highlight"><pre><span></span><code>Key &#39;key_name&#39; not found
+</code></pre></div></p>
+<p><strong>Cause:</strong> Accessing a dictionary key that doesn't exist.</p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">person</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">}</span>
+
+<span class="c1"># Wrong</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">person</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">])</span>  <span class="c1"># age key doesn&#39;t exist</span>
+
+<span class="c1"># Right</span>
+<span class="k">try</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">person</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">])</span>
+<span class="k">except</span> <span class="n">error</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Age not found&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div></p>
+<p><strong>Solution:</strong> Check if key exists or use try-except blocks.</p>
+<hr />
+<h2 id="expression-errors">Expression Errors<a class="headerlink" href="#expression-errors" title="Permanent link">&para;</a></h2>
+<h3 id="cannot-evaluate-expression">Cannot Evaluate Expression<a class="headerlink" href="#cannot-evaluate-expression" title="Permanent link">&para;</a></h3>
+<p><strong>Error Message:</strong>
+<div class="highlight"><pre><span></span><code>Cannot evaluate expression: ...
+</code></pre></div></p>
+<p><strong>Cause:</strong> Invalid expression syntax or operation.</p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Wrong</span>
+<span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">+</span> <span class="o">*</span> <span class="mi">3</span>  <span class="c1"># Invalid operators</span>
+
+<span class="c1"># Wrong</span>
+<span class="n">let</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">3</span>  <span class="c1"># Unmatched parentheses</span>
+
+<span class="c1"># Right</span>
+<span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">3</span>
+<span class="n">let</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span>
+</code></pre></div></p>
+<p><strong>Solution:</strong> Check expression syntax and operator usage.</p>
+<hr />
+<h3 id="division-by-zero">Division by Zero<a class="headerlink" href="#division-by-zero" title="Permanent link">&para;</a></h3>
+<p><strong>Error Message:</strong>
+<div class="highlight"><pre><span></span><code>Division by zero
+</code></pre></div></p>
+<p><strong>Cause:</strong> Attempting to divide by zero.</p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Wrong</span>
+<span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">/</span> <span class="mi">0</span>
+
+<span class="c1"># Right</span>
+<span class="n">let</span> <span class="n">divisor</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">if</span> <span class="n">divisor</span> <span class="o">!=</span> <span class="mi">0</span>
+    <span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">/</span> <span class="n">divisor</span>
+<span class="k">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cannot divide by zero&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div></p>
+<p><strong>Solution:</strong> Check for zero before dividing.</p>
+<hr />
+<h2 id="import-errors">Import Errors<a class="headerlink" href="#import-errors" title="Permanent link">&para;</a></h2>
+<h3 id="library-not-found">Library Not Found<a class="headerlink" href="#library-not-found" title="Permanent link">&para;</a></h3>
+<p><strong>Error Message:</strong>
+<div class="highlight"><pre><span></span><code>Library &#39;library_name&#39; not found
+</code></pre></div></p>
+<p><strong>Cause:</strong> Trying to import a library that doesn't exist.</p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Wrong</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nonexistent</span>
+
+<span class="c1"># Right</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>  <span class="c1"># Built-in library</span>
+</code></pre></div></p>
+<p><strong>Solution:</strong> Only import built-in libraries (currently: <code>random</code>).</p>
+<hr />
+<h3 id="function-not-found-in-library">Function Not Found in Library<a class="headerlink" href="#function-not-found-in-library" title="Permanent link">&para;</a></h3>
+<p><strong>Error Message:</strong>
+<div class="highlight"><pre><span></span><code>Library &#39;library&#39; has no function &#39;function_name&#39;
+</code></pre></div></p>
+<p><strong>Cause:</strong> Calling a function that doesn't exist in the library.</p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="c1"># Wrong</span>
+<span class="n">let</span> <span class="n">num</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">nonexistent</span><span class="p">()</span>
+
+<span class="c1"># Right</span>
+<span class="n">let</span> <span class="n">num</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Solution:</strong> Check the library documentation for available functions.</p>
+<hr />
+<h2 id="control-flow-errors">Control Flow Errors<a class="headerlink" href="#control-flow-errors" title="Permanent link">&para;</a></h2>
+<h3 id="invalid-if-statement">Invalid 'if' Statement<a class="headerlink" href="#invalid-if-statement" title="Permanent link">&para;</a></h3>
+<p><strong>Error Message:</strong>
+<div class="highlight"><pre><span></span><code>Invalid if statement
+</code></pre></div></p>
+<p><strong>Cause:</strong> Incorrect if statement syntax.</p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Wrong</span>
+<span class="k">if</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="c1"># Wrong</span>
+<span class="k">if</span> <span class="n">x</span>  <span class="c1"># Missing comparison</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="c1"># Right</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">5</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div></p>
+<p><strong>Solution:</strong> Include a condition after <code>if</code>.</p>
+<hr />
+<h3 id="invalid-while-loop">Invalid 'while' Loop<a class="headerlink" href="#invalid-while-loop" title="Permanent link">&para;</a></h3>
+<p><strong>Error Message:</strong>
+<div class="highlight"><pre><span></span><code>Invalid while loop
+</code></pre></div></p>
+<p><strong>Cause:</strong> Incorrect while loop syntax.</p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Wrong</span>
+<span class="k">while</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="c1"># Right</span>
+<span class="k">while</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">10</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">end</span>
+</code></pre></div></p>
+<p><strong>Solution:</strong> Include a condition after <code>while</code>.</p>
+<hr />
+<h3 id="invalid-for-loop">Invalid 'for' Loop<a class="headerlink" href="#invalid-for-loop" title="Permanent link">&para;</a></h3>
+<p><strong>Error Message:</strong>
+<div class="highlight"><pre><span></span><code>Invalid for loop / Expected &#39;in&#39; in for loop
+</code></pre></div></p>
+<p><strong>Cause:</strong> Incorrect for loop syntax.</p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Wrong</span>
+<span class="k">for</span> <span class="n">item</span> <span class="n">fruits</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="c1"># Right</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">fruits</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div></p>
+<p><strong>Solution:</strong> Use the format <code>for variable in iterable</code>.</p>
+<hr />
+<h2 id="common-mistake-patterns">Common Mistake Patterns<a class="headerlink" href="#common-mistake-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="forgetting-string-conversion">Forgetting String Conversion<a class="headerlink" href="#forgetting-string-conversion" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Wrong</span>
+<span class="n">let</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Age: &quot;</span> <span class="o">+</span> <span class="n">age</span><span class="p">)</span>  <span class="c1"># Error: can&#39;t concatenate int to string</span>
+
+<span class="c1"># Right</span>
+<span class="n">let</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Age: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">age</span><span class="p">))</span>
+</code></pre></div>
+<h3 id="using-instead-of">Using = Instead of ==<a class="headerlink" href="#using-instead-of" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Wrong</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># Assignment, not comparison</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Five&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="c1"># Right</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">5</span>  <span class="c1"># Comparison</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Five&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="missing-quotes-for-strings">Missing Quotes for Strings<a class="headerlink" href="#missing-quotes-for-strings" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Wrong</span>
+<span class="n">let</span> <span class="n">name</span> <span class="o">=</span> <span class="n">Alice</span>  <span class="c1"># Treated as variable</span>
+
+<span class="c1"># Right</span>
+<span class="n">let</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Alice&quot;</span>  <span class="c1"># String literal</span>
+</code></pre></div>
+<h3 id="incorrect-indentation-confusion">Incorrect Indentation Confusion<a class="headerlink" href="#incorrect-indentation-confusion" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Indentation is optional in Tourmaline</span>
+<span class="c1"># But &#39;end&#39; keywords are required</span>
+
+<span class="c1"># Wrong</span>
+<span class="k">if</span> <span class="n">condition</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Yes&quot;</span><span class="p">)</span>
+<span class="c1"># Missing &#39;end&#39;</span>
+
+<span class="c1"># Right</span>
+<span class="k">if</span> <span class="n">condition</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Yes&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h2 id="debugging-tips">Debugging Tips<a class="headerlink" href="#debugging-tips" title="Permanent link">&para;</a></h2>
+<h3 id="1-read-the-error-message-carefully">1. Read the Error Message Carefully<a class="headerlink" href="#1-read-the-error-message-carefully" title="Permanent link">&para;</a></h3>
+<p>Error messages usually indicate:
+- What went wrong
+- Where it happened (which line or expression)
+- What was expected</p>
+<h3 id="2-check-common-issues">2. Check Common Issues<a class="headerlink" href="#2-check-common-issues" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Missing <code>let</code> for variable declaration</li>
+<li>Missing <code>end</code> keywords</li>
+<li>Typos in variable/function names</li>
+<li>Missing quotes around strings</li>
+<li>Missing <code>str()</code> when concatenating</li>
+</ul>
+<h3 id="3-use-print-statements">3. Use Print Statements<a class="headerlink" href="#3-use-print-statements" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Debug by printing values</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x is: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of x: &quot;</span> <span class="o">+</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</code></pre></div>
+<h3 id="4-test-small-parts">4. Test Small Parts<a class="headerlink" href="#4-test-small-parts" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Test expressions separately</span>
+<span class="n">let</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">let</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>  <span class="c1"># Make sure this works</span>
+<span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</code></pre></div>
+<h3 id="5-use-try-except-for-testing">5. Use Try-Except for Testing<a class="headerlink" href="#5-use-try-except-for-testing" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">try</span>
+    <span class="c1"># Test risky code here</span>
+    <span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">error</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error occurred: &quot;</span> <span class="o">+</span> <span class="n">error</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h2 id="getting-help">Getting Help<a class="headerlink" href="#getting-help" title="Permanent link">&para;</a></h2>
+<p>If you encounter an error not listed here:</p>
+<ol>
+<li><strong>Check the syntax reference</strong> - <a href="../syntax/">Syntax Reference</a></li>
+<li><strong>Review examples</strong> - <a href="../../examples/basic/">Examples</a></li>
+<li><strong>Report the issue</strong> - <a href="https://github.com/mochacinno-dev/Tourmaline/issues">GitHub Issues</a></li>
+</ol>
+<h2 id="prevention-checklist">Prevention Checklist<a class="headerlink" href="#prevention-checklist" title="Permanent link">&para;</a></h2>
+<p>Before running your code, check:</p>
+<ul>
+<li>[ ] All variables declared with <code>let</code></li>
+<li>[ ] All blocks closed with <code>end</code></li>
+<li>[ ] All function calls have parentheses</li>
+<li>[ ] String concatenation uses <code>str()</code> for non-strings</li>
+<li>[ ] Comparisons use <code>==</code> not <code>=</code></li>
+<li>[ ] List indices are within bounds</li>
+<li>[ ] Division operations check for zero</li>
+<li>[ ] Input is validated before conversion</li>
+</ul>
+<hr />
+<p><strong>Remember:</strong> Error messages are helpful! They tell you exactly what went wrong and often suggest how to fix it.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../syntax/" class="btn btn-neutral float-left" title="Syntax Reference"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../about/license/" class="btn btn-neutral float-right" title="License">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/mochacinno-dev/Tourmaline" class="fa fa-code-fork" style="color: #fcfcfc"> mochacinno-dev/Tourmaline</a>
+        </span>
+    
+    
+      <span><a href="../syntax/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../about/license/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

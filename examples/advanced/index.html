@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Camila "Mocha" Rose (CoffeeShop Development)" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Advanced Examples - Tourmaline Programming Language</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Advanced Examples";
+        var mkdocs_page_input_path = "examples\\advanced.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Tourmaline Programming Language
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/quick-start/">Quick Start</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/first-program/">Your First Program</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Language Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/variables/">Variables & Types</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/operators/">Operators</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/control-flow/">Control Flow</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/functions/">Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/collections/">Lists & Dictionaries</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/exceptions/">Exception Handling</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Standard Library</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/builtins/">Built-in Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/math/">Math Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/random/">Random Library</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/lists/">List Operations</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../basic/">Basic Examples</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Advanced Examples</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#algorithms">Algorithms</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#binary-search">Binary Search</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#bubble-sort">Bubble Sort</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#fibonacci-with-memoization">Fibonacci with Memoization</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#prime-number-generator-sieve-of-eratosthenes">Prime Number Generator (Sieve of Eratosthenes)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data-structures">Data Structures</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#linked-list-simulation">Linked List Simulation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#stack-based-calculator">Stack-Based Calculator</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#game-development">Game Development</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#rock-paper-scissors-tournament">Rock, Paper, Scissors Tournament</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#hangman-game">Hangman Game</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tic-tac-toe">Tic-Tac-Toe</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data-analysis">Data Analysis</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#statistical-analysis">Statistical Analysis</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#frequency-counter">Frequency Counter</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#financial-calculations">Financial Calculations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#loan-calculator">Loan Calculator</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#investment-portfolio-tracker">Investment Portfolio Tracker</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#simulation">Simulation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#monte-carlo-pi-estimation">Monte Carlo Pi Estimation</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#text-processing">Text Processing</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#word-counter-and-analyzer">Word Counter and Analyzer</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/syntax/">Syntax Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/errors/">Error Messages</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/license/">License</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/contributing/">Contributing</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Tourmaline Programming Language</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Examples</li>
+      <li class="breadcrumb-item active">Advanced Examples</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/mochacinno-dev/Tourmaline/edit/master/docs/examples/advanced.md">Edit on mochacinno-dev/Tourmaline</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="advanced-examples">Advanced Examples<a class="headerlink" href="#advanced-examples" title="Permanent link">&para;</a></h1>
+<p>Complex Tourmaline programs demonstrating advanced concepts, algorithms, and real-world applications.</p>
+<h2 id="algorithms">Algorithms<a class="headerlink" href="#algorithms" title="Permanent link">&para;</a></h2>
+<h3 id="binary-search">Binary Search<a class="headerlink" href="#binary-search" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">let</span> <span class="n">right</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span>
+        <span class="n">let</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">floor</span><span class="p">((</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">let</span> <span class="n">mid_value</span> <span class="o">=</span> <span class="n">sorted_list</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">mid_value</span> <span class="o">==</span> <span class="n">target</span>
+            <span class="k">return</span> <span class="n">mid</span>
+        <span class="k">elif</span> <span class="n">mid_value</span> <span class="o">&lt;</span> <span class="n">target</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">end</span>
+    <span class="n">end</span>
+
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>  <span class="c1"># Not found</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">78</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Searching for 23...&quot;</span><span class="p">)</span>
+<span class="n">let</span> <span class="n">index</span> <span class="o">=</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="mi">23</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">index</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found at index: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+<span class="k">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Not found&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="bubble-sort">Bubble Sort<a class="headerlink" href="#bubble-sort" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">bubble_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">let</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">let</span> <span class="n">swapped</span> <span class="o">=</span> <span class="n">false</span>
+
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+                <span class="c1"># Swap elements</span>
+                <span class="n">let</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+                <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>
+                <span class="n">swapped</span> <span class="o">=</span> <span class="n">true</span>
+            <span class="n">end</span>
+            <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">end</span>
+
+        <span class="c1"># If no swaps, array is sorted</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">swapped</span>
+            <span class="k">break</span>  <span class="c1"># (conceptually)</span>
+        <span class="n">end</span>
+
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">end</span>
+
+    <span class="k">return</span> <span class="n">arr</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">90</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unsorted: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">numbers</span><span class="p">))</span>
+<span class="n">bubble_sort</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sorted: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">numbers</span><span class="p">))</span>
+</code></pre></div>
+<h3 id="fibonacci-with-memoization">Fibonacci with Memoization<a class="headerlink" href="#fibonacci-with-memoization" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">fib_cache</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">function</span> <span class="n">fibonacci_memo</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="c1"># Check cache</span>
+    <span class="n">let</span> <span class="n">n_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">n</span>
+    <span class="n">end</span>
+
+    <span class="c1"># In practice, you&#39;d check if n_str exists in cache</span>
+    <span class="c1"># This is a simplified version</span>
+
+    <span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="n">fibonacci_memo</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacci_memo</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fibonacci sequence:&quot;</span><span class="p">)</span>
+<span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">10</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;F(&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;) = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">fibonacci_memo</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="prime-number-generator-sieve-of-eratosthenes">Prime Number Generator (Sieve of Eratosthenes)<a class="headerlink" href="#prime-number-generator-sieve-of-eratosthenes" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">sieve_of_eratosthenes</span><span class="p">(</span><span class="n">limit</span><span class="p">)</span>
+    <span class="c1"># Create list of booleans</span>
+    <span class="n">let</span> <span class="n">is_prime</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Initialize all as true</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">limit</span>
+        <span class="n">append</span><span class="p">(</span><span class="n">is_prime</span><span class="p">,</span> <span class="n">true</span><span class="p">)</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">end</span>
+
+    <span class="n">is_prime</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">false</span>
+    <span class="n">is_prime</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">false</span>
+
+    <span class="c1"># Sieve algorithm</span>
+    <span class="n">let</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">while</span> <span class="n">p</span> <span class="o">*</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="n">limit</span>
+        <span class="k">if</span> <span class="n">is_prime</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+            <span class="c1"># Mark multiples as not prime</span>
+            <span class="n">let</span> <span class="n">multiple</span> <span class="o">=</span> <span class="n">p</span> <span class="o">*</span> <span class="n">p</span>
+            <span class="k">while</span> <span class="n">multiple</span> <span class="o">&lt;=</span> <span class="n">limit</span>
+                <span class="n">is_prime</span><span class="p">[</span><span class="n">multiple</span><span class="p">]</span> <span class="o">=</span> <span class="n">false</span>
+                <span class="n">multiple</span> <span class="o">+=</span> <span class="n">p</span>
+            <span class="n">end</span>
+        <span class="n">end</span>
+        <span class="n">p</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">end</span>
+
+    <span class="c1"># Collect primes</span>
+    <span class="n">let</span> <span class="n">primes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">limit</span>
+        <span class="k">if</span> <span class="n">is_prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">append</span><span class="p">(</span><span class="n">primes</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">end</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">end</span>
+
+    <span class="k">return</span> <span class="n">primes</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">primes</span> <span class="o">=</span> <span class="n">sieve_of_eratosthenes</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prime numbers up to 50:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">primes</span><span class="p">))</span>
+</code></pre></div>
+<h2 id="data-structures">Data Structures<a class="headerlink" href="#data-structures" title="Permanent link">&para;</a></h2>
+<h3 id="linked-list-simulation">Linked List Simulation<a class="headerlink" href="#linked-list-simulation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">linked_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">function</span> <span class="n">create_node</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">next_index</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span>
+        <span class="s2">&quot;next&quot;</span><span class="p">:</span> <span class="n">next_index</span>
+    <span class="p">}</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">add_node</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">node</span> <span class="o">=</span> <span class="n">create_node</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">linked_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="n">linked_list</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">linked_list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="s2">&quot;next&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">linked_list</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="n">append</span><span class="p">(</span><span class="n">linked_list</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">traverse_list</span><span class="p">()</span>
+    <span class="n">let</span> <span class="n">current</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">while</span> <span class="n">current</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">linked_list</span><span class="p">)</span> <span class="ow">and</span> <span class="n">current</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">let</span> <span class="n">node</span> <span class="o">=</span> <span class="n">linked_list</span><span class="p">[</span><span class="n">current</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; -&gt; &quot;</span><span class="p">)</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="s2">&quot;next&quot;</span><span class="p">]</span>
+    <span class="n">end</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;None&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="n">add_node</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">add_node</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">add_node</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">add_node</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Linked List:&quot;</span><span class="p">)</span>
+<span class="n">traverse_list</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="stack-based-calculator">Stack-Based Calculator<a class="headerlink" href="#stack-based-calculator" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">evaluate_postfix</span><span class="p">(</span><span class="n">expression</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">let</span> <span class="n">tokens</span> <span class="o">=</span> <span class="n">expression</span>  <span class="c1"># Assume already tokenized</span>
+
+    <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span>
+        <span class="k">if</span> <span class="n">token</span> <span class="o">==</span> <span class="s2">&quot;+&quot;</span>
+            <span class="n">let</span> <span class="n">b</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span>
+            <span class="n">let</span> <span class="n">a</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span>
+            <span class="n">append</span><span class="p">(</span><span class="n">stack</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s2">&quot;-&quot;</span>
+            <span class="n">let</span> <span class="n">b</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span>
+            <span class="n">let</span> <span class="n">a</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span>
+            <span class="n">append</span><span class="p">(</span><span class="n">stack</span><span class="p">,</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s2">&quot;*&quot;</span>
+            <span class="n">let</span> <span class="n">b</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span>
+            <span class="n">let</span> <span class="n">a</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span>
+            <span class="n">append</span><span class="p">(</span><span class="n">stack</span><span class="p">,</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s2">&quot;/&quot;</span>
+            <span class="n">let</span> <span class="n">b</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span>
+            <span class="n">let</span> <span class="n">a</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span>
+            <span class="n">append</span><span class="p">(</span><span class="n">stack</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">)</span>
+        <span class="k">else</span>
+            <span class="c1"># It&#39;s a number</span>
+            <span class="n">append</span><span class="p">(</span><span class="n">stack</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">token</span><span class="p">))</span>
+        <span class="n">end</span>
+    <span class="n">end</span>
+
+    <span class="k">return</span> <span class="n">pop</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="c1"># Example: 3 4 + 2 * (which is (3+4)*2 = 14)</span>
+<span class="n">let</span> <span class="n">expr</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;3&quot;</span><span class="p">,</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;*&quot;</span><span class="p">]</span>
+<span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="n">evaluate_postfix</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Result: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+</code></pre></div>
+<h2 id="game-development">Game Development<a class="headerlink" href="#game-development" title="Permanent link">&para;</a></h2>
+<h3 id="rock-paper-scissors-tournament">Rock, Paper, Scissors Tournament<a class="headerlink" href="#rock-paper-scissors-tournament" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="n">let</span> <span class="n">player_score</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">let</span> <span class="n">computer_score</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">let</span> <span class="n">rounds</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="n">function</span> <span class="n">get_winner</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">computer</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">player</span> <span class="o">==</span> <span class="n">computer</span>
+        <span class="k">return</span> <span class="s2">&quot;tie&quot;</span>
+    <span class="k">elif</span> <span class="n">player</span> <span class="o">==</span> <span class="s2">&quot;rock&quot;</span> <span class="ow">and</span> <span class="n">computer</span> <span class="o">==</span> <span class="s2">&quot;scissors&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;player&quot;</span>
+    <span class="k">elif</span> <span class="n">player</span> <span class="o">==</span> <span class="s2">&quot;paper&quot;</span> <span class="ow">and</span> <span class="n">computer</span> <span class="o">==</span> <span class="s2">&quot;rock&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;player&quot;</span>
+    <span class="k">elif</span> <span class="n">player</span> <span class="o">==</span> <span class="s2">&quot;scissors&quot;</span> <span class="ow">and</span> <span class="n">computer</span> <span class="o">==</span> <span class="s2">&quot;paper&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;player&quot;</span>
+    <span class="k">else</span>
+        <span class="k">return</span> <span class="s2">&quot;computer&quot;</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== ROCK, PAPER, SCISSORS TOURNAMENT ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best of &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">rounds</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; rounds</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">let</span> <span class="n">round_num</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">while</span> <span class="n">round_num</span> <span class="o">&lt;=</span> <span class="n">rounds</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Round &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">round_num</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">20</span><span class="p">)</span>
+
+    <span class="n">let</span> <span class="n">player</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Choose (rock/paper/scissors): &quot;</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">choices</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;rock&quot;</span><span class="p">,</span> <span class="s2">&quot;paper&quot;</span><span class="p">,</span> <span class="s2">&quot;scissors&quot;</span><span class="p">]</span>
+    <span class="n">let</span> <span class="n">computer</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">choices</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Computer chose: &quot;</span> <span class="o">+</span> <span class="n">computer</span><span class="p">)</span>
+
+    <span class="n">let</span> <span class="n">winner</span> <span class="o">=</span> <span class="n">get_winner</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">computer</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">winner</span> <span class="o">==</span> <span class="s2">&quot;player&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You win this round!&quot;</span><span class="p">)</span>
+        <span class="n">player_score</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">winner</span> <span class="o">==</span> <span class="s2">&quot;computer&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Computer wins this round!&quot;</span><span class="p">)</span>
+        <span class="n">computer_score</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">else</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;It&#39;s a tie!&quot;</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Score - You: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">player_score</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; | Computer: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">computer_score</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">round_num</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== FINAL RESULTS ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">player_score</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Computer: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">computer_score</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">player_score</span> <span class="o">&gt;</span> <span class="n">computer_score</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">You win the tournament!&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">computer_score</span> <span class="o">&gt;</span> <span class="n">player_score</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Computer wins the tournament!&quot;</span><span class="p">)</span>
+<span class="k">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">It&#39;s a draw!&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="hangman-game">Hangman Game<a class="headerlink" href="#hangman-game" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="n">function</span> <span class="n">play_hangman</span><span class="p">()</span>
+    <span class="n">let</span> <span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="s2">&quot;programming&quot;</span><span class="p">,</span> <span class="s2">&quot;computer&quot;</span><span class="p">,</span> <span class="s2">&quot;algorithm&quot;</span><span class="p">,</span> <span class="s2">&quot;function&quot;</span><span class="p">]</span>
+    <span class="n">let</span> <span class="n">word</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">word_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+
+    <span class="c1"># Create hidden word</span>
+    <span class="n">let</span> <span class="n">guessed</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">word_length</span>
+        <span class="n">append</span><span class="p">(</span><span class="n">guessed</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">end</span>
+
+    <span class="n">let</span> <span class="n">attempts</span> <span class="o">=</span> <span class="mi">6</span>
+    <span class="n">let</span> <span class="n">guessed_letters</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== HANGMAN ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You have &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">attempts</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; attempts&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="n">attempts</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="c1"># Show current state</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Word: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">guessed</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Attempts left: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">attempts</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Guessed: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">guessed_letters</span><span class="p">))</span>
+
+        <span class="n">let</span> <span class="n">letter</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Guess a letter: &quot;</span><span class="p">)</span>
+
+        <span class="c1"># Check if already guessed</span>
+        <span class="n">let</span> <span class="n">already_guessed</span> <span class="o">=</span> <span class="n">false</span>
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">guessed_letters</span>
+            <span class="k">if</span> <span class="n">g</span> <span class="o">==</span> <span class="n">letter</span>
+                <span class="n">already_guessed</span> <span class="o">=</span> <span class="n">true</span>
+            <span class="n">end</span>
+        <span class="n">end</span>
+
+        <span class="k">if</span> <span class="n">already_guessed</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You already guessed that!&quot;</span><span class="p">)</span>
+            <span class="c1"># Continue without penalty</span>
+        <span class="k">else</span>
+            <span class="n">append</span><span class="p">(</span><span class="n">guessed_letters</span><span class="p">,</span> <span class="n">letter</span><span class="p">)</span>
+
+            <span class="c1"># Check if letter is in word</span>
+            <span class="n">let</span> <span class="n">found</span> <span class="o">=</span> <span class="n">false</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">word_length</span>
+                <span class="c1"># Simplified character checking</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">end</span>
+
+            <span class="c1"># For demo purposes</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Letter checked!&quot;</span><span class="p">)</span>
+        <span class="n">end</span>
+
+        <span class="c1"># Check win condition</span>
+        <span class="n">let</span> <span class="n">won</span> <span class="o">=</span> <span class="n">true</span>
+        <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">guessed</span>
+            <span class="k">if</span> <span class="n">char</span> <span class="o">==</span> <span class="s2">&quot;_&quot;</span>
+                <span class="n">won</span> <span class="o">=</span> <span class="n">false</span>
+            <span class="n">end</span>
+        <span class="n">end</span>
+
+        <span class="k">if</span> <span class="n">won</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">You won! The word was: &quot;</span> <span class="o">+</span> <span class="n">word</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="n">end</span>
+
+        <span class="n">attempts</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Game Over! The word was: &quot;</span> <span class="o">+</span> <span class="n">word</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="n">play_hangman</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="tic-tac-toe">Tic-Tac-Toe<a class="headerlink" href="#tic-tac-toe" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">board</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span> <span class="s2">&quot;5&quot;</span><span class="p">,</span> <span class="s2">&quot;6&quot;</span><span class="p">,</span> <span class="s2">&quot;7&quot;</span><span class="p">,</span> <span class="s2">&quot;8&quot;</span><span class="p">,</span> <span class="s2">&quot;9&quot;</span><span class="p">]</span>
+
+<span class="n">function</span> <span class="n">show_board</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> &quot;</span> <span class="o">+</span> <span class="n">board</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; | &quot;</span> <span class="o">+</span> <span class="n">board</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; | &quot;</span> <span class="o">+</span> <span class="n">board</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---+---+---&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">board</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; | &quot;</span> <span class="o">+</span> <span class="n">board</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; | &quot;</span> <span class="o">+</span> <span class="n">board</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---+---+---&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">board</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; | &quot;</span> <span class="o">+</span> <span class="n">board</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; | &quot;</span> <span class="o">+</span> <span class="n">board</span><span class="p">[</span><span class="mi">8</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">check_winner</span><span class="p">()</span>
+    <span class="c1"># Check rows</span>
+    <span class="k">if</span> <span class="n">board</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">board</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">and</span> <span class="n">board</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">board</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">board</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">end</span>
+    <span class="k">if</span> <span class="n">board</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="n">board</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="ow">and</span> <span class="n">board</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="n">board</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">board</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">end</span>
+    <span class="k">if</span> <span class="n">board</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">==</span> <span class="n">board</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="ow">and</span> <span class="n">board</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">==</span> <span class="n">board</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">board</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+    <span class="n">end</span>
+
+    <span class="c1"># Check columns</span>
+    <span class="k">if</span> <span class="n">board</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">board</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="ow">and</span> <span class="n">board</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="n">board</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">board</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">end</span>
+    <span class="k">if</span> <span class="n">board</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">board</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="ow">and</span> <span class="n">board</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="n">board</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">board</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">end</span>
+    <span class="k">if</span> <span class="n">board</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="n">board</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="ow">and</span> <span class="n">board</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="n">board</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">board</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">end</span>
+
+    <span class="c1"># Check diagonals</span>
+    <span class="k">if</span> <span class="n">board</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">board</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="ow">and</span> <span class="n">board</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="n">board</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">board</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">end</span>
+    <span class="k">if</span> <span class="n">board</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="n">board</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="ow">and</span> <span class="n">board</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="n">board</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">board</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">end</span>
+
+    <span class="k">return</span> <span class="n">nil</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">play_game</span><span class="p">()</span>
+    <span class="n">let</span> <span class="n">current_player</span> <span class="o">=</span> <span class="s2">&quot;X&quot;</span>
+    <span class="n">let</span> <span class="n">moves</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== TIC-TAC-TOE ===&quot;</span><span class="p">)</span>
+    <span class="n">show_board</span><span class="p">()</span>
+
+    <span class="k">while</span> <span class="n">moves</span> <span class="o">&lt;</span> <span class="mi">9</span>
+        <span class="n">let</span> <span class="n">position</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Player &quot;</span> <span class="o">+</span> <span class="n">current_player</span> <span class="o">+</span> <span class="s2">&quot;, choose position (1-9): &quot;</span><span class="p">)</span>
+        <span class="n">let</span> <span class="n">pos_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">position</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+        <span class="c1"># Check if position is valid</span>
+        <span class="k">if</span> <span class="n">pos_num</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">pos_num</span> <span class="o">&lt;</span> <span class="mi">9</span> <span class="ow">and</span> <span class="n">board</span><span class="p">[</span><span class="n">pos_num</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;X&quot;</span> <span class="ow">and</span> <span class="n">board</span><span class="p">[</span><span class="n">pos_num</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;O&quot;</span>
+            <span class="n">board</span><span class="p">[</span><span class="n">pos_num</span><span class="p">]</span> <span class="o">=</span> <span class="n">current_player</span>
+            <span class="n">moves</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">show_board</span><span class="p">()</span>
+
+            <span class="n">let</span> <span class="n">winner</span> <span class="o">=</span> <span class="n">check_winner</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">winner</span> <span class="o">!=</span> <span class="n">nil</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Player &quot;</span> <span class="o">+</span> <span class="n">winner</span> <span class="o">+</span> <span class="s2">&quot; wins!&quot;</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="n">end</span>
+
+            <span class="c1"># Switch player</span>
+            <span class="k">if</span> <span class="n">current_player</span> <span class="o">==</span> <span class="s2">&quot;X&quot;</span>
+                <span class="n">current_player</span> <span class="o">=</span> <span class="s2">&quot;O&quot;</span>
+            <span class="k">else</span>
+                <span class="n">current_player</span> <span class="o">=</span> <span class="s2">&quot;X&quot;</span>
+            <span class="n">end</span>
+        <span class="k">else</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid position! Try again.&quot;</span><span class="p">)</span>
+        <span class="n">end</span>
+    <span class="n">end</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;It&#39;s a draw!&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="n">play_game</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="data-analysis">Data Analysis<a class="headerlink" href="#data-analysis" title="Permanent link">&para;</a></h2>
+<h3 id="statistical-analysis">Statistical Analysis<a class="headerlink" href="#statistical-analysis" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">analyze_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No data to analyze&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="n">end</span>
+
+    <span class="c1"># Calculate statistics</span>
+    <span class="n">let</span> <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">let</span> <span class="n">minimum</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">let</span> <span class="n">maximum</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span>
+        <span class="nb">sum</span> <span class="o">+=</span> <span class="n">value</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="n">minimum</span>
+            <span class="n">minimum</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="n">end</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="n">maximum</span>
+            <span class="n">maximum</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="n">end</span>
+    <span class="n">end</span>
+
+    <span class="n">let</span> <span class="n">mean</span> <span class="o">=</span> <span class="nb">sum</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">let</span> <span class="nb">range</span> <span class="o">=</span> <span class="n">maximum</span> <span class="o">-</span> <span class="n">minimum</span>
+
+    <span class="c1"># Calculate median</span>
+    <span class="c1"># (Requires sorting first)</span>
+    <span class="n">let</span> <span class="n">median</span> <span class="o">=</span> <span class="n">mean</span>  <span class="c1"># Simplified</span>
+
+    <span class="c1"># Calculate variance and standard deviation</span>
+    <span class="n">let</span> <span class="n">variance_sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span>
+        <span class="n">let</span> <span class="n">diff</span> <span class="o">=</span> <span class="n">value</span> <span class="o">-</span> <span class="n">mean</span>
+        <span class="n">variance_sum</span> <span class="o">+=</span> <span class="n">diff</span> <span class="o">*</span> <span class="n">diff</span>
+    <span class="n">end</span>
+    <span class="n">let</span> <span class="n">variance</span> <span class="o">=</span> <span class="n">variance_sum</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">std_dev</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">variance</span><span class="p">)</span>
+
+    <span class="c1"># Print report</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== STATISTICAL ANALYSIS ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Count:              &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sum:                &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">sum</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean:               &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">mean</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Median:             &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">median</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Minimum:            &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">minimum</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Maximum:            &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">maximum</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Range:              &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">range</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Variance:           &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">variance</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Standard Deviation: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">std_dev</span><span class="p">))</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mi">23</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">32</span><span class="p">]</span>
+<span class="n">analyze_data</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="frequency-counter">Frequency Counter<a class="headerlink" href="#frequency-counter" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">frequency_analysis</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">freq</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="c1"># In a real implementation, you&#39;d access each character</span>
+        <span class="c1"># This is simplified</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">end</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Analyzing text frequency...&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Text length: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)))</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">sample</span> <span class="o">=</span> <span class="s2">&quot;hello world&quot;</span>
+<span class="n">frequency_analysis</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="financial-calculations">Financial Calculations<a class="headerlink" href="#financial-calculations" title="Permanent link">&para;</a></h2>
+<h3 id="loan-calculator">Loan Calculator<a class="headerlink" href="#loan-calculator" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">calculate_loan</span><span class="p">(</span><span class="n">principal</span><span class="p">,</span> <span class="n">annual_rate</span><span class="p">,</span> <span class="n">years</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">monthly_rate</span> <span class="o">=</span> <span class="n">annual_rate</span> <span class="o">/</span> <span class="mi">12</span>
+    <span class="n">let</span> <span class="n">num_payments</span> <span class="o">=</span> <span class="n">years</span> <span class="o">*</span> <span class="mi">12</span>
+
+    <span class="c1"># Calculate monthly payment</span>
+    <span class="n">let</span> <span class="n">payment</span> <span class="o">=</span> <span class="n">principal</span> <span class="o">*</span> <span class="p">(</span><span class="n">monthly_rate</span> <span class="o">*</span> <span class="nb">pow</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">monthly_rate</span><span class="p">,</span> <span class="n">num_payments</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">monthly_rate</span><span class="p">,</span> <span class="n">num_payments</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">let</span> <span class="n">total_paid</span> <span class="o">=</span> <span class="n">payment</span> <span class="o">*</span> <span class="n">num_payments</span>
+    <span class="n">let</span> <span class="n">total_interest</span> <span class="o">=</span> <span class="n">total_paid</span> <span class="o">-</span> <span class="n">principal</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== LOAN CALCULATOR ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Principal:        $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">principal</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Annual Rate:      &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">annual_rate</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loan Term:        &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">years</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; years&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Monthly Payment:  $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">payment</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total Paid:       $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">total_paid</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total Interest:   $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">total_interest</span><span class="p">)))</span>
+
+    <span class="c1"># Amortization schedule (first 12 months)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== FIRST YEAR AMORTIZATION ===&quot;</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">balance</span> <span class="o">=</span> <span class="n">principal</span>
+    <span class="n">let</span> <span class="n">month</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">while</span> <span class="n">month</span> <span class="o">&lt;=</span> <span class="mi">12</span>
+        <span class="n">let</span> <span class="n">interest_payment</span> <span class="o">=</span> <span class="n">balance</span> <span class="o">*</span> <span class="n">monthly_rate</span>
+        <span class="n">let</span> <span class="n">principal_payment</span> <span class="o">=</span> <span class="n">payment</span> <span class="o">-</span> <span class="n">interest_payment</span>
+        <span class="n">balance</span> <span class="o">-=</span> <span class="n">principal_payment</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Month &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">month</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Interest: $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">interest_payment</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Principal: $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">principal_payment</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Balance: $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">balance</span><span class="p">)))</span>
+
+        <span class="n">month</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="n">calculate_loan</span><span class="p">(</span><span class="mi">200000</span><span class="p">,</span> <span class="mf">0.045</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="investment-portfolio-tracker">Investment Portfolio Tracker<a class="headerlink" href="#investment-portfolio-tracker" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">portfolio</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">function</span> <span class="n">add_investment</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">shares</span><span class="p">,</span> <span class="n">price_per_share</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">investment</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+        <span class="s2">&quot;shares&quot;</span><span class="p">:</span> <span class="n">shares</span><span class="p">,</span>
+        <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="n">price_per_share</span><span class="p">,</span>
+        <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="n">shares</span> <span class="o">*</span> <span class="n">price_per_share</span>
+    <span class="p">}</span>
+    <span class="n">append</span><span class="p">(</span><span class="n">portfolio</span><span class="p">,</span> <span class="n">investment</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Added: &quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">show_portfolio</span><span class="p">()</span>
+    <span class="n">let</span> <span class="n">total_value</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== INVESTMENT PORTFOLIO ===&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">investment</span> <span class="ow">in</span> <span class="n">portfolio</span>
+        <span class="n">let</span> <span class="n">value</span> <span class="o">=</span> <span class="n">investment</span><span class="p">[</span><span class="s2">&quot;total&quot;</span><span class="p">]</span>
+        <span class="n">total_value</span> <span class="o">+=</span> <span class="n">value</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="n">investment</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Shares: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">investment</span><span class="p">[</span><span class="s2">&quot;shares&quot;</span><span class="p">]))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Price: $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">investment</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Value: $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total Portfolio Value: $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">total_value</span><span class="p">))</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">calculate_allocation</span><span class="p">()</span>
+    <span class="n">let</span> <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">investment</span> <span class="ow">in</span> <span class="n">portfolio</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">investment</span><span class="p">[</span><span class="s2">&quot;total&quot;</span><span class="p">]</span>
+    <span class="n">end</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== ASSET ALLOCATION ===&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">investment</span> <span class="ow">in</span> <span class="n">portfolio</span>
+        <span class="n">let</span> <span class="n">percentage</span> <span class="o">=</span> <span class="n">investment</span><span class="p">[</span><span class="s2">&quot;total&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">/</span> <span class="n">total</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">investment</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">percentage</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="n">add_investment</span><span class="p">(</span><span class="s2">&quot;Tech Stock A&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">150.50</span><span class="p">)</span>
+<span class="n">add_investment</span><span class="p">(</span><span class="s2">&quot;Bond Fund B&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mf">25.75</span><span class="p">)</span>
+<span class="n">add_investment</span><span class="p">(</span><span class="s2">&quot;Index Fund C&quot;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">300.00</span><span class="p">)</span>
+
+<span class="n">show_portfolio</span><span class="p">()</span>
+<span class="n">calculate_allocation</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="simulation">Simulation<a class="headerlink" href="#simulation" title="Permanent link">&para;</a></h2>
+<h3 id="monte-carlo-pi-estimation">Monte Carlo Pi Estimation<a class="headerlink" href="#monte-carlo-pi-estimation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="n">function</span> <span class="n">estimate_pi</span><span class="p">(</span><span class="n">iterations</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">inside_circle</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">iterations</span>
+        <span class="n">let</span> <span class="n">x</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+        <span class="n">let</span> <span class="n">y</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+
+        <span class="n">let</span> <span class="n">distance</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">distance</span> <span class="o">&lt;=</span> <span class="mi">1</span>
+            <span class="n">inside_circle</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">end</span>
+
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">end</span>
+
+    <span class="n">let</span> <span class="n">pi_estimate</span> <span class="o">=</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="n">inside_circle</span> <span class="o">/</span> <span class="n">iterations</span>
+    <span class="k">return</span> <span class="n">pi_estimate</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== MONTE CARLO PI ESTIMATION ===</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">let</span> <span class="n">trials</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">100000</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">trial</span> <span class="ow">in</span> <span class="n">trials</span>
+    <span class="n">let</span> <span class="n">estimate</span> <span class="o">=</span> <span class="n">estimate_pi</span><span class="p">(</span><span class="n">trial</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">error</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">estimate</span> <span class="o">-</span> <span class="mf">3.14159</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">trial</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; iterations:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Estimate: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">estimate</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Error: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h2 id="text-processing">Text Processing<a class="headerlink" href="#text-processing" title="Permanent link">&para;</a></h2>
+<h3 id="word-counter-and-analyzer">Word Counter and Analyzer<a class="headerlink" href="#word-counter-and-analyzer" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">analyze_text</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">char_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">word_count</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Simplified</span>
+    <span class="n">let</span> <span class="n">sentence_count</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Simplified</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== TEXT ANALYSIS ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Characters: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">char_count</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Words: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">word_count</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sentences: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sentence_count</span><span class="p">))</span>
+
+    <span class="c1"># Average word length</span>
+    <span class="n">let</span> <span class="n">avg_word_length</span> <span class="o">=</span> <span class="n">char_count</span> <span class="o">/</span> <span class="n">word_count</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Avg Word Length: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">avg_word_length</span><span class="p">))</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">sample_text</span> <span class="o">=</span> <span class="s2">&quot;This is a sample text for analysis purposes.&quot;</span>
+<span class="n">analyze_text</span><span class="p">(</span><span class="n">sample_text</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong><a href="../basic/">Basic Examples</a></strong> - Start with simpler programs</li>
+<li><strong><a href="../../guide/variables/">Language Guide</a></strong> - Learn all features</li>
+<li><strong><a href="../../stdlib/builtins/">Standard Library</a></strong> - Explore available functions</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../basic/" class="btn btn-neutral float-left" title="Basic Examples"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../reference/syntax/" class="btn btn-neutral float-right" title="Syntax Reference">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/mochacinno-dev/Tourmaline" class="fa fa-code-fork" style="color: #fcfcfc"> mochacinno-dev/Tourmaline</a>
+        </span>
+    
+    
+      <span><a href="../basic/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../reference/syntax/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
