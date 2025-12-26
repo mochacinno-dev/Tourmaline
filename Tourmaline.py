@@ -960,10 +960,11 @@ if __name__ == "__main__":
     # Check if a file is provided as argument
     if len(sys.argv) > 1:
         filename = sys.argv[1]
-        if not filename.endswith('.trm') or not filename.endswith('.tli') or not filename.endswith('.tour'):
-            print(f"Error: File must have .trm, .tli, or .tour extension")
+        # Limited only to .trm files so functionality doesn't break
+        if not filename.endswith('.trm'):
+            print(f"Error: File must have .trm extension")
             sys.exit(1)
-        
+
         try:
             with open(filename, 'r', encoding='utf-8') as f:
                 code = f.read()
@@ -980,10 +981,10 @@ if __name__ == "__main__":
             traceback.print_exc()
             sys.exit(1)
     else:
-        # Interactive mode
-        print("Tourmaline Language Interpreter (TLI) v1.0.0 - Tourmal Waters")
+        # REPL mode
+        print("Tourmaline Language Interpreter (TLI) v1.0.1 - Tourmal Waters")
         print("Type 'exit' to quit")
-        print("Usage: python tourmaline.py <file.trm/.tli/.tour> to run a file")
+        print("Usage: python tourmaline.py <file.trm> to run a file")
         print("Interactive mode (type 'exit' to quit):")
         
         while True:
