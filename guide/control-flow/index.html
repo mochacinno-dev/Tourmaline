@@ -1,210 +1,242 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Camila "Mocha" Rose (CoffeeShop Development)" />
-      <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Control Flow - Tourmaline Programming Language</title>
-    <link rel="stylesheet" href="../../css/theme.css" />
-    <link rel="stylesheet" href="../../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
-    
-      <script>
-        // Current page data
-        var mkdocs_page_name = "Control Flow";
-        var mkdocs_page_input_path = "guide\\control-flow.md";
-        var mkdocs_page_url = null;
-      </script>
-    
-    <!--[if lt IE 9]>
-      <script src="../../js/html5shiv.min.js"></script>
-    <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
-      <script>hljs.highlightAll();</script> 
-</head>
-
-<body class="wy-body-for-nav" role="document">
-
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
-      <div class="wy-side-nav-search">
-          <a href="../.." class="icon icon-home"> Tourmaline Programming Language
-        </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
-  </form>
-</div>
-      </div>
-
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
-                </li>
-              </ul>
-              <p class="caption"><span class="caption-text">Getting Started</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/installation/">Installation</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/quick-start/">Quick Start</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/first-program/">Your First Program</a>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">Language Guide</span></p>
-              <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../variables/">Variables & Types</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../operators/">Operators</a>
-                  </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Control Flow</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#conditional-statements">Conditional Statements</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#if-statement">If Statement</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#if-else-statement">If-Else Statement</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#if-elif-else-statement">If-Elif-Else Statement</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#nested-if-statements">Nested If Statements</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#while-loops">While Loops</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#infinite-loops-with-break-condition">Infinite Loops with Break Condition</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#common-while-loop-patterns">Common While Loop Patterns</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#for-loops">For Loops</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#iterating-over-ranges">Iterating Over Ranges</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#for-loop-with-index">For Loop with Index</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#nested-for-loops">Nested For Loops</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#practical-examples">Practical Examples</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#menu-system">Menu System</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#number-classifier">Number Classifier</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#grade-calculator">Grade Calculator</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#fibonacci-sequence-generator">Fibonacci Sequence Generator</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#prime-number-finder">Prime Number Finder</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#pattern-generator">Pattern Generator</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#list-statistics">List Statistics</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#word-counter">Word Counter</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#control-flow-best-practices">Control Flow Best Practices</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#1-keep-conditions-simple">1. Keep Conditions Simple</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#2-avoid-deep-nesting">2. Avoid Deep Nesting</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#3-use-meaningful-loop-variables">3. Use Meaningful Loop Variables</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#4-guard-against-infinite-loops">4. Guard Against Infinite Loops</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#common-patterns">Common Patterns</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#sentinel-loop">Sentinel Loop</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#counter-loop">Counter Loop</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#search-pattern">Search Pattern</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#filter-pattern">Filter Pattern</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a>
-    </li>
-    </ul>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../functions/">Functions</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../collections/">Lists & Dictionaries</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../exceptions/">Exception Handling</a>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">Standard Library</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/builtins/">Built-in Functions</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/math/">Math Functions</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/random/">Random Library</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/lists/">List Operations</a>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">Examples</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../examples/basic/">Basic Examples</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../examples/advanced/">Advanced Examples</a>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">Reference</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../reference/syntax/">Syntax Reference</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../reference/errors/">Error Messages</a>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">About</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../about/license/">License</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../about/contributing/">Contributing</a>
-                  </li>
-              </ul>
-      </div>
-    </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../..">Tourmaline Programming Language</a>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="A simple, easy to learn programming language with beautiful syntax inspired by Lua and Ruby">
+        <meta name="author" content="Camila "Mocha" Rose (CoffeeShop Development)">
         
-      </nav>
-      <div class="wy-nav-content">
-        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Language Guide</li>
-      <li class="breadcrumb-item active">Control Flow</li>
-    <li class="wy-breadcrumbs-aside">
-          <a href="https://github.com/mochacinno-dev/Tourmaline/edit/master/docs/guide/control-flow.md">Edit on mochacinno-dev/Tourmaline</a>
-    </li>
-  </ul>
-  <hr/>
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Control Flow - Tourmaline</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/bootstrap-theme.min.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.3/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../..">Tourmaline</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="../..">Home</a>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Getting Started <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../../getting-started/installation/">Installation</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../getting-started/quick-start/">Quick Start</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../getting-started/first-program/">Your First Program</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language Guide <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../variables/">Variables & Types</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../operators/">Operators</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="./">Control Flow</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../functions/">Functions</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../collections/">Lists & Dictionaries</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../exceptions/">Exception Handling</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Standard Library <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../../stdlib/builtins/">Built-in Functions</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../stdlib/math/">Math Functions</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../stdlib/random/">Random Library</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../stdlib/lists/">List Operations</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../../examples/basic/">Basic Examples</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../examples/advanced/">Advanced Examples</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../../reference/syntax/">Syntax Reference</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../reference/errors/">Error Messages</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../../about/license/">License</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../about/contributing/">Contributing</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                    <li >
+                        <a rel="next" href="../operators/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../functions/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                <li>
+                    <a href="https://github.com/mochacinno-dev/Tourmaline">
+                        
+                        mochacinno-dev/Tourmaline
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-            <div class="section" itemprop="articleBody">
-              
-                <h1 id="control-flow">Control Flow<a class="headerlink" href="#control-flow" title="Permanent link">&para;</a></h1>
+
+        <div class="container">
+                <div class="row">
+                    <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+      
+    
+        <li class="main active"><a href="#control-flow">Control Flow</a></li>
+        
+            <li><a href="#conditional-statements">Conditional Statements</a></li>
+        
+            <li><a href="#while-loops">While Loops</a></li>
+        
+            <li><a href="#for-loops">For Loops</a></li>
+        
+            <li><a href="#practical-examples">Practical Examples</a></li>
+        
+            <li><a href="#control-flow-best-practices">Control Flow Best Practices</a></li>
+        
+            <li><a href="#common-patterns">Common Patterns</a></li>
+        
+            <li><a href="#next-steps">Next Steps</a></li>
+        
+    
+    
+    </ul>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="control-flow">Control Flow<a class="headerlink" href="#control-flow" title="Permanent link">&para;</a></h1>
 <p>Control flow statements let you control the order in which code executes. Learn about conditionals and loops in Tourmaline.</p>
 <h2 id="conditional-statements">Conditional Statements<a class="headerlink" href="#conditional-statements" title="Permanent link">&para;</a></h2>
 <h3 id="if-statement">If Statement<a class="headerlink" href="#if-statement" title="Permanent link">&para;</a></h3>
@@ -802,56 +834,15 @@ I like cherry
 <li><strong><a href="../functions/">Functions</a></strong> - Organize control flow into reusable blocks</li>
 <li><strong><a href="../collections/">Lists &amp; Dictionaries</a></strong> - Iterate over complex data</li>
 <li><strong><a href="../exceptions/">Exception Handling</a></strong> - Control flow for error handling</li>
-</ul>
-              
-            </div>
-          </div><footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../operators/" class="btn btn-neutral float-left" title="Operators"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../functions/" class="btn btn-neutral float-right" title="Functions">Next <span class="icon icon-circle-arrow-right"></span></a>
-    </div>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-  </div>
-
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-</footer>
-          
+</ul></div>
+                </div>
         </div>
-      </div>
 
-    </section>
-
-  </div>
-
-  <div class="rst-versions" role="note" aria-label="Versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-    
-        <span>
-          <a href="https://github.com/mochacinno-dev/Tourmaline" class="fa fa-code-fork" style="color: #fcfcfc"> mochacinno-dev/Tourmaline</a>
-        </span>
-    
-    
-      <span><a href="../operators/" style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-      <span><a href="../functions/" style="color: #fcfcfc">Next &raquo;</a></span>
-    
-  </span>
-</div>
-    <script src="../../js/jquery-3.6.0.min.js"></script>
-    <script>var base_url = "../..";</script>
-    <script src="../../js/theme_extra.js"></script>
-    <script src="../../js/theme.js"></script>
-      <script src="../../search/main.js"></script>
-    <script>
-        jQuery(function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        });
-    </script>
-
-</body>
+    <hr>
+    <footer class="container">
+        
+        <center>Documentation built with <a href="http://www.mkdocs.org">MkDocs</a> and <a href="http://kristopolous.github.io/BOOTSTRA.386">BOOTSTRA.386</a>.</center>
+    </footer>
+        <script src="../../../../search/main.js"></script>
+    </body>
 </html>
