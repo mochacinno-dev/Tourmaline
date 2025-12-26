@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Camila "Mocha" Rose (CoffeeShop Development)" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Installation - Tourmaline</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Installation";
+        var mkdocs_page_input_path = "getting-started\\installation.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Tourmaline
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Installation</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation-methods">Installation Methods</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#method-1-download-from-github-recommended">Method 1: Download from GitHub (Recommended)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-2-direct-download">Method 2: Direct Download</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#running-tourmaline">Running Tourmaline</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#interactive-mode-repl">Interactive Mode (REPL)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#running-script-files">Running Script Files</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#setting-up-shell-scripts-optional">Setting Up Shell Scripts (Optional)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#linuxmacos">Linux/macOS</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#windows">Windows</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#verifying-your-installation">Verifying Your Installation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#python-not-found">Python Not Found</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#permission-denied-linuxmacos">Permission Denied (Linux/macOS)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#import-errors">Import Errors</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../quick-start/">Quick Start</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../first-program/">Your First Program</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Language Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/variables/">Variables & Types</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/operators/">Operators</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/control-flow/">Control Flow</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/functions/">Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/collections/">Lists & Dictionaries</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/exceptions/">Exception Handling</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Standard Library</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/builtins/">Built-in Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/math/">Math Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/random/">Random Library</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/lists/">List Operations</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/basic/">Basic Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/advanced/">Advanced Examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/syntax/">Syntax Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/errors/">Error Messages</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/license/">License</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/contributing/">Contributing</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Tourmaline</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Getting Started</li>
+      <li class="breadcrumb-item active">Installation</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/mochacinno-dev/Tourmaline/edit/master/docs/getting-started/installation.md">Edit on mochacinno-dev/Tourmaline</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h1>
+<p>This guide will help you install Tourmaline on your system.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<p>Tourmaline requires Python 3.6 or higher to run. Before installing Tourmaline, make sure you have Python installed:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Check your Python version</span>
+python<span class="w"> </span>--version
+<span class="c1"># or</span>
+python3<span class="w"> </span>--version
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you don't have Python installed, download it from <a href="https://www.python.org/downloads/">python.org</a></p>
+</div>
+<h2 id="installation-methods">Installation Methods<a class="headerlink" href="#installation-methods" title="Permanent link">&para;</a></h2>
+<h3 id="method-1-download-from-github-recommended">Method 1: Download from GitHub (Recommended)<a class="headerlink" href="#method-1-download-from-github-recommended" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Clone the Repository</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mochacinno-dev/Tourmaline.git
+<span class="nb">cd</span><span class="w"> </span>Tourmaline
+</code></pre></div>
+<ol>
+<li><strong>Verify Installation</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>Tourmaline.py<span class="w"> </span>--version
+</code></pre></div>
+<h3 id="method-2-direct-download">Method 2: Direct Download<a class="headerlink" href="#method-2-direct-download" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Visit the <a href="https://github.com/mochacinno-dev/Tourmaline">Tourmaline GitHub repository</a></li>
+<li>Click the green "Code" button</li>
+<li>Select "Download ZIP"</li>
+<li>Extract the ZIP file to your desired location</li>
+<li>Navigate to the extracted folder</li>
+</ol>
+<h2 id="running-tourmaline">Running Tourmaline<a class="headerlink" href="#running-tourmaline" title="Permanent link">&para;</a></h2>
+<h3 id="interactive-mode-repl">Interactive Mode (REPL)<a class="headerlink" href="#interactive-mode-repl" title="Permanent link">&para;</a></h3>
+<p>Start the interactive interpreter:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>Tourmaline.py
+</code></pre></div>
+<p>You should see:</p>
+<div class="highlight"><pre><span></span><code>Tourmaline Language Interpreter (TLI) v1.0.0 - Tourmal Waters
+Type &#39;exit&#39; to quit
+Interactive mode (type &#39;exit&#39; to quit):
+&gt;&gt;&gt; 
+</code></pre></div>
+<h3 id="running-script-files">Running Script Files<a class="headerlink" href="#running-script-files" title="Permanent link">&para;</a></h3>
+<p>Execute a Tourmaline script file:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>Tourmaline.py<span class="w"> </span>yourfile.trm
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Tourmaline supports three file extensions: <code>.trm</code>, <code>.tli</code>, and <code>.tour</code></p>
+</div>
+<h2 id="setting-up-shell-scripts-optional">Setting Up Shell Scripts (Optional)<a class="headerlink" href="#setting-up-shell-scripts-optional" title="Permanent link">&para;</a></h2>
+<p>For easier access, you can use the provided shell scripts:</p>
+<h3 id="linuxmacos">Linux/macOS<a class="headerlink" href="#linuxmacos" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span>+x<span class="w"> </span>scripts/tli.sh
+./scripts/tli.sh<span class="w"> </span>yourfile.trm
+</code></pre></div>
+<p>Optionally, add to your PATH:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Add to ~/.bashrc or ~/.zshrc</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$PATH</span><span class="s2">:/path/to/Tourmaline/scripts&quot;</span>
+</code></pre></div>
+<p>Then you can run:</p>
+<div class="highlight"><pre><span></span><code>tli.sh<span class="w"> </span>yourfile.trm
+</code></pre></div>
+<h3 id="windows">Windows<a class="headerlink" href="#windows" title="Permanent link">&para;</a></h3>
+<p>Use the batch script:</p>
+<div class="highlight"><pre><span></span><code>scripts\tli.bat yourfile.trm
+</code></pre></div>
+<h2 id="verifying-your-installation">Verifying Your Installation<a class="headerlink" href="#verifying-your-installation" title="Permanent link">&para;</a></h2>
+<p>Create a test file called <code>hello.trm</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello from Tourmaline!&quot;</span><span class="p">)</span>
+
+<span class="n">let</span> <span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;1.0.0&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Running version: &quot;</span> <span class="o">+</span> <span class="n">version</span><span class="p">)</span>
+</code></pre></div>
+<p>Run it:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>Tourmaline.py<span class="w"> </span>hello.trm
+</code></pre></div>
+<p>Expected output:</p>
+<div class="highlight"><pre><span></span><code>Hello from Tourmaline!
+Running version: 1.0.0
+</code></pre></div>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="python-not-found">Python Not Found<a class="headerlink" href="#python-not-found" title="Permanent link">&para;</a></h3>
+<p>If you get a "python: command not found" error, try:</p>
+<ul>
+<li>Use <code>python3</code> instead of <code>python</code></li>
+<li>Ensure Python is added to your system PATH</li>
+<li>Reinstall Python and check "Add to PATH" during installation</li>
+</ul>
+<h3 id="permission-denied-linuxmacos">Permission Denied (Linux/macOS)<a class="headerlink" href="#permission-denied-linuxmacos" title="Permanent link">&para;</a></h3>
+<p>If you get permission errors:</p>
+<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span>+x<span class="w"> </span>Tourmaline.py
+chmod<span class="w"> </span>+x<span class="w"> </span>scripts/tli.sh
+</code></pre></div>
+<h3 id="import-errors">Import Errors<a class="headerlink" href="#import-errors" title="Permanent link">&para;</a></h3>
+<p>If you encounter import errors, ensure you're using Python 3.6+:</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>--version
+</code></pre></div>
+<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<p>Now that Tourmaline is installed, you're ready to:</p>
+<ul>
+<li><strong><a href="../quick-start/">Start with the Quick Start Guide</a></strong></li>
+<li><strong><a href="../first-program/">Write Your First Program</a></strong></li>
+<li><strong><a href="../../guide/variables/">Explore the Language Guide</a></strong></li>
+</ul>
+<hr />
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Tourmaline is under active development. Check the GitHub repository for updates and new features!</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../.." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../quick-start/" class="btn btn-neutral float-right" title="Quick Start">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/mochacinno-dev/Tourmaline" class="fa fa-code-fork" style="color: #fcfcfc"> mochacinno-dev/Tourmaline</a>
+        </span>
+    
+    
+      <span><a href="../.." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../quick-start/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

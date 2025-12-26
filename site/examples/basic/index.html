@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Camila "Mocha" Rose (CoffeeShop Development)" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Basic Examples - Tourmaline</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Basic Examples";
+        var mkdocs_page_input_path = "examples\\basic.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Tourmaline
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/quick-start/">Quick Start</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/first-program/">Your First Program</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Language Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/variables/">Variables & Types</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/operators/">Operators</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/control-flow/">Control Flow</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/functions/">Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/collections/">Lists & Dictionaries</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/exceptions/">Exception Handling</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Standard Library</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/builtins/">Built-in Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/math/">Math Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/random/">Random Library</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/lists/">List Operations</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Basic Examples</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#hello-world">Hello World</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#user-input-and-output">User Input and Output</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#simple-greeting">Simple Greeting</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#age-calculator">Age Calculator</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#basic-calculations">Basic Calculations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#simple-calculator">Simple Calculator</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#temperature-converter">Temperature Converter</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#conditional-logic">Conditional Logic</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#grade-calculator">Grade Calculator</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#even-or-odd-checker">Even or Odd Checker</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#voting-eligibility">Voting Eligibility</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#loops">Loops</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#countdown-timer">Countdown Timer</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#multiplication-table">Multiplication Table</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sum-of-numbers">Sum of Numbers</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#list-iteration">List Iteration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#working-with-lists">Working with Lists</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#shopping-list">Shopping List</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#find-maximum">Find Maximum</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#count-items">Count Items</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#area-calculator">Area Calculator</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#text-formatter">Text Formatter</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#random-programs">Random Programs</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#dice-roller">Dice Roller</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#coin-flip">Coin Flip</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#random-compliment-generator">Random Compliment Generator</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data-processing">Data Processing</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#student-grade-tracker">Student Grade Tracker</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#simple-budget-tracker">Simple Budget Tracker</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#interactive-programs">Interactive Programs</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#simple-quiz">Simple Quiz</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../advanced/">Advanced Examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/syntax/">Syntax Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/errors/">Error Messages</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/license/">License</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/contributing/">Contributing</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Tourmaline</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Examples</li>
+      <li class="breadcrumb-item active">Basic Examples</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/mochacinno-dev/Tourmaline/edit/master/docs/examples/basic.md">Edit on mochacinno-dev/Tourmaline</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="basic-examples">Basic Examples<a class="headerlink" href="#basic-examples" title="Permanent link">&para;</a></h1>
+<p>Collection of simple, beginner-friendly Tourmaline programs to help you learn the language.</p>
+<h2 id="hello-world">Hello World<a class="headerlink" href="#hello-world" title="Permanent link">&para;</a></h2>
+<p>The simplest program in Tourmaline:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>With a variable:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Hello, World!&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</code></pre></div></p>
+<h2 id="user-input-and-output">User Input and Output<a class="headerlink" href="#user-input-and-output" title="Permanent link">&para;</a></h2>
+<h3 id="simple-greeting">Simple Greeting<a class="headerlink" href="#simple-greeting" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;What is your name? &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, &quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nice to meet you!&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="age-calculator">Age Calculator<a class="headerlink" href="#age-calculator" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== AGE CALCULATOR ===</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">let</span> <span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter your name: &quot;</span><span class="p">)</span>
+<span class="n">let</span> <span class="n">birth_year</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter your birth year: &quot;</span><span class="p">))</span>
+<span class="n">let</span> <span class="n">current_year</span> <span class="o">=</span> <span class="mi">2024</span>
+
+<span class="n">let</span> <span class="n">age</span> <span class="o">=</span> <span class="n">current_year</span> <span class="o">-</span> <span class="n">birth_year</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Hello, &quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You are approximately &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">age</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; years old.&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="basic-calculations">Basic Calculations<a class="headerlink" href="#basic-calculations" title="Permanent link">&para;</a></h2>
+<h3 id="simple-calculator">Simple Calculator<a class="headerlink" href="#simple-calculator" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== SIMPLE CALCULATOR ===</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">let</span> <span class="n">num1</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter first number: &quot;</span><span class="p">))</span>
+<span class="n">let</span> <span class="n">num2</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter second number: &quot;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Results:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sum: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Difference: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num1</span> <span class="o">-</span> <span class="n">num2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Product: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num1</span> <span class="o">*</span> <span class="n">num2</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">num2</span> <span class="o">!=</span> <span class="mi">0</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Quotient: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num1</span> <span class="o">/</span> <span class="n">num2</span><span class="p">))</span>
+<span class="k">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cannot divide by zero&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="temperature-converter">Temperature Converter<a class="headerlink" href="#temperature-converter" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== TEMPERATURE CONVERTER ===</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">let</span> <span class="n">celsius</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter temperature in Celsius: &quot;</span><span class="p">))</span>
+<span class="n">let</span> <span class="n">fahrenheit</span> <span class="o">=</span> <span class="n">celsius</span> <span class="o">*</span> <span class="mi">9</span> <span class="o">/</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">32</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">celsius</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;°C = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">fahrenheit</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;°F&quot;</span><span class="p">)</span>
+
+<span class="c1"># Reverse conversion</span>
+<span class="n">let</span> <span class="n">fahr</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Enter temperature in Fahrenheit: &quot;</span><span class="p">))</span>
+<span class="n">let</span> <span class="n">cels</span> <span class="o">=</span> <span class="p">(</span><span class="n">fahr</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">9</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">fahr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;°F = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">cels</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;°C&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="conditional-logic">Conditional Logic<a class="headerlink" href="#conditional-logic" title="Permanent link">&para;</a></h2>
+<h3 id="grade-calculator">Grade Calculator<a class="headerlink" href="#grade-calculator" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== GRADE CALCULATOR ===</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">let</span> <span class="n">score</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter your score (0-100): &quot;</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">90</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Grade: A - Excellent!&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">80</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Grade: B - Good job!&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">70</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Grade: C - Satisfactory&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">60</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Grade: D - Needs improvement&quot;</span><span class="p">)</span>
+<span class="k">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Grade: F - Please study more&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="even-or-odd-checker">Even or Odd Checker<a class="headerlink" href="#even-or-odd-checker" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter a number: &quot;</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; is even&quot;</span><span class="p">)</span>
+<span class="k">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; is odd&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="voting-eligibility">Voting Eligibility<a class="headerlink" href="#voting-eligibility" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== VOTING ELIGIBILITY CHECKER ===</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">let</span> <span class="n">age</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter your age: &quot;</span><span class="p">))</span>
+<span class="n">let</span> <span class="n">citizen</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Are you a citizen? (yes/no): &quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">18</span> <span class="ow">and</span> <span class="n">citizen</span> <span class="o">==</span> <span class="s2">&quot;yes&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">You are eligible to vote!&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">age</span> <span class="o">&lt;</span> <span class="mi">18</span>
+    <span class="n">let</span> <span class="n">years_to_wait</span> <span class="o">=</span> <span class="mi">18</span> <span class="o">-</span> <span class="n">age</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">You can vote in &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">years_to_wait</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; years.&quot;</span><span class="p">)</span>
+<span class="k">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">You must be a citizen to vote.&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h2 id="loops">Loops<a class="headerlink" href="#loops" title="Permanent link">&para;</a></h2>
+<h3 id="countdown-timer">Countdown Timer<a class="headerlink" href="#countdown-timer" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== COUNTDOWN TIMER ===</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">let</span> <span class="n">seconds</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter countdown time (seconds): &quot;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Starting countdown...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="n">seconds</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span><span class="p">)</span>
+    <span class="n">seconds</span> <span class="o">-=</span> <span class="mi">1</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Time&#39;s up!&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="multiplication-table">Multiplication Table<a class="headerlink" href="#multiplication-table" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter a number: &quot;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Multiplication table for &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span><span class="p">)</span>
+
+<span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">10</span>
+    <span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="n">number</span> <span class="o">*</span> <span class="n">i</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; x &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="sum-of-numbers">Sum of Numbers<a class="headerlink" href="#sum-of-numbers" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== SUM CALCULATOR ===</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Enter numbers (0 to stop)&quot;</span><span class="p">)</span>
+
+<span class="n">let</span> <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">let</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">while</span> <span class="n">true</span>
+    <span class="n">let</span> <span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Enter number: &quot;</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="k">break</span>  <span class="c1"># Conceptual break</span>
+    <span class="n">end</span>
+
+    <span class="n">total</span> <span class="o">+=</span> <span class="n">num</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">end</span>
+
+<span class="k">if</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="n">let</span> <span class="n">average</span> <span class="o">=</span> <span class="n">total</span> <span class="o">/</span> <span class="n">count</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Total: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">total</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Count: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">average</span><span class="p">))</span>
+<span class="k">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">No numbers entered&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="list-iteration">List Iteration<a class="headerlink" href="#list-iteration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;elderberry&quot;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;My favorite fruits:&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">fruit</span> <span class="ow">in</span> <span class="n">fruits</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- &quot;</span> <span class="o">+</span> <span class="n">fruit</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Numbered list:&quot;</span><span class="p">)</span>
+
+<span class="n">let</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">fruit</span> <span class="ow">in</span> <span class="n">fruits</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;. &quot;</span> <span class="o">+</span> <span class="n">fruit</span><span class="p">)</span>
+    <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">end</span>
+</code></pre></div>
+<h2 id="working-with-lists">Working with Lists<a class="headerlink" href="#working-with-lists" title="Permanent link">&para;</a></h2>
+<h3 id="shopping-list">Shopping List<a class="headerlink" href="#shopping-list" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">shopping_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== SHOPPING LIST ===</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Add items</span>
+<span class="n">append</span><span class="p">(</span><span class="n">shopping_list</span><span class="p">,</span> <span class="s2">&quot;Milk&quot;</span><span class="p">)</span>
+<span class="n">append</span><span class="p">(</span><span class="n">shopping_list</span><span class="p">,</span> <span class="s2">&quot;Bread&quot;</span><span class="p">)</span>
+<span class="n">append</span><span class="p">(</span><span class="n">shopping_list</span><span class="p">,</span> <span class="s2">&quot;Eggs&quot;</span><span class="p">)</span>
+<span class="n">append</span><span class="p">(</span><span class="n">shopping_list</span><span class="p">,</span> <span class="s2">&quot;Butter&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Your shopping list:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">shopping_list</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- &quot;</span> <span class="o">+</span> <span class="n">item</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Total items: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shopping_list</span><span class="p">)))</span>
+</code></pre></div>
+<h3 id="find-maximum">Find Maximum<a class="headerlink" href="#find-maximum" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">23</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">78</span><span class="p">]</span>
+
+<span class="n">let</span> <span class="n">maximum</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="n">maximum</span>
+        <span class="n">maximum</span> <span class="o">=</span> <span class="n">num</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Numbers: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">numbers</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Maximum value: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">maximum</span><span class="p">))</span>
+</code></pre></div>
+<h3 id="count-items">Count Items<a class="headerlink" href="#count-items" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">,</span> <span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">]</span>
+
+<span class="n">let</span> <span class="n">apple_count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">fruit</span> <span class="ow">in</span> <span class="n">fruits</span>
+    <span class="k">if</span> <span class="n">fruit</span> <span class="o">==</span> <span class="s2">&quot;apple&quot;</span>
+        <span class="n">apple_count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total fruits: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fruits</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Apples: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">apple_count</span><span class="p">))</span>
+</code></pre></div>
+<h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h2>
+<h3 id="area-calculator">Area Calculator<a class="headerlink" href="#area-calculator" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">rectangle_area</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">width</span> <span class="o">*</span> <span class="n">height</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">triangle_area</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">base</span> <span class="o">*</span> <span class="n">height</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">circle_area</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14159</span>
+    <span class="k">return</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">radius</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== AREA CALCULATOR ===</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">let</span> <span class="n">rect_width</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Rectangle width: &quot;</span><span class="p">))</span>
+<span class="n">let</span> <span class="n">rect_height</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Rectangle height: &quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rectangle area: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">rectangle_area</span><span class="p">(</span><span class="n">rect_width</span><span class="p">,</span> <span class="n">rect_height</span><span class="p">)))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">let</span> <span class="n">tri_base</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Triangle base: &quot;</span><span class="p">))</span>
+<span class="n">let</span> <span class="n">tri_height</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Triangle height: &quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Triangle area: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">triangle_area</span><span class="p">(</span><span class="n">tri_base</span><span class="p">,</span> <span class="n">tri_height</span><span class="p">)))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">let</span> <span class="n">radius</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Circle radius: &quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Circle area: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">circle_area</span><span class="p">(</span><span class="n">radius</span><span class="p">)))</span>
+</code></pre></div>
+<h3 id="text-formatter">Text Formatter<a class="headerlink" href="#text-formatter" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">make_title</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="c1"># Simple title case (uppercase first letter)</span>
+    <span class="k">return</span> <span class="n">text</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">repeat_text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">times</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">times</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">+</span> <span class="n">text</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">end</span>
+
+    <span class="k">return</span> <span class="n">result</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">count_words</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="c1"># Simplified word count</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">message</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter a message: &quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Original: &quot;</span> <span class="o">+</span> <span class="n">message</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Repeated 3x: &quot;</span> <span class="o">+</span> <span class="n">repeat_text</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Characters: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count_words</span><span class="p">(</span><span class="n">message</span><span class="p">)))</span>
+</code></pre></div>
+<h2 id="random-programs">Random Programs<a class="headerlink" href="#random-programs" title="Permanent link">&para;</a></h2>
+<h3 id="dice-roller">Dice Roller<a class="headerlink" href="#dice-roller" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== DICE ROLLER ===</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">let</span> <span class="n">roll_again</span> <span class="o">=</span> <span class="s2">&quot;yes&quot;</span>
+
+<span class="k">while</span> <span class="n">roll_again</span> <span class="o">==</span> <span class="s2">&quot;yes&quot;</span>
+    <span class="n">let</span> <span class="n">dice1</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">dice2</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">total</span> <span class="o">=</span> <span class="n">dice1</span> <span class="o">+</span> <span class="n">dice2</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dice 1: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dice1</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dice 2: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dice2</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">total</span><span class="p">))</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">roll_again</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Roll again? (yes/no): &quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Thanks for playing!&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="coin-flip">Coin Flip<a class="headerlink" href="#coin-flip" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== COIN FLIP SIMULATOR ===</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">let</span> <span class="n">flips</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;How many flips? &quot;</span><span class="p">))</span>
+
+<span class="n">let</span> <span class="n">heads</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">let</span> <span class="n">tails</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">flips</span>
+    <span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">result</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="n">heads</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Flip &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;: Heads&quot;</span><span class="p">)</span>
+    <span class="k">else</span>
+        <span class="n">tails</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Flip &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;: Tails&quot;</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== RESULTS ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Heads: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">heads</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tails: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">tails</span><span class="p">))</span>
+</code></pre></div>
+<h3 id="random-compliment-generator">Random Compliment Generator<a class="headerlink" href="#random-compliment-generator" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="n">let</span> <span class="n">compliments</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;You&#39;re awesome!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;You&#39;re doing great!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;You&#39;re amazing!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;You&#39;re wonderful!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;You&#39;re fantastic!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;You&#39;re brilliant!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;You&#39;re incredible!&quot;</span>
+<span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== RANDOM COMPLIMENT GENERATOR ===</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">let</span> <span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;What&#39;s your name? &quot;</span><span class="p">)</span>
+<span class="n">let</span> <span class="n">compliment</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">compliments</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Hey &quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="n">compliment</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="data-processing">Data Processing<a class="headerlink" href="#data-processing" title="Permanent link">&para;</a></h2>
+<h3 id="student-grade-tracker">Student Grade Tracker<a class="headerlink" href="#student-grade-tracker" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">students</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">function</span> <span class="n">add_student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">grade</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">student</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+        <span class="s2">&quot;grade&quot;</span><span class="p">:</span> <span class="n">grade</span>
+    <span class="p">}</span>
+    <span class="n">append</span><span class="p">(</span><span class="n">students</span><span class="p">,</span> <span class="n">student</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">show_students</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== CLASS ROSTER ===&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">students</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">student</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">student</span><span class="p">[</span><span class="s2">&quot;grade&quot;</span><span class="p">]))</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">calculate_average</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">students</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="n">end</span>
+
+    <span class="n">let</span> <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">students</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">student</span><span class="p">[</span><span class="s2">&quot;grade&quot;</span><span class="p">]</span>
+    <span class="n">end</span>
+
+    <span class="k">return</span> <span class="n">total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">students</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="c1"># Add students</span>
+<span class="n">add_student</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="mi">92</span><span class="p">)</span>
+<span class="n">add_student</span><span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="mi">85</span><span class="p">)</span>
+<span class="n">add_student</span><span class="p">(</span><span class="s2">&quot;Charlie&quot;</span><span class="p">,</span> <span class="mi">78</span><span class="p">)</span>
+<span class="n">add_student</span><span class="p">(</span><span class="s2">&quot;Diana&quot;</span><span class="p">,</span> <span class="mi">95</span><span class="p">)</span>
+
+<span class="n">show_students</span><span class="p">()</span>
+
+<span class="n">let</span> <span class="n">avg</span> <span class="o">=</span> <span class="n">calculate_average</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Class Average: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">avg</span><span class="p">))</span>
+</code></pre></div>
+<h3 id="simple-budget-tracker">Simple Budget Tracker<a class="headerlink" href="#simple-budget-tracker" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">expenses</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">let</span> <span class="n">income</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">function</span> <span class="n">add_expense</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="n">amount</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">expense</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span>
+        <span class="s2">&quot;amount&quot;</span><span class="p">:</span> <span class="n">amount</span>
+    <span class="p">}</span>
+    <span class="n">append</span><span class="p">(</span><span class="n">expenses</span><span class="p">,</span> <span class="n">expense</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Added expense: &quot;</span> <span class="o">+</span> <span class="n">description</span> <span class="o">+</span> <span class="s2">&quot; - $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">amount</span><span class="p">))</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">show_summary</span><span class="p">()</span>
+    <span class="n">let</span> <span class="n">total_expenses</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== EXPENSES ===&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">expense</span> <span class="ow">in</span> <span class="n">expenses</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">expense</span><span class="p">[</span><span class="s2">&quot;description&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;: $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">expense</span><span class="p">[</span><span class="s2">&quot;amount&quot;</span><span class="p">]))</span>
+        <span class="n">total_expenses</span> <span class="o">+=</span> <span class="n">expense</span><span class="p">[</span><span class="s2">&quot;amount&quot;</span><span class="p">]</span>
+    <span class="n">end</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== SUMMARY ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Income: $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">income</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Expenses: $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">total_expenses</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Balance: $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">income</span> <span class="o">-</span> <span class="n">total_expenses</span><span class="p">))</span>
+<span class="n">end</span>
+
+<span class="n">income</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter your monthly income: $&quot;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Enter expenses (type &#39;done&#39; when finished)&quot;</span><span class="p">)</span>
+<span class="c1"># Simplified: pre-add expenses for demo</span>
+<span class="n">add_expense</span><span class="p">(</span><span class="s2">&quot;Rent&quot;</span><span class="p">,</span> <span class="mf">800.0</span><span class="p">)</span>
+<span class="n">add_expense</span><span class="p">(</span><span class="s2">&quot;Groceries&quot;</span><span class="p">,</span> <span class="mf">200.0</span><span class="p">)</span>
+<span class="n">add_expense</span><span class="p">(</span><span class="s2">&quot;Transportation&quot;</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">)</span>
+
+<span class="n">show_summary</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="interactive-programs">Interactive Programs<a class="headerlink" href="#interactive-programs" title="Permanent link">&para;</a></h2>
+<h3 id="simple-quiz">Simple Quiz<a class="headerlink" href="#simple-quiz" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== SIMPLE QUIZ ===</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">let</span> <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Question 1</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Question 1: What is 5 + 7?&quot;</span><span class="p">)</span>
+<span class="n">let</span> <span class="n">answer1</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Your answer: &quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">answer1</span> <span class="o">==</span> <span class="s2">&quot;12&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Correct!&quot;</span><span class="p">)</span>
+    <span class="n">score</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="k">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wrong! The answer is 12&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+<span class="c1"># Question 2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Question 2: What is the capital of France?&quot;</span><span class="p">)</span>
+<span class="n">let</span> <span class="n">answer2</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Your answer: &quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">answer2</span> <span class="o">==</span> <span class="s2">&quot;Paris&quot;</span> <span class="ow">or</span> <span class="n">answer2</span> <span class="o">==</span> <span class="s2">&quot;paris&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Correct!&quot;</span><span class="p">)</span>
+    <span class="n">score</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="k">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wrong! The answer is Paris&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+<span class="c1"># Question 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Question 3: What is 3 x 4?&quot;</span><span class="p">)</span>
+<span class="n">let</span> <span class="n">answer3</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Your answer: &quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">answer3</span> <span class="o">==</span> <span class="s2">&quot;12&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Correct!&quot;</span><span class="p">)</span>
+    <span class="n">score</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="k">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wrong! The answer is 12&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== RESULTS ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You got &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">score</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; out of 3 correct!&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">score</span> <span class="o">==</span> <span class="mi">3</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Perfect score!&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">2</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Good job!&quot;</span><span class="p">)</span>
+<span class="k">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Keep practicing!&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<p>Ready for more advanced examples?</p>
+<ul>
+<li><strong><a href="../advanced/">Advanced Examples</a></strong> - Complex programs and algorithms</li>
+<li><strong><a href="../../guide/variables/">Language Guide</a></strong> - Deep dive into features</li>
+<li><strong><a href="../../stdlib/builtins/">Standard Library</a></strong> - Explore all functions</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../stdlib/lists/" class="btn btn-neutral float-left" title="List Operations"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../advanced/" class="btn btn-neutral float-right" title="Advanced Examples">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/mochacinno-dev/Tourmaline" class="fa fa-code-fork" style="color: #fcfcfc"> mochacinno-dev/Tourmaline</a>
+        </span>
+    
+    
+      <span><a href="../../stdlib/lists/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../advanced/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

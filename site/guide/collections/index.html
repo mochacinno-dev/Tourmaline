@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Camila "Mocha" Rose (CoffeeShop Development)" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Lists & Dictionaries - Tourmaline</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Lists \u0026 Dictionaries";
+        var mkdocs_page_input_path = "guide\\collections.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Tourmaline
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/quick-start/">Quick Start</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/first-program/">Your First Program</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Language Guide</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../variables/">Variables & Types</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../operators/">Operators</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../control-flow/">Control Flow</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../functions/">Functions</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Lists & Dictionaries</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#lists">Lists</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#creating-lists">Creating Lists</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#accessing-elements">Accessing Elements</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#list-length">List Length</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#modifying-lists">Modifying Lists</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#update-element">Update Element</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#list-operations">List Operations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#adding-elements">Adding Elements</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#append-add-to-end">append() - Add to End</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#insert-add-at-position">insert() - Add at Position</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#removing-elements">Removing Elements</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#remove-remove-by-value">remove() - Remove by Value</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#pop-remove-by-index">pop() - Remove by Index</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#clear-remove-all">clear() - Remove All</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#iterating-over-lists">Iterating Over Lists</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#for-loop">For Loop</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#with-index">With Index</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#while-loop">While Loop</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#list-algorithms">List Algorithms</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#sum-of-list">Sum of List</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#find-maximum">Find Maximum</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#find-minimum">Find Minimum</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#average">Average</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#search-for-item">Search for Item</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#count-occurrences">Count Occurrences</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#filter-list">Filter List</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#reverse-list">Reverse List</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dictionaries">Dictionaries</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#creating-dictionaries">Creating Dictionaries</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#accessing-values">Accessing Values</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#modifying-dictionaries">Modifying Dictionaries</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dictionary-with-various-types">Dictionary with Various Types</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#nested-collections">Nested Collections</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#list-of-dictionaries">List of Dictionaries</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dictionary-with-lists">Dictionary with Lists</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#nested-dictionaries">Nested Dictionaries</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#practical-examples">Practical Examples</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#contact-list-manager">Contact List Manager</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#grade-book">Grade Book</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#shopping-cart">Shopping Cart</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#inventory-system">Inventory System</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data-analysis">Data Analysis</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#best-practices">Best Practices</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-use-descriptive-keys">1. Use Descriptive Keys</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-check-before-accessing">2. Check Before Accessing</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-keep-lists-homogeneous">3. Keep Lists Homogeneous</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-use-clear-variable-names">4. Use Clear Variable Names</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#common-patterns">Common Patterns</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#list-comprehension-manual">List Comprehension (Manual)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dictionary-lookup">Dictionary Lookup</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#frequency-counter">Frequency Counter</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exceptions/">Exception Handling</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Standard Library</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/builtins/">Built-in Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/math/">Math Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/random/">Random Library</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/lists/">List Operations</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/basic/">Basic Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/advanced/">Advanced Examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/syntax/">Syntax Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/errors/">Error Messages</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/license/">License</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/contributing/">Contributing</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Tourmaline</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Language Guide</li>
+      <li class="breadcrumb-item active">Lists & Dictionaries</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/mochacinno-dev/Tourmaline/edit/master/docs/guide/collections.md">Edit on mochacinno-dev/Tourmaline</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="lists-dictionaries">Lists &amp; Dictionaries<a class="headerlink" href="#lists-dictionaries" title="Permanent link">&para;</a></h1>
+<p>Learn how to work with collections in Tourmaline: lists for ordered sequences and dictionaries for key-value pairs.</p>
+<h2 id="lists">Lists<a class="headerlink" href="#lists" title="Permanent link">&para;</a></h2>
+<p>Lists store ordered collections of items.</p>
+<h3 id="creating-lists">Creating Lists<a class="headerlink" href="#creating-lists" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Empty list</span>
+<span class="n">let</span> <span class="n">empty_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># List with items</span>
+<span class="n">let</span> <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+
+<span class="c1"># Mixed types</span>
+<span class="n">let</span> <span class="n">mixed</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="n">true</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">]</span>
+
+<span class="c1"># Nested lists</span>
+<span class="n">let</span> <span class="n">matrix</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]</span>
+</code></pre></div>
+<h3 id="accessing-elements">Accessing Elements<a class="headerlink" href="#accessing-elements" title="Permanent link">&para;</a></h3>
+<p>Lists use zero-based indexing:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># apple (first item)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># banana</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>  <span class="c1"># cherry</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>  <span class="c1"># date (last item)</span>
+</code></pre></div>
+<p><strong>Negative Indexing:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># cherry (last item)</span>
+<span class="c1"># Note: Negative indexing might not be fully supported</span>
+</code></pre></div></p>
+<h3 id="list-length">List Length<a class="headerlink" href="#list-length" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+<span class="n">let</span> <span class="n">count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>  <span class="c1"># 3</span>
+
+<span class="c1"># Check if empty</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;List has items&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="modifying-lists">Modifying Lists<a class="headerlink" href="#modifying-lists" title="Permanent link">&para;</a></h3>
+<h4 id="update-element">Update Element<a class="headerlink" href="#update-element" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+<span class="n">fruits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;blueberry&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>  <span class="c1"># [&quot;apple&quot;, &quot;blueberry&quot;, &quot;cherry&quot;]</span>
+</code></pre></div>
+<h2 id="list-operations">List Operations<a class="headerlink" href="#list-operations" title="Permanent link">&para;</a></h2>
+<h3 id="adding-elements">Adding Elements<a class="headerlink" href="#adding-elements" title="Permanent link">&para;</a></h3>
+<h4 id="append-add-to-end"><code>append()</code> - Add to End<a class="headerlink" href="#append-add-to-end" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">]</span>
+<span class="n">append</span><span class="p">(</span><span class="n">fruits</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>  <span class="c1"># [&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;]</span>
+
+<span class="c1"># Add multiple items</span>
+<span class="n">append</span><span class="p">(</span><span class="n">fruits</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">)</span>
+<span class="n">append</span><span class="p">(</span><span class="n">fruits</span><span class="p">,</span> <span class="s2">&quot;elderberry&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>  <span class="c1"># [&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;, &quot;date&quot;, &quot;elderberry&quot;]</span>
+</code></pre></div>
+<h4 id="insert-add-at-position"><code>insert()</code> - Add at Position<a class="headerlink" href="#insert-add-at-position" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+<span class="n">insert</span><span class="p">(</span><span class="n">fruits</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">)</span>  <span class="c1"># Insert at index 1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>  <span class="c1"># [&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;]</span>
+
+<span class="c1"># Insert at beginning</span>
+<span class="n">insert</span><span class="p">(</span><span class="n">fruits</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;apricot&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>  <span class="c1"># [&quot;apricot&quot;, &quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;]</span>
+</code></pre></div>
+<h3 id="removing-elements">Removing Elements<a class="headerlink" href="#removing-elements" title="Permanent link">&para;</a></h3>
+<h4 id="remove-remove-by-value"><code>remove()</code> - Remove by Value<a class="headerlink" href="#remove-remove-by-value" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">]</span>
+<span class="n">remove</span><span class="p">(</span><span class="n">fruits</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">)</span>  <span class="c1"># Removes first occurrence</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>  <span class="c1"># [&quot;apple&quot;, &quot;cherry&quot;, &quot;banana&quot;]</span>
+</code></pre></div>
+<h4 id="pop-remove-by-index"><code>pop()</code> - Remove by Index<a class="headerlink" href="#pop-remove-by-index" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+
+<span class="c1"># Remove last item</span>
+<span class="n">let</span> <span class="n">last</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">last</span><span class="p">)</span>    <span class="c1"># cherry</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>  <span class="c1"># [&quot;apple&quot;, &quot;banana&quot;]</span>
+
+<span class="c1"># Remove specific index</span>
+<span class="n">let</span> <span class="n">first</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="n">fruits</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">first</span><span class="p">)</span>   <span class="c1"># apple</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>  <span class="c1"># [&quot;banana&quot;]</span>
+</code></pre></div>
+<h4 id="clear-remove-all"><code>clear()</code> - Remove All<a class="headerlink" href="#clear-remove-all" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+<span class="n">clear</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>  <span class="c1"># []</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fruits</span><span class="p">))</span>  <span class="c1"># 0</span>
+</code></pre></div>
+<h2 id="iterating-over-lists">Iterating Over Lists<a class="headerlink" href="#iterating-over-lists" title="Permanent link">&para;</a></h2>
+<h3 id="for-loop">For Loop<a class="headerlink" href="#for-loop" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">fruit</span> <span class="ow">in</span> <span class="n">fruits</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I like &quot;</span> <span class="o">+</span> <span class="n">fruit</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="with-index">With Index<a class="headerlink" href="#with-index" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+<span class="n">let</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">fruit</span> <span class="ow">in</span> <span class="n">fruits</span>
+    <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;. &quot;</span> <span class="o">+</span> <span class="n">fruit</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="while-loop">While Loop<a class="headerlink" href="#while-loop" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+<span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">end</span>
+</code></pre></div>
+<h2 id="list-algorithms">List Algorithms<a class="headerlink" href="#list-algorithms" title="Permanent link">&para;</a></h2>
+<h3 id="sum-of-list">Sum of List<a class="headerlink" href="#sum-of-list" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">sum_list</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">num</span>
+    <span class="n">end</span>
+    <span class="k">return</span> <span class="n">total</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sum_list</span><span class="p">(</span><span class="n">nums</span><span class="p">))</span>  <span class="c1"># 150</span>
+</code></pre></div>
+<h3 id="find-maximum">Find Maximum<a class="headerlink" href="#find-maximum" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">find_max</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="n">nil</span>
+    <span class="n">end</span>
+
+    <span class="n">let</span> <span class="n">maximum</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span>
+        <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="n">maximum</span>
+            <span class="n">maximum</span> <span class="o">=</span> <span class="n">num</span>
+        <span class="n">end</span>
+    <span class="n">end</span>
+    <span class="k">return</span> <span class="n">maximum</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">23</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">45</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">find_max</span><span class="p">(</span><span class="n">nums</span><span class="p">))</span>  <span class="c1"># 89</span>
+</code></pre></div>
+<h3 id="find-minimum">Find Minimum<a class="headerlink" href="#find-minimum" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">find_min</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="n">nil</span>
+    <span class="n">end</span>
+
+    <span class="n">let</span> <span class="n">minimum</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span>
+        <span class="k">if</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="n">minimum</span>
+            <span class="n">minimum</span> <span class="o">=</span> <span class="n">num</span>
+        <span class="n">end</span>
+    <span class="n">end</span>
+    <span class="k">return</span> <span class="n">minimum</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">23</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">45</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">find_min</span><span class="p">(</span><span class="n">nums</span><span class="p">))</span>  <span class="c1"># 12</span>
+</code></pre></div>
+<h3 id="average">Average<a class="headerlink" href="#average" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">average</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="n">end</span>
+
+    <span class="n">let</span> <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">num</span>
+    <span class="n">end</span>
+
+    <span class="k">return</span> <span class="n">total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">scores</span> <span class="o">=</span> <span class="p">[</span><span class="mi">85</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">88</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">average</span><span class="p">(</span><span class="n">scores</span><span class="p">))</span>  <span class="c1"># 86.6</span>
+</code></pre></div>
+<h3 id="search-for-item">Search for Item<a class="headerlink" href="#search-for-item" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">contains</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="nb">list</span>
+        <span class="k">if</span> <span class="n">element</span> <span class="o">==</span> <span class="n">item</span>
+            <span class="k">return</span> <span class="n">true</span>
+        <span class="n">end</span>
+    <span class="n">end</span>
+    <span class="k">return</span> <span class="n">false</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">contains</span><span class="p">(</span><span class="n">fruits</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">))</span>  <span class="c1"># true</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">contains</span><span class="p">(</span><span class="n">fruits</span><span class="p">,</span> <span class="s2">&quot;grape&quot;</span><span class="p">))</span>   <span class="c1"># false</span>
+</code></pre></div>
+<h3 id="count-occurrences">Count Occurrences<a class="headerlink" href="#count-occurrences" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">count_item</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">list</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="n">target</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">end</span>
+    <span class="n">end</span>
+    <span class="k">return</span> <span class="n">count</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">count_item</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>  <span class="c1"># 3</span>
+</code></pre></div>
+<h3 id="filter-list">Filter List<a class="headerlink" href="#filter-list" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">filter_positive</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span>
+        <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span>
+            <span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+        <span class="n">end</span>
+    <span class="n">end</span>
+    <span class="k">return</span> <span class="n">result</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">let</span> <span class="n">positives</span> <span class="o">=</span> <span class="n">filter_positive</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">positives</span><span class="p">)</span>  <span class="c1"># [5, 8, 2]</span>
+</code></pre></div>
+<h3 id="reverse-list">Reverse List<a class="headerlink" href="#reverse-list" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">reverse_list</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+        <span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">i</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="n">end</span>
+
+    <span class="k">return</span> <span class="n">result</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">let</span> <span class="nb">reversed</span> <span class="o">=</span> <span class="n">reverse_list</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">reversed</span><span class="p">)</span>  <span class="c1"># [5, 4, 3, 2, 1]</span>
+</code></pre></div>
+<h2 id="dictionaries">Dictionaries<a class="headerlink" href="#dictionaries" title="Permanent link">&para;</a></h2>
+<p>Dictionaries store key-value pairs.</p>
+<h3 id="creating-dictionaries">Creating Dictionaries<a class="headerlink" href="#creating-dictionaries" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Empty dictionary</span>
+<span class="n">let</span> <span class="n">empty_dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># Dictionary with values</span>
+<span class="n">let</span> <span class="n">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;New York&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># Numbers as values</span>
+<span class="n">let</span> <span class="n">scores</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;math&quot;</span><span class="p">:</span> <span class="mi">95</span><span class="p">,</span>
+    <span class="s2">&quot;english&quot;</span><span class="p">:</span> <span class="mi">87</span><span class="p">,</span>
+    <span class="s2">&quot;science&quot;</span><span class="p">:</span> <span class="mi">92</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="accessing-values">Accessing Values<a class="headerlink" href="#accessing-values" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;New York&quot;</span>
+<span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">person</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>  <span class="c1"># Alice</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">person</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">])</span>   <span class="c1"># 30</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">person</span><span class="p">[</span><span class="s2">&quot;city&quot;</span><span class="p">])</span>  <span class="c1"># New York</span>
+</code></pre></div>
+<h3 id="modifying-dictionaries">Modifying Dictionaries<a class="headerlink" href="#modifying-dictionaries" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">30</span>
+<span class="p">}</span>
+
+<span class="c1"># Update existing value</span>
+<span class="n">person</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">31</span>
+
+<span class="c1"># Add new key-value pair</span>
+<span class="n">person</span><span class="p">[</span><span class="s2">&quot;email&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;alice@example.com&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+<span class="c1"># {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 31, &quot;email&quot;: &quot;alice@example.com&quot;}</span>
+</code></pre></div>
+<h3 id="dictionary-with-various-types">Dictionary with Various Types<a class="headerlink" href="#dictionary-with-various-types" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;debug&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span>
+    <span class="s2">&quot;host&quot;</span><span class="p">:</span> <span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mf">30.5</span><span class="p">,</span>
+    <span class="s2">&quot;features&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;auth&quot;</span><span class="p">,</span> <span class="s2">&quot;api&quot;</span><span class="p">,</span> <span class="s2">&quot;db&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;debug&quot;</span><span class="p">])</span>     <span class="c1"># true</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;port&quot;</span><span class="p">])</span>      <span class="c1"># 8080</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">])</span>  <span class="c1"># [&quot;auth&quot;, &quot;api&quot;, &quot;db&quot;]</span>
+</code></pre></div>
+<h2 id="nested-collections">Nested Collections<a class="headerlink" href="#nested-collections" title="Permanent link">&para;</a></h2>
+<h3 id="list-of-dictionaries">List of Dictionaries<a class="headerlink" href="#list-of-dictionaries" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">students</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;grade&quot;</span><span class="p">:</span> <span class="mi">85</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;grade&quot;</span><span class="p">:</span> <span class="mi">92</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Charlie&quot;</span><span class="p">,</span> <span class="s2">&quot;grade&quot;</span><span class="p">:</span> <span class="mi">78</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">students</span>
+    <span class="n">let</span> <span class="n">name</span> <span class="o">=</span> <span class="n">student</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+    <span class="n">let</span> <span class="n">grade</span> <span class="o">=</span> <span class="n">student</span><span class="p">[</span><span class="s2">&quot;grade&quot;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">grade</span><span class="p">))</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="dictionary-with-lists">Dictionary with Lists<a class="headerlink" href="#dictionary-with-lists" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">inventory</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;fruits&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;orange&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;vegetables&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;carrot&quot;</span><span class="p">,</span> <span class="s2">&quot;lettuce&quot;</span><span class="p">,</span> <span class="s2">&quot;tomato&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;dairy&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;milk&quot;</span><span class="p">,</span> <span class="s2">&quot;cheese&quot;</span><span class="p">,</span> <span class="s2">&quot;yogurt&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fruits:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">fruit</span> <span class="ow">in</span> <span class="n">inventory</span><span class="p">[</span><span class="s2">&quot;fruits&quot;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  - &quot;</span> <span class="o">+</span> <span class="n">fruit</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="nested-dictionaries">Nested Dictionaries<a class="headerlink" href="#nested-dictionaries" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">company</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;TechCorp&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;address&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;street&quot;</span><span class="p">:</span> <span class="s2">&quot;123 Main St&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;Boston&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;zip&quot;</span><span class="p">:</span> <span class="s2">&quot;02101&quot;</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;employees&quot;</span><span class="p">:</span> <span class="mi">150</span>
+<span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">company</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>                    <span class="c1"># TechCorp</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">company</span><span class="p">[</span><span class="s2">&quot;address&quot;</span><span class="p">][</span><span class="s2">&quot;city&quot;</span><span class="p">])</span>         <span class="c1"># Boston</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">company</span><span class="p">[</span><span class="s2">&quot;address&quot;</span><span class="p">][</span><span class="s2">&quot;street&quot;</span><span class="p">])</span>       <span class="c1"># 123 Main St</span>
+</code></pre></div>
+<h2 id="practical-examples">Practical Examples<a class="headerlink" href="#practical-examples" title="Permanent link">&para;</a></h2>
+<h3 id="contact-list-manager">Contact List Manager<a class="headerlink" href="#contact-list-manager" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">contacts</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">function</span> <span class="n">add_contact</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">phone</span><span class="p">,</span> <span class="n">email</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">contact</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+        <span class="s2">&quot;phone&quot;</span><span class="p">:</span> <span class="n">phone</span><span class="p">,</span>
+        <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="n">email</span>
+    <span class="p">}</span>
+    <span class="n">append</span><span class="p">(</span><span class="n">contacts</span><span class="p">,</span> <span class="n">contact</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Contact added: &quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">list_contacts</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== CONTACTS ===&quot;</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">contact</span> <span class="ow">in</span> <span class="n">contacts</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;. &quot;</span> <span class="o">+</span> <span class="n">contact</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   Phone: &quot;</span> <span class="o">+</span> <span class="n">contact</span><span class="p">[</span><span class="s2">&quot;phone&quot;</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   Email: &quot;</span> <span class="o">+</span> <span class="n">contact</span><span class="p">[</span><span class="s2">&quot;email&quot;</span><span class="p">])</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="c1"># Add contacts</span>
+<span class="n">add_contact</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;555-1234&quot;</span><span class="p">,</span> <span class="s2">&quot;alice@email.com&quot;</span><span class="p">)</span>
+<span class="n">add_contact</span><span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;555-5678&quot;</span><span class="p">,</span> <span class="s2">&quot;bob@email.com&quot;</span><span class="p">)</span>
+
+<span class="c1"># List all contacts</span>
+<span class="n">list_contacts</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="grade-book">Grade Book<a class="headerlink" href="#grade-book" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">gradebook</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Alice&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">85</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span>
+    <span class="s2">&quot;Bob&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">78</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">82</span><span class="p">,</span> <span class="mi">88</span><span class="p">],</span>
+    <span class="s2">&quot;Charlie&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">92</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">94</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">function</span> <span class="n">calculate_average_for_student</span><span class="p">(</span><span class="n">grades</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">grade</span> <span class="ow">in</span> <span class="n">grades</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">grade</span>
+    <span class="n">end</span>
+    <span class="k">return</span> <span class="n">total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">grades</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== GRADE REPORT ===&quot;</span><span class="p">)</span>
+
+<span class="c1"># Note: Direct dictionary iteration requires accessing keys</span>
+<span class="c1"># This is a simplified example</span>
+<span class="n">let</span> <span class="n">alice_avg</span> <span class="o">=</span> <span class="n">calculate_average_for_student</span><span class="p">(</span><span class="n">gradebook</span><span class="p">[</span><span class="s2">&quot;Alice&quot;</span><span class="p">])</span>
+<span class="n">let</span> <span class="n">bob_avg</span> <span class="o">=</span> <span class="n">calculate_average_for_student</span><span class="p">(</span><span class="n">gradebook</span><span class="p">[</span><span class="s2">&quot;Bob&quot;</span><span class="p">])</span>
+<span class="n">let</span> <span class="n">charlie_avg</span> <span class="o">=</span> <span class="n">calculate_average_for_student</span><span class="p">(</span><span class="n">gradebook</span><span class="p">[</span><span class="s2">&quot;Charlie&quot;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Alice: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">alice_avg</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bob: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">bob_avg</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Charlie: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">charlie_avg</span><span class="p">))</span>
+</code></pre></div>
+<h3 id="shopping-cart">Shopping Cart<a class="headerlink" href="#shopping-cart" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">cart</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">function</span> <span class="n">add_item</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">price</span><span class="p">,</span> <span class="n">quantity</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">item</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+        <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="n">price</span><span class="p">,</span>
+        <span class="s2">&quot;quantity&quot;</span><span class="p">:</span> <span class="n">quantity</span>
+    <span class="p">}</span>
+    <span class="n">append</span><span class="p">(</span><span class="n">cart</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Added: &quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot; x&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">quantity</span><span class="p">))</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">calculate_total</span><span class="p">()</span>
+    <span class="n">let</span> <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">cart</span>
+        <span class="n">let</span> <span class="n">item_total</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;quantity&quot;</span><span class="p">]</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">item_total</span>
+    <span class="n">end</span>
+    <span class="k">return</span> <span class="n">total</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">show_cart</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== SHOPPING CART ===&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">cart</span>
+        <span class="n">let</span> <span class="n">name</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+        <span class="n">let</span> <span class="n">price</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span>
+        <span class="n">let</span> <span class="n">qty</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;quantity&quot;</span><span class="p">]</span>
+        <span class="n">let</span> <span class="n">subtotal</span> <span class="o">=</span> <span class="n">price</span> <span class="o">*</span> <span class="n">qty</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot; - $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">price</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; x &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">qty</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; = $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">subtotal</span><span class="p">))</span>
+    <span class="n">end</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Total: $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">calculate_total</span><span class="p">()))</span>
+<span class="n">end</span>
+
+<span class="c1"># Add items to cart</span>
+<span class="n">add_item</span><span class="p">(</span><span class="s2">&quot;Apple&quot;</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">add_item</span><span class="p">(</span><span class="s2">&quot;Bread&quot;</span><span class="p">,</span> <span class="mf">2.50</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">add_item</span><span class="p">(</span><span class="s2">&quot;Milk&quot;</span><span class="p">,</span> <span class="mf">3.99</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Show cart</span>
+<span class="n">show_cart</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="inventory-system">Inventory System<a class="headerlink" href="#inventory-system" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">inventory</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">function</span> <span class="n">add_product</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">price</span><span class="p">)</span>
+    <span class="n">inventory</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+        <span class="s2">&quot;quantity&quot;</span><span class="p">:</span> <span class="n">quantity</span><span class="p">,</span>
+        <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="n">price</span>
+    <span class="p">}</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Added product: &quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">update_quantity</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">change</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">inventory</span>  <span class="c1"># Conceptual check</span>
+        <span class="n">let</span> <span class="n">product</span> <span class="o">=</span> <span class="n">inventory</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span>
+        <span class="n">product</span><span class="p">[</span><span class="s2">&quot;quantity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">product</span><span class="p">[</span><span class="s2">&quot;quantity&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">change</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Updated: &quot;</span> <span class="o">+</span> <span class="n">product</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+    <span class="k">else</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Product not found&quot;</span><span class="p">)</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="c1"># Build inventory</span>
+<span class="n">add_product</span><span class="p">(</span><span class="s2">&quot;P001&quot;</span><span class="p">,</span> <span class="s2">&quot;Laptop&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">999.99</span><span class="p">)</span>
+<span class="n">add_product</span><span class="p">(</span><span class="s2">&quot;P002&quot;</span><span class="p">,</span> <span class="s2">&quot;Mouse&quot;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">19.99</span><span class="p">)</span>
+<span class="n">add_product</span><span class="p">(</span><span class="s2">&quot;P003&quot;</span><span class="p">,</span> <span class="s2">&quot;Keyboard&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mf">79.99</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="data-analysis">Data Analysis<a class="headerlink" href="#data-analysis" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">survey_data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;rating&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;satisfied&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">34</span><span class="p">,</span> <span class="s2">&quot;rating&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;satisfied&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span> <span class="s2">&quot;rating&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;satisfied&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">28</span><span class="p">,</span> <span class="s2">&quot;rating&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;satisfied&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">51</span><span class="p">,</span> <span class="s2">&quot;rating&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;satisfied&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="n">function</span> <span class="n">analyze_survey</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">total_rating</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">let</span> <span class="n">satisfied_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">let</span> <span class="n">total_age</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">data</span>
+        <span class="n">total_rating</span> <span class="o">+=</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;rating&quot;</span><span class="p">]</span>
+        <span class="n">total_age</span> <span class="o">+=</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;satisfied&quot;</span><span class="p">]</span>
+            <span class="n">satisfied_count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">end</span>
+    <span class="n">end</span>
+
+    <span class="n">let</span> <span class="n">count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">avg_rating</span> <span class="o">=</span> <span class="n">total_rating</span> <span class="o">/</span> <span class="n">count</span>
+    <span class="n">let</span> <span class="n">avg_age</span> <span class="o">=</span> <span class="n">total_age</span> <span class="o">/</span> <span class="n">count</span>
+    <span class="n">let</span> <span class="n">satisfaction_rate</span> <span class="o">=</span> <span class="n">satisfied_count</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">/</span> <span class="n">count</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== SURVEY ANALYSIS ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Responses: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average Rating: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">avg_rating</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average Age: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">avg_age</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Satisfaction Rate: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">satisfaction_rate</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="n">analyze_survey</span><span class="p">(</span><span class="n">survey_data</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="1-use-descriptive-keys">1. Use Descriptive Keys<a class="headerlink" href="#1-use-descriptive-keys" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Less clear</span>
+<span class="n">let</span> <span class="n">p</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">}</span>
+
+<span class="c1"># More clear</span>
+<span class="n">let</span> <span class="n">person</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">}</span>
+</code></pre></div>
+<h3 id="2-check-before-accessing">2. Check Before Accessing<a class="headerlink" href="#2-check-before-accessing" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Safer dictionary access</span>
+<span class="n">let</span> <span class="n">person</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">}</span>
+
+<span class="c1"># Check if key exists (conceptual)</span>
+<span class="c1"># In practice, use try-except or careful structure</span>
+</code></pre></div>
+<h3 id="3-keep-lists-homogeneous">3. Keep Lists Homogeneous<a class="headerlink" href="#3-keep-lists-homogeneous" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Good: Same type</span>
+<span class="n">let</span> <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">let</span> <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;Charlie&quot;</span><span class="p">]</span>
+
+<span class="c1"># Less ideal: Mixed types (use dictionaries instead)</span>
+<span class="n">let</span> <span class="n">mixed</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="n">true</span><span class="p">]</span>
+</code></pre></div>
+<h3 id="4-use-clear-variable-names">4. Use Clear Variable Names<a class="headerlink" href="#4-use-clear-variable-names" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Less clear</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">y</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="c1"># More clear</span>
+<span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">students</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">student</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+<span class="n">end</span>
+</code></pre></div>
+<h2 id="common-patterns">Common Patterns<a class="headerlink" href="#common-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="list-comprehension-manual">List Comprehension (Manual)<a class="headerlink" href="#list-comprehension-manual" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Double all numbers</span>
+<span class="n">let</span> <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">let</span> <span class="n">doubled</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span>
+    <span class="n">append</span><span class="p">(</span><span class="n">doubled</span><span class="p">,</span> <span class="n">num</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">doubled</span><span class="p">)</span>  <span class="c1"># [2, 4, 6, 8, 10]</span>
+</code></pre></div>
+<h3 id="dictionary-lookup">Dictionary Lookup<a class="headerlink" href="#dictionary-lookup" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">colors</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;red&quot;</span><span class="p">:</span> <span class="s2">&quot;#FF0000&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;green&quot;</span><span class="p">:</span> <span class="s2">&quot;#00FF00&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;blue&quot;</span><span class="p">:</span> <span class="s2">&quot;#0000FF&quot;</span>
+<span class="p">}</span>
+
+<span class="n">let</span> <span class="n">color_name</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span>
+<span class="n">let</span> <span class="n">hex_code</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[</span><span class="n">color_name</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hex_code</span><span class="p">)</span>  <span class="c1"># #FF0000</span>
+</code></pre></div>
+<h3 id="frequency-counter">Frequency Counter<a class="headerlink" href="#frequency-counter" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;apple&quot;</span><span class="p">]</span>
+<span class="n">let</span> <span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># Manual counting (simplified)</span>
+<span class="c1"># In practice, you&#39;d iterate and check/update counts</span>
+</code></pre></div>
+<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong><a href="../functions/">Functions</a></strong> - Pass collections to functions</li>
+<li><strong><a href="../../stdlib/lists/">List Operations</a></strong> - More list functions</li>
+<li><strong><a href="../../examples/basic/">Examples</a></strong> - See collections in action</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../functions/" class="btn btn-neutral float-left" title="Functions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../exceptions/" class="btn btn-neutral float-right" title="Exception Handling">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/mochacinno-dev/Tourmaline" class="fa fa-code-fork" style="color: #fcfcfc"> mochacinno-dev/Tourmaline</a>
+        </span>
+    
+    
+      <span><a href="../functions/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../exceptions/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

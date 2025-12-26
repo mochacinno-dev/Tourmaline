@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Camila "Mocha" Rose (CoffeeShop Development)" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>List Operations - Tourmaline</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "List Operations";
+        var mkdocs_page_input_path = "stdlib\\lists.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Tourmaline
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/quick-start/">Quick Start</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/first-program/">Your First Program</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Language Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/variables/">Variables & Types</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/operators/">Operators</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/control-flow/">Control Flow</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/functions/">Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/collections/">Lists & Dictionaries</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guide/exceptions/">Exception Handling</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Standard Library</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../builtins/">Built-in Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../math/">Math Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../random/">Random Library</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">List Operations</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#list-functions">List Functions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#append">append()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#insert">insert()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#remove">remove()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pop">pop()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#clear">clear()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#practical-examples">Practical Examples</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#stack-implementation">Stack Implementation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#queue-implementation">Queue Implementation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#todo-list-manager">Todo List Manager</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#shopping-cart">Shopping Cart</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#history-tracker">History Tracker</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#list-sorter-manual">List Sorter (Manual)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#playlist-manager">Playlist Manager</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#undoredo-system">Undo/Redo System</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#list-manipulation-patterns">List Manipulation Patterns</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#remove-all-occurrences">Remove All Occurrences</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#insert-sorted">Insert Sorted</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#replace-item">Replace Item</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#reverse-list">Reverse List</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#best-practices">Best Practices</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#check-before-removing">Check Before Removing</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#use-appropriate-method">Use Appropriate Method</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#avoid-index-errors">Avoid Index Errors</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#quick-reference">Quick Reference</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/basic/">Basic Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/advanced/">Advanced Examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/syntax/">Syntax Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/errors/">Error Messages</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/license/">License</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/contributing/">Contributing</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Tourmaline</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Standard Library</li>
+      <li class="breadcrumb-item active">List Operations</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/mochacinno-dev/Tourmaline/edit/master/docs/stdlib/lists.md">Edit on mochacinno-dev/Tourmaline</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="list-operations">List Operations<a class="headerlink" href="#list-operations" title="Permanent link">&para;</a></h1>
+<p>Tourmaline provides built-in functions for working with lists. These functions help you add, remove, and manage list elements.</p>
+<h2 id="list-functions">List Functions<a class="headerlink" href="#list-functions" title="Permanent link">&para;</a></h2>
+<h3 id="append"><code>append()</code><a class="headerlink" href="#append" title="Permanent link">&para;</a></h3>
+<p>Add an item to the end of a list.</p>
+<p><strong>Syntax:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Parameters:</strong>
+- <code>list</code>: The list to modify
+- <code>item</code>: The item to add</p>
+<p><strong>Returns:</strong> The modified list</p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">]</span>
+<span class="n">append</span><span class="p">(</span><span class="n">fruits</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>  <span class="c1"># [&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;]</span>
+
+<span class="c1"># Append multiple times</span>
+<span class="n">append</span><span class="p">(</span><span class="n">fruits</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">)</span>
+<span class="n">append</span><span class="p">(</span><span class="n">fruits</span><span class="p">,</span> <span class="s2">&quot;elderberry&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>  <span class="c1"># [&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;, &quot;date&quot;, &quot;elderberry&quot;]</span>
+
+<span class="c1"># Append different types</span>
+<span class="n">let</span> <span class="n">mixed</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">append</span><span class="p">(</span><span class="n">mixed</span><span class="p">,</span> <span class="s2">&quot;three&quot;</span><span class="p">)</span>
+<span class="n">append</span><span class="p">(</span><span class="n">mixed</span><span class="p">,</span> <span class="n">true</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mixed</span><span class="p">)</span>  <span class="c1"># [1, 2, &quot;three&quot;, true]</span>
+</code></pre></div></p>
+<hr />
+<h3 id="insert"><code>insert()</code><a class="headerlink" href="#insert" title="Permanent link">&para;</a></h3>
+<p>Insert an item at a specific position.</p>
+<p><strong>Syntax:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">insert</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Parameters:</strong>
+- <code>list</code>: The list to modify
+- <code>index</code>: Position to insert at (0-based)
+- <code>item</code>: The item to insert</p>
+<p><strong>Returns:</strong> The modified list</p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+
+<span class="c1"># Insert at index 1</span>
+<span class="n">insert</span><span class="p">(</span><span class="n">fruits</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>  <span class="c1"># [&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;]</span>
+
+<span class="c1"># Insert at beginning (index 0)</span>
+<span class="n">insert</span><span class="p">(</span><span class="n">fruits</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;apricot&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>  <span class="c1"># [&quot;apricot&quot;, &quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;]</span>
+
+<span class="c1"># Insert at end</span>
+<span class="n">insert</span><span class="p">(</span><span class="n">fruits</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">fruits</span><span class="p">),</span> <span class="s2">&quot;date&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>  <span class="c1"># [&quot;apricot&quot;, &quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;, &quot;date&quot;]</span>
+</code></pre></div></p>
+<hr />
+<h3 id="remove"><code>remove()</code><a class="headerlink" href="#remove" title="Permanent link">&para;</a></h3>
+<p>Remove the first occurrence of an item.</p>
+<p><strong>Syntax:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">remove</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Parameters:</strong>
+- <code>list</code>: The list to modify
+- <code>item</code>: The item to remove</p>
+<p><strong>Returns:</strong> The modified list</p>
+<p><strong>Raises:</strong> Error if item not found</p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">]</span>
+
+<span class="c1"># Remove first &quot;banana&quot;</span>
+<span class="n">remove</span><span class="p">(</span><span class="n">fruits</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>  <span class="c1"># [&quot;apple&quot;, &quot;cherry&quot;, &quot;banana&quot;]</span>
+
+<span class="c1"># Remove &quot;apple&quot;</span>
+<span class="n">remove</span><span class="p">(</span><span class="n">fruits</span><span class="p">,</span> <span class="s2">&quot;apple&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>  <span class="c1"># [&quot;cherry&quot;, &quot;banana&quot;]</span>
+
+<span class="c1"># Error if item doesn&#39;t exist</span>
+<span class="k">try</span>
+    <span class="n">remove</span><span class="p">(</span><span class="n">fruits</span><span class="p">,</span> <span class="s2">&quot;grape&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">error</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Item not found: &quot;</span> <span class="o">+</span> <span class="n">error</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div></p>
+<hr />
+<h3 id="pop"><code>pop()</code><a class="headerlink" href="#pop" title="Permanent link">&para;</a></h3>
+<p>Remove and return an item at an index.</p>
+<p><strong>Syntax:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">pop</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>           <span class="c1"># Remove last item</span>
+<span class="n">pop</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>    <span class="c1"># Remove item at index</span>
+</code></pre></div></p>
+<p><strong>Parameters:</strong>
+- <code>list</code>: The list to modify
+- <code>index</code>: Position to remove from (optional, default: -1)</p>
+<p><strong>Returns:</strong> The removed item</p>
+<p><strong>Raises:</strong> Error if list is empty or index invalid</p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+
+<span class="c1"># Remove last item</span>
+<span class="n">let</span> <span class="n">last</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">last</span><span class="p">)</span>    <span class="c1"># &quot;cherry&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>  <span class="c1"># [&quot;apple&quot;, &quot;banana&quot;]</span>
+
+<span class="c1"># Remove first item</span>
+<span class="n">let</span> <span class="n">first</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="n">fruits</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">first</span><span class="p">)</span>   <span class="c1"># &quot;apple&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>  <span class="c1"># [&quot;banana&quot;]</span>
+
+<span class="c1"># Remove from middle</span>
+<span class="n">let</span> <span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">]</span>
+<span class="n">let</span> <span class="n">middle</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">middle</span><span class="p">)</span>  <span class="c1"># &quot;c&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>   <span class="c1"># [&quot;a&quot;, &quot;b&quot;, &quot;d&quot;, &quot;e&quot;]</span>
+</code></pre></div></p>
+<hr />
+<h3 id="clear"><code>clear()</code><a class="headerlink" href="#clear" title="Permanent link">&para;</a></h3>
+<p>Remove all items from a list.</p>
+<p><strong>Syntax:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">clear</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Parameters:</strong>
+- <code>list</code>: The list to clear</p>
+<p><strong>Returns:</strong> The empty list</p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fruits</span><span class="p">))</span>  <span class="c1"># 3</span>
+
+<span class="n">clear</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fruits</span><span class="p">))</span>  <span class="c1"># 0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>       <span class="c1"># []</span>
+
+<span class="c1"># Safe to use on empty lists</span>
+<span class="n">clear</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>       <span class="c1"># []</span>
+</code></pre></div></p>
+<hr />
+<h2 id="practical-examples">Practical Examples<a class="headerlink" href="#practical-examples" title="Permanent link">&para;</a></h2>
+<h3 id="stack-implementation">Stack Implementation<a class="headerlink" href="#stack-implementation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Stack (Last In, First Out)</span>
+<span class="n">let</span> <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">function</span> <span class="n">push</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="n">append</span><span class="p">(</span><span class="n">stack</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pushed: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">pop_stack</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="n">let</span> <span class="n">item</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Popped: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">item</span>
+    <span class="k">else</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Stack is empty&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">nil</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">peek</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="n">stack</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span>
+        <span class="k">return</span> <span class="n">nil</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="n">push</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">push</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">push</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Top: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">peek</span><span class="p">()))</span>  <span class="c1"># 3</span>
+<span class="n">pop_stack</span><span class="p">()</span>  <span class="c1"># 3</span>
+<span class="n">pop_stack</span><span class="p">()</span>  <span class="c1"># 2</span>
+</code></pre></div>
+<h3 id="queue-implementation">Queue Implementation<a class="headerlink" href="#queue-implementation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Queue (First In, First Out)</span>
+<span class="n">let</span> <span class="n">queue</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">function</span> <span class="n">enqueue</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="n">append</span><span class="p">(</span><span class="n">queue</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Enqueued: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">dequeue</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">queue</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="n">let</span> <span class="n">item</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="n">queue</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dequeued: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">item</span>
+    <span class="k">else</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Queue is empty&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">nil</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="n">enqueue</span><span class="p">(</span><span class="s2">&quot;First&quot;</span><span class="p">)</span>
+<span class="n">enqueue</span><span class="p">(</span><span class="s2">&quot;Second&quot;</span><span class="p">)</span>
+<span class="n">enqueue</span><span class="p">(</span><span class="s2">&quot;Third&quot;</span><span class="p">)</span>
+<span class="n">dequeue</span><span class="p">()</span>  <span class="c1"># First</span>
+<span class="n">dequeue</span><span class="p">()</span>  <span class="c1"># Second</span>
+</code></pre></div>
+<h3 id="todo-list-manager">Todo List Manager<a class="headerlink" href="#todo-list-manager" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">todos</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">function</span> <span class="n">add_todo</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+    <span class="n">append</span><span class="p">(</span><span class="n">todos</span><span class="p">,</span> <span class="n">task</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Added: &quot;</span> <span class="o">+</span> <span class="n">task</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">remove_todo</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+    <span class="k">try</span>
+        <span class="n">remove</span><span class="p">(</span><span class="n">todos</span><span class="p">,</span> <span class="n">task</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Removed: &quot;</span> <span class="o">+</span> <span class="n">task</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">error</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Task not found: &quot;</span> <span class="o">+</span> <span class="n">task</span><span class="p">)</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">show_todos</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== TODO LIST ===&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">todos</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No tasks&quot;</span><span class="p">)</span>
+    <span class="k">else</span>
+        <span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">todos</span>
+            <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;. &quot;</span> <span class="o">+</span> <span class="n">task</span><span class="p">)</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">end</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="n">add_todo</span><span class="p">(</span><span class="s2">&quot;Buy groceries&quot;</span><span class="p">)</span>
+<span class="n">add_todo</span><span class="p">(</span><span class="s2">&quot;Do laundry&quot;</span><span class="p">)</span>
+<span class="n">add_todo</span><span class="p">(</span><span class="s2">&quot;Call mom&quot;</span><span class="p">)</span>
+<span class="n">show_todos</span><span class="p">()</span>
+<span class="n">remove_todo</span><span class="p">(</span><span class="s2">&quot;Do laundry&quot;</span><span class="p">)</span>
+<span class="n">show_todos</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="shopping-cart">Shopping Cart<a class="headerlink" href="#shopping-cart" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">cart</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">function</span> <span class="n">add_to_cart</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">price</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">product</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">item</span><span class="p">,</span>
+        <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="n">price</span>
+    <span class="p">}</span>
+    <span class="n">append</span><span class="p">(</span><span class="n">cart</span><span class="p">,</span> <span class="n">product</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Added &quot;</span> <span class="o">+</span> <span class="n">item</span> <span class="o">+</span> <span class="s2">&quot; - $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">price</span><span class="p">))</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">remove_from_cart</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">let</span> <span class="n">found</span> <span class="o">=</span> <span class="n">false</span>
+
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">cart</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cart</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">item</span>
+            <span class="n">pop</span><span class="p">(</span><span class="n">cart</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Removed &quot;</span> <span class="o">+</span> <span class="n">item</span><span class="p">)</span>
+            <span class="n">found</span> <span class="o">=</span> <span class="n">true</span>
+        <span class="n">end</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">end</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">item</span> <span class="o">+</span> <span class="s2">&quot; not in cart&quot;</span><span class="p">)</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">get_total</span><span class="p">()</span>
+    <span class="n">let</span> <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">cart</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span>
+    <span class="n">end</span>
+    <span class="k">return</span> <span class="n">total</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">show_cart</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== SHOPPING CART ===&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">cart</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; - $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]))</span>
+    <span class="n">end</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total: $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">get_total</span><span class="p">()))</span>
+<span class="n">end</span>
+
+<span class="n">add_to_cart</span><span class="p">(</span><span class="s2">&quot;Apple&quot;</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">)</span>
+<span class="n">add_to_cart</span><span class="p">(</span><span class="s2">&quot;Bread&quot;</span><span class="p">,</span> <span class="mf">2.50</span><span class="p">)</span>
+<span class="n">add_to_cart</span><span class="p">(</span><span class="s2">&quot;Milk&quot;</span><span class="p">,</span> <span class="mf">3.99</span><span class="p">)</span>
+<span class="n">show_cart</span><span class="p">()</span>
+<span class="n">remove_from_cart</span><span class="p">(</span><span class="s2">&quot;Bread&quot;</span><span class="p">)</span>
+<span class="n">show_cart</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="history-tracker">History Tracker<a class="headerlink" href="#history-tracker" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">history</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">let</span> <span class="n">max_history</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">function</span> <span class="n">add_to_history</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+    <span class="n">append</span><span class="p">(</span><span class="n">history</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span>
+
+    <span class="c1"># Keep only last max_history items</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">history</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">max_history</span>
+        <span class="n">pop</span><span class="p">(</span><span class="n">history</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">show_history</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== HISTORY ===&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="n">history</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- &quot;</span> <span class="o">+</span> <span class="n">action</span><span class="p">)</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">clear_history</span><span class="p">()</span>
+    <span class="n">clear</span><span class="p">(</span><span class="n">history</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;History cleared&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="n">add_to_history</span><span class="p">(</span><span class="s2">&quot;Opened file&quot;</span><span class="p">)</span>
+<span class="n">add_to_history</span><span class="p">(</span><span class="s2">&quot;Edited text&quot;</span><span class="p">)</span>
+<span class="n">add_to_history</span><span class="p">(</span><span class="s2">&quot;Saved file&quot;</span><span class="p">)</span>
+<span class="n">show_history</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="list-sorter-manual">List Sorter (Manual)<a class="headerlink" href="#list-sorter-manual" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">bubble_sort</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">let</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">numbers</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">numbers</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+                <span class="c1"># Swap</span>
+                <span class="n">let</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">numbers</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+                <span class="n">numbers</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>
+            <span class="n">end</span>
+            <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">end</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">end</span>
+
+    <span class="k">return</span> <span class="n">numbers</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">90</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Before: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">nums</span><span class="p">))</span>
+<span class="n">bubble_sort</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">nums</span><span class="p">))</span>
+</code></pre></div>
+<h3 id="playlist-manager">Playlist Manager<a class="headerlink" href="#playlist-manager" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">playlist</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">function</span> <span class="n">add_song</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">artist</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">song</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
+        <span class="s2">&quot;artist&quot;</span><span class="p">:</span> <span class="n">artist</span>
+    <span class="p">}</span>
+    <span class="n">append</span><span class="p">(</span><span class="n">playlist</span><span class="p">,</span> <span class="n">song</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Added: &quot;</span> <span class="o">+</span> <span class="n">title</span> <span class="o">+</span> <span class="s2">&quot; by &quot;</span> <span class="o">+</span> <span class="n">artist</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">remove_song</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">playlist</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">playlist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;title&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">title</span>
+            <span class="n">pop</span><span class="p">(</span><span class="n">playlist</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Removed: &quot;</span> <span class="o">+</span> <span class="n">title</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="n">end</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">end</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Song not found: &quot;</span> <span class="o">+</span> <span class="n">title</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">show_playlist</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== PLAYLIST ===&quot;</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">song</span> <span class="ow">in</span> <span class="n">playlist</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;. &quot;</span> <span class="o">+</span> <span class="n">song</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; - &quot;</span> <span class="o">+</span> <span class="n">song</span><span class="p">[</span><span class="s2">&quot;artist&quot;</span><span class="p">])</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="n">add_song</span><span class="p">(</span><span class="s2">&quot;Imagine&quot;</span><span class="p">,</span> <span class="s2">&quot;John Lennon&quot;</span><span class="p">)</span>
+<span class="n">add_song</span><span class="p">(</span><span class="s2">&quot;Bohemian Rhapsody&quot;</span><span class="p">,</span> <span class="s2">&quot;Queen&quot;</span><span class="p">)</span>
+<span class="n">add_song</span><span class="p">(</span><span class="s2">&quot;Hotel California&quot;</span><span class="p">,</span> <span class="s2">&quot;Eagles&quot;</span><span class="p">)</span>
+<span class="n">show_playlist</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="undoredo-system">Undo/Redo System<a class="headerlink" href="#undoredo-system" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">undo_stack</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">let</span> <span class="n">redo_stack</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">function</span> <span class="n">do_action</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+    <span class="n">append</span><span class="p">(</span><span class="n">undo_stack</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span>
+    <span class="n">clear</span><span class="p">(</span><span class="n">redo_stack</span><span class="p">)</span>  <span class="c1"># Clear redo when new action is done</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Action: &quot;</span> <span class="o">+</span> <span class="n">action</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">undo</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">undo_stack</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="n">let</span> <span class="n">action</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="n">undo_stack</span><span class="p">)</span>
+        <span class="n">append</span><span class="p">(</span><span class="n">redo_stack</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Undid: &quot;</span> <span class="o">+</span> <span class="n">action</span><span class="p">)</span>
+    <span class="k">else</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nothing to undo&quot;</span><span class="p">)</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">redo</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">redo_stack</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="n">let</span> <span class="n">action</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="n">redo_stack</span><span class="p">)</span>
+        <span class="n">append</span><span class="p">(</span><span class="n">undo_stack</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Redid: &quot;</span> <span class="o">+</span> <span class="n">action</span><span class="p">)</span>
+    <span class="k">else</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nothing to redo&quot;</span><span class="p">)</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="n">do_action</span><span class="p">(</span><span class="s2">&quot;Type &#39;Hello&#39;&quot;</span><span class="p">)</span>
+<span class="n">do_action</span><span class="p">(</span><span class="s2">&quot;Type &#39; World&#39;&quot;</span><span class="p">)</span>
+<span class="n">undo</span><span class="p">()</span>
+<span class="n">undo</span><span class="p">()</span>
+<span class="n">redo</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="list-manipulation-patterns">List Manipulation Patterns<a class="headerlink" href="#list-manipulation-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="remove-all-occurrences">Remove All Occurrences<a class="headerlink" href="#remove-all-occurrences" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">remove_all</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">item</span>
+            <span class="n">pop</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">end</span>
+    <span class="n">end</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Removed &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; occurrences&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">list</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">remove_all</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>  <span class="c1"># [1, 3, 4, 5]</span>
+</code></pre></div>
+<h3 id="insert-sorted">Insert Sorted<a class="headerlink" href="#insert-sorted" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">insert_sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Find insertion point</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">item</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">end</span>
+
+    <span class="n">insert</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">list</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">sorted_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="n">insert_sorted</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">insert_sorted</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">)</span>  <span class="c1"># [1, 3, 4, 5, 6, 7, 9]</span>
+</code></pre></div>
+<h3 id="replace-item">Replace Item<a class="headerlink" href="#replace-item" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">replace</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">old_item</span><span class="p">,</span> <span class="n">new_item</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">old_item</span>
+            <span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_item</span>
+            <span class="k">return</span> <span class="n">true</span>
+        <span class="n">end</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">end</span>
+    <span class="k">return</span> <span class="n">false</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">]</span>
+<span class="n">replace</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>  <span class="c1"># [&quot;a&quot;, &quot;x&quot;, &quot;c&quot;, &quot;d&quot;]</span>
+</code></pre></div>
+<h3 id="reverse-list">Reverse List<a class="headerlink" href="#reverse-list" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">function</span> <span class="n">reverse</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">let</span> <span class="nb">reversed</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+        <span class="n">append</span><span class="p">(</span><span class="nb">reversed</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">i</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="n">end</span>
+
+    <span class="k">return</span> <span class="nb">reversed</span>
+<span class="n">end</span>
+
+<span class="n">let</span> <span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">let</span> <span class="n">rev</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rev</span><span class="p">)</span>  <span class="c1"># [5, 4, 3, 2, 1]</span>
+</code></pre></div>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="check-before-removing">Check Before Removing<a class="headerlink" href="#check-before-removing" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Good: Handle errors</span>
+<span class="k">try</span>
+    <span class="n">remove</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">error</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Item not found&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="c1"># Better: Check first (when possible)</span>
+<span class="n">let</span> <span class="n">found</span> <span class="o">=</span> <span class="n">false</span>
+<span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="nb">list</span>
+    <span class="k">if</span> <span class="n">element</span> <span class="o">==</span> <span class="n">item</span>
+        <span class="n">found</span> <span class="o">=</span> <span class="n">true</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="k">if</span> <span class="n">found</span>
+    <span class="n">remove</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="use-appropriate-method">Use Appropriate Method<a class="headerlink" href="#use-appropriate-method" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Remove last item: use pop()</span>
+<span class="n">let</span> <span class="n">last</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+
+<span class="c1"># Remove specific item: use remove()</span>
+<span class="n">remove</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="s2">&quot;item&quot;</span><span class="p">)</span>
+
+<span class="c1"># Remove at index: use pop(list, index)</span>
+<span class="n">let</span> <span class="n">item</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="avoid-index-errors">Avoid Index Errors<a class="headerlink" href="#avoid-index-errors" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Check length before accessing</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="n">let</span> <span class="n">item</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="n">end</span>
+
+<span class="c1"># Use try-except</span>
+<span class="k">try</span>
+    <span class="n">let</span> <span class="n">item</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">error</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Index out of range&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h2 id="quick-reference">Quick Reference<a class="headerlink" href="#quick-reference" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Purpose</th>
+<th>Example</th>
+<th>Modifies List</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>append(list, item)</code></td>
+<td>Add to end</td>
+<td><code>append(fruits, "apple")</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>insert(list, i, item)</code></td>
+<td>Add at position</td>
+<td><code>insert(fruits, 0, "apple")</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>remove(list, item)</code></td>
+<td>Remove first match</td>
+<td><code>remove(fruits, "apple")</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>pop(list)</code></td>
+<td>Remove last</td>
+<td><code>pop(fruits)</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>pop(list, i)</code></td>
+<td>Remove at index</td>
+<td><code>pop(fruits, 0)</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>clear(list)</code></td>
+<td>Remove all</td>
+<td><code>clear(fruits)</code></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong><a href="../../guide/collections/">Lists &amp; Dictionaries</a></strong> - Complete guide</li>
+<li><strong><a href="../builtins/">Built-in Functions</a></strong> - Other useful functions</li>
+<li><strong><a href="../../examples/basic/">Examples</a></strong> - See lists in action</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../random/" class="btn btn-neutral float-left" title="Random Library"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../examples/basic/" class="btn btn-neutral float-right" title="Basic Examples">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/mochacinno-dev/Tourmaline" class="fa fa-code-fork" style="color: #fcfcfc"> mochacinno-dev/Tourmaline</a>
+        </span>
+    
+    
+      <span><a href="../random/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../examples/basic/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

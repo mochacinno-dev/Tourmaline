@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Camila "Mocha" Rose (CoffeeShop Development)" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Variables & Types - Tourmaline</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Variables \u0026 Types";
+        var mkdocs_page_input_path = "guide\\variables.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Tourmaline
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/quick-start/">Quick Start</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/first-program/">Your First Program</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Language Guide</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Variables & Types</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#variable-declaration">Variable Declaration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data-types">Data Types</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#integer">Integer</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#float">Float</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#string">String</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#boolean">Boolean</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#nil">Nil</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lists">Lists</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dictionaries">Dictionaries</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#type-checking">Type Checking</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#type-conversion">Type Conversion</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#string-conversions">String Conversions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integer-conversions">Integer Conversions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#float-conversions">Float Conversions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#conversion-error-handling">Conversion Error Handling</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#variable-assignment">Variable Assignment</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#simple-assignment">Simple Assignment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#compound-assignment">Compound Assignment</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#variable-scope">Variable Scope</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#naming-conventions">Naming Conventions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#constants">Constants</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#working-with-multiple-variables">Working with Multiple Variables</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#type-conversions-in-practice">Type Conversions in Practice</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dynamic-typing">Dynamic Typing</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../operators/">Operators</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../control-flow/">Control Flow</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../functions/">Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../collections/">Lists & Dictionaries</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exceptions/">Exception Handling</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Standard Library</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/builtins/">Built-in Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/math/">Math Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/random/">Random Library</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../stdlib/lists/">List Operations</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/basic/">Basic Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/advanced/">Advanced Examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/syntax/">Syntax Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/errors/">Error Messages</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/license/">License</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/contributing/">Contributing</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Tourmaline</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Language Guide</li>
+      <li class="breadcrumb-item active">Variables & Types</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/mochacinno-dev/Tourmaline/edit/master/docs/guide/variables.md">Edit on mochacinno-dev/Tourmaline</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="variables-data-types">Variables &amp; Data Types<a class="headerlink" href="#variables-data-types" title="Permanent link">&para;</a></h1>
+<p>Learn how to store and work with data in Tourmaline.</p>
+<h2 id="variable-declaration">Variable Declaration<a class="headerlink" href="#variable-declaration" title="Permanent link">&para;</a></h2>
+<p>In Tourmaline, all variables must be declared using the <code>let</code> keyword:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span>
+<span class="n">let</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">let</span> <span class="n">price</span> <span class="o">=</span> <span class="mf">19.99</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You cannot use a variable before declaring it with <code>let</code>. This will cause an error:</p>
+<div class="highlight"><pre><span></span><code><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Alice&quot;</span>  <span class="c1"># Error! Must use &#39;let&#39; first</span>
+</code></pre></div>
+</div>
+<h2 id="data-types">Data Types<a class="headerlink" href="#data-types" title="Permanent link">&para;</a></h2>
+<p>Tourmaline supports several fundamental data types:</p>
+<h3 id="integer">Integer<a class="headerlink" href="#integer" title="Permanent link">&para;</a></h3>
+<p>Whole numbers without decimal points:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">let</span> <span class="n">year</span> <span class="o">=</span> <span class="mi">2024</span>
+<span class="n">let</span> <span class="n">negative</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span>
+<span class="n">let</span> <span class="n">zero</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div>
+<h3 id="float">Float<a class="headerlink" href="#float" title="Permanent link">&para;</a></h3>
+<p>Numbers with decimal points:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14159</span>
+<span class="n">let</span> <span class="n">temperature</span> <span class="o">=</span> <span class="mf">23.5</span>
+<span class="n">let</span> <span class="n">price</span> <span class="o">=</span> <span class="mf">99.99</span>
+<span class="n">let</span> <span class="n">small</span> <span class="o">=</span> <span class="mf">0.001</span>
+</code></pre></div>
+<h3 id="string">String<a class="headerlink" href="#string" title="Permanent link">&para;</a></h3>
+<p>Text enclosed in single or double quotes:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Alice&quot;</span>
+<span class="n">let</span> <span class="n">greeting</span> <span class="o">=</span> <span class="s1">&#39;Hello, World!&#39;</span>
+<span class="n">let</span> <span class="n">empty</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</code></pre></div>
+<p><strong>String Concatenation:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">first</span> <span class="o">=</span> <span class="s2">&quot;John&quot;</span>
+<span class="n">let</span> <span class="n">last</span> <span class="o">=</span> <span class="s2">&quot;Doe&quot;</span>
+<span class="n">let</span> <span class="n">full_name</span> <span class="o">=</span> <span class="n">first</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">last</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span>  <span class="c1"># John Doe</span>
+</code></pre></div>
+<p><strong>Special Characters:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">multiline</span> <span class="o">=</span> <span class="s2">&quot;Line 1</span><span class="se">\n</span><span class="s2">Line 2&quot;</span>  <span class="c1"># \n for newline</span>
+<span class="n">let</span> <span class="n">tabbed</span> <span class="o">=</span> <span class="s2">&quot;Name:</span><span class="se">\t</span><span class="s2">Value&quot;</span>        <span class="c1"># \t for tab</span>
+</code></pre></div>
+<h3 id="boolean">Boolean<a class="headerlink" href="#boolean" title="Permanent link">&para;</a></h3>
+<p>True or false values:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">is_active</span> <span class="o">=</span> <span class="n">true</span>
+<span class="n">let</span> <span class="n">is_complete</span> <span class="o">=</span> <span class="n">false</span>
+<span class="n">let</span> <span class="n">has_access</span> <span class="o">=</span> <span class="n">true</span>
+</code></pre></div>
+<p>Booleans are used in conditions:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">is_adult</span> <span class="o">=</span> <span class="n">true</span>
+
+<span class="k">if</span> <span class="n">is_adult</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Access granted&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="nil">Nil<a class="headerlink" href="#nil" title="Permanent link">&para;</a></h3>
+<p>Represents the absence of a value:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">nothing</span> <span class="o">=</span> <span class="n">nil</span>
+<span class="n">let</span> <span class="n">unset</span> <span class="o">=</span> <span class="n">nil</span>
+</code></pre></div>
+<p>Check for nil:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">value</span> <span class="o">=</span> <span class="n">nil</span>
+
+<span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="n">nil</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Value is nil&quot;</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h3 id="lists">Lists<a class="headerlink" href="#lists" title="Permanent link">&para;</a></h3>
+<p>Ordered collections of items:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">let</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+<span class="n">let</span> <span class="n">mixed</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="n">true</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">]</span>
+<span class="n">let</span> <span class="n">empty_list</span> <span class="o">=</span> <span class="p">[]</span>
+</code></pre></div>
+<h3 id="dictionaries">Dictionaries<a class="headerlink" href="#dictionaries" title="Permanent link">&para;</a></h3>
+<p>Key-value pairs:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;alice@example.com&quot;</span>
+<span class="p">}</span>
+
+<span class="n">let</span> <span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;debug&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span>
+    <span class="s2">&quot;host&quot;</span><span class="p">:</span> <span class="s2">&quot;localhost&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="type-checking">Type Checking<a class="headerlink" href="#type-checking" title="Permanent link">&para;</a></h2>
+<p>Use the <code>type()</code> function to check a variable's type:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>  <span class="c1"># int</span>
+
+<span class="n">let</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Alice&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>  <span class="c1"># str</span>
+
+<span class="n">let</span> <span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">items</span><span class="p">))</span>  <span class="c1"># list</span>
+</code></pre></div>
+<h2 id="type-conversion">Type Conversion<a class="headerlink" href="#type-conversion" title="Permanent link">&para;</a></h2>
+<h3 id="string-conversions">String Conversions<a class="headerlink" href="#string-conversions" title="Permanent link">&para;</a></h3>
+<p>Convert any value to a string with <code>str()</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">let</span> <span class="n">text</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number: &quot;</span> <span class="o">+</span> <span class="n">text</span><span class="p">)</span>
+
+<span class="n">let</span> <span class="n">flag</span> <span class="o">=</span> <span class="n">true</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Status: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">flag</span><span class="p">))</span>
+</code></pre></div>
+<h3 id="integer-conversions">Integer Conversions<a class="headerlink" href="#integer-conversions" title="Permanent link">&para;</a></h3>
+<p>Convert to integer with <code>int()</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># From string</span>
+<span class="n">let</span> <span class="n">num_str</span> <span class="o">=</span> <span class="s2">&quot;123&quot;</span>
+<span class="n">let</span> <span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num_str</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">num</span> <span class="o">+</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># 133</span>
+
+<span class="c1"># From float (truncates decimal)</span>
+<span class="n">let</span> <span class="n">decimal</span> <span class="o">=</span> <span class="mf">9.8</span>
+<span class="n">let</span> <span class="n">whole</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">decimal</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">whole</span><span class="p">)</span>  <span class="c1"># 9</span>
+
+<span class="c1"># From boolean</span>
+<span class="n">let</span> <span class="n">flag</span> <span class="o">=</span> <span class="n">true</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">flag</span><span class="p">))</span>  <span class="c1"># 1</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><code>int()</code> can convert strings that contain floats:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="s2">&quot;42.7&quot;</span><span class="p">)</span>  <span class="c1"># Converts to 42</span>
+</code></pre></div>
+</div>
+<h3 id="float-conversions">Float Conversions<a class="headerlink" href="#float-conversions" title="Permanent link">&para;</a></h3>
+<p>Convert to float with <code>float()</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># From string</span>
+<span class="n">let</span> <span class="n">num_str</span> <span class="o">=</span> <span class="s2">&quot;3.14&quot;</span>
+<span class="n">let</span> <span class="n">num</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">num_str</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">num</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># 6.28</span>
+
+<span class="c1"># From integer</span>
+<span class="n">let</span> <span class="n">whole</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">let</span> <span class="n">decimal</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">whole</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">decimal</span><span class="p">)</span>  <span class="c1"># 10.0</span>
+
+<span class="c1"># From boolean</span>
+<span class="n">let</span> <span class="n">flag</span> <span class="o">=</span> <span class="n">true</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">flag</span><span class="p">))</span>  <span class="c1"># 1.0</span>
+</code></pre></div>
+<h3 id="conversion-error-handling">Conversion Error Handling<a class="headerlink" href="#conversion-error-handling" title="Permanent link">&para;</a></h3>
+<p>Invalid conversions raise errors. Use exception handling:</p>
+<div class="highlight"><pre><span></span><code><span class="k">try</span>
+    <span class="n">let</span> <span class="n">bad_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="s2">&quot;not a number&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">error</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Conversion failed: &quot;</span> <span class="o">+</span> <span class="n">error</span><span class="p">)</span>
+<span class="n">end</span>
+</code></pre></div>
+<h2 id="variable-assignment">Variable Assignment<a class="headerlink" href="#variable-assignment" title="Permanent link">&para;</a></h2>
+<h3 id="simple-assignment">Simple Assignment<a class="headerlink" href="#simple-assignment" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">20</span>  <span class="c1"># Update existing variable</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>After declaring with <code>let</code>, use the variable name alone for updates</p>
+</div>
+<h3 id="compound-assignment">Compound Assignment<a class="headerlink" href="#compound-assignment" title="Permanent link">&para;</a></h3>
+<p>Shorthand operators for common operations:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">counter</span> <span class="o">+=</span> <span class="mi">5</span>   <span class="c1"># Same as: counter = counter + 5</span>
+<span class="n">counter</span> <span class="o">-=</span> <span class="mi">3</span>   <span class="c1"># Same as: counter = counter - 3</span>
+<span class="n">counter</span> <span class="o">*=</span> <span class="mi">2</span>   <span class="c1"># Same as: counter = counter * 2</span>
+<span class="n">counter</span> <span class="o">/=</span> <span class="mi">4</span>   <span class="c1"># Same as: counter = counter / 4</span>
+</code></pre></div>
+<p><strong>Examples:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">score</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="n">score</span> <span class="o">+=</span> <span class="mi">50</span>     <span class="c1"># score is now 150</span>
+<span class="n">score</span> <span class="o">-=</span> <span class="mi">20</span>     <span class="c1"># score is now 130</span>
+<span class="n">score</span> <span class="o">*=</span> <span class="mi">2</span>      <span class="c1"># score is now 260</span>
+<span class="n">score</span> <span class="o">/=</span> <span class="mi">10</span>     <span class="c1"># score is now 26</span>
+</code></pre></div>
+<h2 id="variable-scope">Variable Scope<a class="headerlink" href="#variable-scope" title="Permanent link">&para;</a></h2>
+<p>Variables declared inside functions are local:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">global_var</span> <span class="o">=</span> <span class="s2">&quot;I&#39;m global&quot;</span>
+
+<span class="n">function</span> <span class="n">my_function</span><span class="p">()</span>
+    <span class="n">let</span> <span class="n">local_var</span> <span class="o">=</span> <span class="s2">&quot;I&#39;m local&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">local_var</span><span class="p">)</span>      <span class="c1"># Works</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">global_var</span><span class="p">)</span>     <span class="c1"># Also works</span>
+<span class="n">end</span>
+
+<span class="n">my_function</span><span class="p">()</span>
+<span class="c1"># print(local_var)  # Error! local_var doesn&#39;t exist here</span>
+</code></pre></div>
+<h2 id="naming-conventions">Naming Conventions<a class="headerlink" href="#naming-conventions" title="Permanent link">&para;</a></h2>
+<p><strong>Valid variable names:</strong></p>
+<ul>
+<li>Must start with a letter or underscore</li>
+<li>Can contain letters, numbers, and underscores</li>
+<li>Are case-sensitive</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">userName</span> <span class="o">=</span> <span class="s2">&quot;Alice&quot;</span>      <span class="c1"># Valid</span>
+<span class="n">let</span> <span class="n">user_name</span> <span class="o">=</span> <span class="s2">&quot;Bob&quot;</span>       <span class="c1"># Valid</span>
+<span class="n">let</span> <span class="n">_private</span> <span class="o">=</span> <span class="s2">&quot;secret&quot;</span>     <span class="c1"># Valid</span>
+<span class="n">let</span> <span class="n">user123</span> <span class="o">=</span> <span class="s2">&quot;Charlie&quot;</span>     <span class="c1"># Valid</span>
+</code></pre></div>
+<p><strong>Invalid variable names:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="mi">123</span><span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;Invalid&quot;</span>     <span class="c1"># Error! Starts with number</span>
+<span class="n">let</span> <span class="n">user</span><span class="o">-</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Invalid&quot;</span>   <span class="c1"># Error! Contains hyphen</span>
+<span class="n">let</span> <span class="n">user</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Invalid&quot;</span>   <span class="c1"># Error! Contains space</span>
+</code></pre></div>
+<p><strong>Best Practices:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Use descriptive names</span>
+<span class="n">let</span> <span class="n">user_age</span> <span class="o">=</span> <span class="mi">25</span>           <span class="c1"># Good</span>
+<span class="n">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">25</span>                  <span class="c1"># Less clear</span>
+
+<span class="c1"># Use snake_case for multi-word names</span>
+<span class="n">let</span> <span class="n">first_name</span> <span class="o">=</span> <span class="s2">&quot;John&quot;</span>     <span class="c1"># Recommended</span>
+<span class="n">let</span> <span class="n">firstName</span> <span class="o">=</span> <span class="s2">&quot;John&quot;</span>      <span class="c1"># Also works</span>
+
+<span class="c1"># Use meaningful names</span>
+<span class="n">let</span> <span class="n">total_price</span> <span class="o">=</span> <span class="mf">99.99</span>     <span class="c1"># Clear</span>
+<span class="n">let</span> <span class="n">tp</span> <span class="o">=</span> <span class="mf">99.99</span>              <span class="c1"># Unclear</span>
+</code></pre></div>
+<h2 id="constants">Constants<a class="headerlink" href="#constants" title="Permanent link">&para;</a></h2>
+<p>Tourmaline doesn't have built-in constants, but by convention, use UPPERCASE names:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">MAX_USERS</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">let</span> <span class="n">PI</span> <span class="o">=</span> <span class="mf">3.14159</span>
+<span class="n">let</span> <span class="n">API_KEY</span> <span class="o">=</span> <span class="s2">&quot;secret123&quot;</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is just a naming convention. The values can still be changed.</p>
+</div>
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
+<h3 id="working-with-multiple-variables">Working with Multiple Variables<a class="headerlink" href="#working-with-multiple-variables" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Declare multiple variables</span>
+<span class="n">let</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Alice&quot;</span>
+<span class="n">let</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">let</span> <span class="n">salary</span> <span class="o">=</span> <span class="mf">50000.0</span>
+<span class="n">let</span> <span class="n">is_employee</span> <span class="o">=</span> <span class="n">true</span>
+
+<span class="c1"># Use them together</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Employee: &quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Age: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">age</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Salary: $&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">salary</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Active: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">is_employee</span><span class="p">))</span>
+</code></pre></div>
+<h3 id="type-conversions-in-practice">Type Conversions in Practice<a class="headerlink" href="#type-conversions-in-practice" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Calculator example</span>
+<span class="n">let</span> <span class="n">num1</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter first number: &quot;</span><span class="p">)</span>
+<span class="n">let</span> <span class="n">num2</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter second number: &quot;</span><span class="p">)</span>
+
+<span class="c1"># Convert strings to floats</span>
+<span class="n">let</span> <span class="n">a</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">num1</span><span class="p">)</span>
+<span class="n">let</span> <span class="n">b</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">num2</span><span class="p">)</span>
+
+<span class="n">let</span> <span class="nb">sum</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="n">let</span> <span class="n">product</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sum: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">sum</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Product: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">product</span><span class="p">))</span>
+</code></pre></div>
+<h3 id="dynamic-typing">Dynamic Typing<a class="headerlink" href="#dynamic-typing" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Variables can change type</span>
+<span class="n">let</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">42</span>          <span class="c1"># Integer</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>      <span class="c1"># int</span>
+
+<span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span>         <span class="c1"># Now a string</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>      <span class="c1"># str</span>
+
+<span class="n">value</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>       <span class="c1"># Now a list</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>      <span class="c1"># list</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>While Tourmaline allows changing types, it's good practice to keep variables consistently typed</p>
+</div>
+<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong><a href="../operators/">Learn about Operators</a></strong> - Manipulate your variables</li>
+<li><strong><a href="../control-flow/">Control Flow</a></strong> - Make decisions with your data</li>
+<li><strong><a href="../collections/">Lists &amp; Dictionaries</a></strong> - Work with complex data structures</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../getting-started/first-program/" class="btn btn-neutral float-left" title="Your First Program"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../operators/" class="btn btn-neutral float-right" title="Operators">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/mochacinno-dev/Tourmaline" class="fa fa-code-fork" style="color: #fcfcfc"> mochacinno-dev/Tourmaline</a>
+        </span>
+    
+    
+      <span><a href="../../getting-started/first-program/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../operators/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
