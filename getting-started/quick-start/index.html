@@ -1,252 +1,292 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html data-bs-theme="">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="A simple, easy to learn programming language with beautiful syntax inspired by Lua and Ruby">
-        <meta name="author" content="Camila "Mocha" Rose (CoffeeShop Development)">
-        
-        <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Quick Start - Tourmaline</title>
-        <link href="../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../../css/bootstrap-theme.min.css" rel="stylesheet">
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.3/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+                <title>Quick Start - Tourmaline</title>
 
-        <script src="../../js/jquery-1.10.2.min.js"></script>
-        <script src="../../js/bootstrap.min.js"></script>
-        
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            
+            
+            <meta name="author" content="Camila "Mocha" Rose (CoffeeShop Development)">
+
+            
+                <link  rel="icon" type="image/x-icon" href="../../assets/img/favicon.ico">
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+                <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.4.0/styles/base16/grayscale-dark.min.css">
+                <script>hljs.highlightAll();</script>
+
+        <script>var base_url = '../..';</script>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+            <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="../../assets/css/root.min.css">
+            <link rel="stylesheet" href="../../assets/css/main.min.css">
+            <link rel="stylesheet" href="../../assets/css/media.min.css">
+            <link rel="stylesheet" href="../../assets/css/mkdocstrings.min.css">
+                <script src="../../search/main.js"></script>
+
+            
+                
+            
+          
     </head>
 
     <body>
+        <div class="container py-3">
+            <header>
+                    <!-- block header -->
+<nav class="navbar navbar-expand-xl border-bottom">
+    <div class="container-fluid">
+        
 
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
+        
+            <span class=" fs-4 title-color site-name" id="component-site-name" style="text-transform: uppercase;">Tourmaline</span>
+        
 
-        <!-- Collapsed navigation -->
-        <div class="navbar-header">
-            <!-- Expander button -->
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="../..">Tourmaline</a>
-        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+            aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-        <!-- Expanded navigation -->
-        <div class="navbar-collapse collapse">
-            <!-- Main navigation -->
-            <ul class="nav navbar-nav">
-            
-            
-                <li >
-                    <a href="../..">Home</a>
-                </li>
-            
-            
-            
-                <li class="dropdown active">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Getting Started <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        <li >
-                            <a href="../installation/">Installation</a>
+        <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+            <ul class="navbar-nav">
+
+                <!-- block menu -->
+                <li class="nav-item">
+                    <!-- block menu -->
+    
+        <li class="nav-item" id="component-menu">
+            <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../..">[Home]</a>
                         </li>
-                    
-                        <li class="active">
-                            <a href="./">Quick Start</a>
+                        <li class="nav-item dropdown">
+                            <a class=" active 
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Getting Started]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../installation/" class="dropdown-item text-decoration-none ">Installation</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="./" class="dropdown-item text-decoration-none  active ">Quick Start</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../first-program/" class="dropdown-item text-decoration-none ">Your First Program</a>
+    </li>
+<!-- endblock -->
+                            </ul>
                         </li>
-                    
-                        <li >
-                            <a href="../first-program/">Your First Program</a>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Language Guide]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../guide/variables/" class="dropdown-item text-decoration-none ">Variables & Types</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../guide/operators/" class="dropdown-item text-decoration-none ">Operators</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../guide/control-flow/" class="dropdown-item text-decoration-none ">Control Flow</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../guide/functions/" class="dropdown-item text-decoration-none ">Functions</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../guide/collections/" class="dropdown-item text-decoration-none ">Lists & Dictionaries</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../guide/exceptions/" class="dropdown-item text-decoration-none ">Exception Handling</a>
+    </li>
+<!-- endblock -->
+                            </ul>
                         </li>
-                    
-                    </ul>
-                </li>
-            
-            
-            
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language Guide <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        <li >
-                            <a href="../../guide/variables/">Variables & Types</a>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Standard Library]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../stdlib/builtins/" class="dropdown-item text-decoration-none ">Built-in Functions</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../stdlib/math/" class="dropdown-item text-decoration-none ">Math Functions</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../stdlib/random/" class="dropdown-item text-decoration-none ">Random Library</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../stdlib/lists/" class="dropdown-item text-decoration-none ">List Operations</a>
+    </li>
+<!-- endblock -->
+                            </ul>
                         </li>
-                    
-                        <li >
-                            <a href="../../guide/operators/">Operators</a>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Examples]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../examples/basic/" class="dropdown-item text-decoration-none ">Basic Examples</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../examples/advanced/" class="dropdown-item text-decoration-none ">Advanced Examples</a>
+    </li>
+<!-- endblock -->
+                            </ul>
                         </li>
-                    
-                        <li >
-                            <a href="../../guide/control-flow/">Control Flow</a>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Reference]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../reference/syntax/" class="dropdown-item text-decoration-none ">Syntax Reference</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../reference/errors/" class="dropdown-item text-decoration-none ">Error Messages</a>
+    </li>
+<!-- endblock -->
+                            </ul>
                         </li>
-                    
-                        <li >
-                            <a href="../../guide/functions/">Functions</a>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[About]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../about/license/" class="dropdown-item text-decoration-none ">License</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../about/contributing/" class="dropdown-item text-decoration-none ">Contributing</a>
+    </li>
+<!-- endblock -->
+                            </ul>
                         </li>
-                    
-                        <li >
-                            <a href="../../guide/collections/">Lists & Dictionaries</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../../guide/exceptions/">Exception Handling</a>
-                        </li>
-                    
-                    </ul>
-                </li>
-            
-            
-            
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Standard Library <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        <li >
-                            <a href="../../stdlib/builtins/">Built-in Functions</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../../stdlib/math/">Math Functions</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../../stdlib/random/">Random Library</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../../stdlib/lists/">List Operations</a>
-                        </li>
-                    
-                    </ul>
-                </li>
-            
-            
-            
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        <li >
-                            <a href="../../examples/basic/">Basic Examples</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../../examples/advanced/">Advanced Examples</a>
-                        </li>
-                    
-                    </ul>
-                </li>
-            
-            
-            
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        <li >
-                            <a href="../../reference/syntax/">Syntax Reference</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../../reference/errors/">Error Messages</a>
-                        </li>
-                    
-                    </ul>
-                </li>
-            
-            
-            
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        <li >
-                            <a href="../../about/license/">License</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../../about/contributing/">Contributing</a>
-                        </li>
-                    
-                    </ul>
-                </li>
-            
-            
             </ul>
+        </li>
+<!-- endblock -->
+                </li>
+                <!-- endblock -->
 
-            <!-- Search, Navigation and Repo links -->
-            <ul class="nav navbar-nav navbar-right">
-                    <li >
-                        <a rel="next" href="../installation/">
-                            <i class="fa fa-arrow-left"></i> Previous
-                        </a>
-                    </li>
-                    <li >
-                        <a rel="prev" href="../first-program/">
-                            Next <i class="fa fa-arrow-right"></i>
-                        </a>
-                    </li>
-                
-                <li>
-                    <a href="https://github.com/mochacinno-dev/Tourmaline">
-                        
-                        mochacinno-dev/Tourmaline
+                <!-- block search -->
+                <li class="nav-item">
+                    <a class="collapsed" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <div class="md-search-icon">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </div>
                     </a>
                 </li>
-                
+                <!--  endblock -->
+
+                <!-- block source -->
+                <li class="nav-item">
+                    
+                        
+                            <!-- block source -->
+<div class="md-source source-detail">
+  <div class="md-source-repo-icon">
+    <i class="fa fa-github-alt" aria-hidden="true"></i>
+  </div>
+
+  <div class="md-source-repo-url">
+    <a href="https://github.com/mochacinno-dev/Tourmaline" class="md-source">
+        mochacinno-dev/Tourmaline
+    </a>
+
+    <ul class="md-source-repo-text">
+      <li>
+        <i class="fa fa-tag" aria-hidden="true"></i>
+        <img
+          alt="GitHub tag (latest by date)"
+          src="https://img.shields.io/github/v/tag/mochacinno-dev/Tourmaline?color=white&label=%20&style=flat-square"
+        />
+      </li>
+
+      <li>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <img
+          alt="GitHub Repo stars"
+          src="https://img.shields.io/github/stars/mochacinno-dev/Tourmaline?color=white&label=%20&style=flat-square"
+        />
+      </li>
+
+      <li>
+        <i class="fa fa-code-fork" aria-hidden="true"></i>
+        <img
+          alt="GitHub forks"
+          src="https://img.shields.io/github/forks/mochacinno-dev/Tourmaline?color=white&label=%20&style=flat-square"
+        />
+      </li>
+    </ul>
+  </div>
+</div>
+<!--  endblock -->
+                        
+                    
+                </li>
+                <!--  endblock -->
             </ul>
         </div>
     </div>
+</nav>
+<!--  endblock -->
+            </header>
+
+            <main><!-- block search -->
+<div class="collapse" id="collapseExample">
+    <div role="search" class="search-box">
+        <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+            <input type="text" name="q" class="search-query"
+            placeholder="Search docs" title="Type search term here" />
+        </form>
+    </div>
 </div>
+<!-- endblock -->
 
-        <div class="container">
-                <div class="row">
-                    <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-      
-    
-        <li class="main active"><a href="#quick-start-guide">Quick Start Guide</a></li>
-        
-            <li><a href="#your-first-line-of-code">Your First Line of Code</a></li>
-        
-            <li><a href="#basic-concepts">Basic Concepts</a></li>
-        
-            <li><a href="#data-types">Data Types</a></li>
-        
-            <li><a href="#basic-operations">Basic Operations</a></li>
-        
-            <li><a href="#control-flow">Control Flow</a></li>
-        
-            <li><a href="#functions">Functions</a></li>
-        
-            <li><a href="#working-with-lists">Working with Lists</a></li>
-        
-            <li><a href="#working-with-dictionaries">Working with Dictionaries</a></li>
-        
-            <li><a href="#comments">Comments</a></li>
-        
-            <li><a href="#quick-reference-card">Quick Reference Card</a></li>
-        
-            <li><a href="#try-it-yourself">Try It Yourself!</a></li>
-        
-            <li><a href="#next-steps">Next Steps</a></li>
-        
-    
-    
-    </ul>
-</div></div>
-                    <div class="col-md-9" role="main">
-
-<h1 id="quick-start-guide">Quick Start Guide<a class="headerlink" href="#quick-start-guide" title="Permanent link">&para;</a></h1>
+                
+                        <!-- block content -->
+<section class="container post" id="component-content">
+    <article>
+        <header>
+            
+                <h1 class=" title" id="component-title">Quick Start</h1>
+            
+        </header>
+        <p><h1 id="quick-start-guide">Quick Start Guide<a class="headerlink" href="#quick-start-guide" title="Permanent link">&para;</a></h1>
 <p>Get up and running with Tourmaline in minutes!</p>
 <h2 id="your-first-line-of-code">Your First Line of Code<a class="headerlink" href="#your-first-line-of-code" title="Permanent link">&para;</a></h2>
 <p>Open the Tourmaline REPL:</p>
@@ -506,15 +546,59 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This guide covers the essentials. There's much more to explore in Tourmaline!</p>
-</div></div>
-                </div>
+</div></p>
+    </article>
+</section>
+<!-- endblock -->
+                
+                
+            </main>
+
+            
+                    <!-- block preview -->
+    <div class="preview row row-cols-md-3 text-center pt-md-3" id="component-preview">
+        <div class="col themed-grid-col">
+            <a rel="prev" href="../installation/" class="nav-link">
+                <i class="fa fa-arrow-left"></i> Previous
+            </a>
+        </div>
+        <div class="col themed-grid-col"></div>
+        <div class="col themed-grid-col">
+            <a rel="next" href="../first-program/" class="nav-link">
+                Next <i class="fa fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+<!-- endblock -->
+            
+
+            
+                    <!-- block footer -->
+<footer class="pt-4 my-md-5 pt-md-5 border-top" id="component-footer">
+    <div class="row">
+        <div class="col-12 col-md">
+                <!-- block copyright -->
+
+    <small class="d-block mb-3">
+        Made with
+        <a href="https://github.com/FernandoCelmer/mkdocs-simple-blog" target="_blank" rel="noopener">
+            Simple Blog for MkDocs
+        </a>
+    </small>
+
+<!-- endblock -->
+        </div>
+    </div>
+</footer>
+<!-- endblock -->
+            
         </div>
 
-    <hr>
-    <footer class="container">
-        
-        <center>Documentation built with <a href="http://www.mkdocs.org">MkDocs</a> and <a href="http://kristopolous.github.io/BOOTSTRA.386">BOOTSTRA.386</a>.</center>
-    </footer>
-        <script src="../../../../search/main.js"></script>
+            <script src="../../assets/js/jquery-3.3.1.slim.min.js""></script>
+            <script src="../../assets/js/bootstrap.bundle.min.js""></script>
+            <script src="../../assets/js/main.min.js""></script>
+                <script src="../../search/main.js" defer></script>
+
     </body>
+
 </html>
